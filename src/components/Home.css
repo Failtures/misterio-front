@@ -1,0 +1,25 @@
+
+.container {
+    height: 100vh;
+}
+
+.section {
+    width: 100vw;
+    height: 100vh;
+    background-color: orange;
+    background-image: url('../img/26juegosdemesa.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.section::before {
+    content: "";
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, #642622, #b42e29);
+    opacity: 0.6;
+}
