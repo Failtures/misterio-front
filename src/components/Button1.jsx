@@ -3,7 +3,7 @@ import React from "react"
 const Button1 = () => {
   return (
     <div>
-      <button onClick> Create game </button>
+      <button onClick = {openModal}> Create game </button>
     </div>
   );
 }

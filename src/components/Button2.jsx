@@ -3,7 +3,7 @@ import React from "react"
 const Button1 = () => {
   return (
     <div>
-      <button onClick> Join Game </button>
+      <button onClick = {}> Join Game </button>
     </div>
   );
 }
