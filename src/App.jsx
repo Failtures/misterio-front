@@ -1,9 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import ButtonCreateGame from './components/ButtonCreateGame';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <ButtonCreateGame></ButtonCreateGame>
     </div>
   );
 }
