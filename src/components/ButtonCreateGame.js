@@ -1,6 +1,6 @@
 import React from "react"
 
-const ButtonCreateGame = () => {
+const ButtonCreateGame = ({openModal}) => {
   return (
     <div>
       <button onClick = {openModal}> Create Game </button>
