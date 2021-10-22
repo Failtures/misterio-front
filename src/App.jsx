@@ -3,9 +3,9 @@ import Modal from './components/Modal';
 import { useModal } from './hooks/useModal';
 // import {Button, TextField} from '@material-ui/core';
 import {TextField, Button} from '@material-ui/core'
-import {makeStyles} from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/styles'
 import Home from './components/Home';
-import ButtonCreateGame from './components/ButtonCreateGame';
+import ButtonCreateGame from './components/Buttons/ButtonCreateGame';
 
 const useStyle = makeStyles({
   botonPersonalizado: {
@@ -24,7 +24,7 @@ function App() {
   const classes = useStyle();
   return (
     <div className="App">
-      {/* <Home/> */}
+      {<Home/>}
       <ButtonCreateGame openModal={openModal}/>
       <Modal isOpen = {isOpenModal} closeModal = {closeModal}>
         <h1>Create Game</h1>
