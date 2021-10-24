@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
 import { Button } from "@material-ui/core";
-
-import { makeStyles } from '@material-ui/core/styles'
-
+import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
 import api from '../configs/api'
+import ButtonJoinGame from "./Buttons/ButtonJoinGame";
 
 const useStyle = makeStyles({
     conteiner: {
@@ -80,12 +79,7 @@ const ListGames = () => {
                                     <TableCell>{item.name}</TableCell>
                                     <TableCell>{item.current_players}</TableCell>
                                     <TableCell>
-                                        <Button
-                                            variant="contained"
-                                            href="#contained-buttons"
-                                            color="primary"
-                                            onClick={() => { alert(`entering the lobby ${item.name}`) }}>Join
-                                        </Button>
+                                        <ButtonJoinGame> Join Game </ButtonJoinGame>
                                     </TableCell>
                                 </TableRow>
                             ))
