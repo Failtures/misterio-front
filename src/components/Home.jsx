@@ -7,6 +7,8 @@ import ButtonCreateGame from './Buttons/ButtonCreateGame';
 import ListGames from './ListGames';
 //import Nickname from './Nickname'
 import { useHistory } from 'react-router';
+import ButtonThrowDice from './Buttons/ButtonThrowDice';
+import ThrowDice from './Buttons/ButtonThrowDice';
 
 
 
@@ -18,6 +20,7 @@ function Home() {
         <div className="container">
             <div className="section">
                 <ButtonCreateGame openModal={openModal} />
+                <ButtonThrowDice ThrowDice = {ThrowDice}/>
                 <ListGames player={nickName}></ListGames>
                 <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickName}/>
             </div>
