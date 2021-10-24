@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
 import api from '../configs/api'
 import ButtonJoinGame from "./Buttons/ButtonJoinGame";
+import { getThemeProps } from "@material-ui/system";
 
 const useStyle = makeStyles({
     conteiner: {
@@ -22,7 +23,7 @@ const useStyle = makeStyles({
     }
 });
 
-const ListGames = () => {
+const ListGames = (props) => {
 
     const [games, setGames] = useState([]);
 
@@ -79,7 +80,7 @@ const ListGames = () => {
                                     <TableCell>{item.name}</TableCell>
                                     <TableCell>{item.current_players}</TableCell>
                                     <TableCell>
-                                        <ButtonJoinGame> Join Game </ButtonJoinGame>
+                                        <ButtonJoinGame nameGame={item.name} player={props.nickName}> Join Game </ButtonJoinGame>
                                     </TableCell>
                                 </TableRow>
                             ))
