@@ -10,6 +10,8 @@ import ListGames from './ListGames';
 //import Nickname from './Nickname'
 import Prueba from './prueba';
 import { useHistory } from 'react-router';
+import ButtonThrowDice from './Buttons/ButtonThrowDice';
+import ThrowDice from './Buttons/ButtonThrowDice';
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -32,6 +34,7 @@ function Home() {
         <div className="container">
             <div className="section">
                 <ButtonCreateGame openModal={openModal} />
+                <ButtonThrowDice ThrowDice = {ThrowDice}/>
                 <ListGames player={nickName}></ListGames>
                 <Modal isOpen={isOpenModal} closeModal={closeModal}>
                     <h1>Create Game</h1>
