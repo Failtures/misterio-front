@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/styles'
 import Modal from './Modal';
 import ButtonCreateGame from './Buttons/ButtonCreateGame';
 import ButtonJoinGame from './Buttons/ButtonJoinGame';
+import ListGames from './ListGames';
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -25,7 +26,7 @@ function Home() {
         <div className="container">
             <div className="section">
                 <ButtonCreateGame openModal={openModal}/>
-                <ButtonJoinGame></ButtonJoinGame>
+                <ListGames></ListGames>
                 <Modal isOpen = {isOpenModal} closeModal = {closeModal}>
                 <h1>Create Game</h1>
                 <form>

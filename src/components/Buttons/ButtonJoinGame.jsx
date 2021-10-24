@@ -1,11 +1,10 @@
 import React,{useEffect} from "react";
-import ListGames from "../list-games";
+import ListGames from "../ListGames";
 import {Button} from "@material-ui/core";
 import axios from 'axios'
 import api from '../../configs/api'
 
 const ButtonJoinGame = () => {
-
   useEffect(() => {
 
     const joinGame = async () => {
@@ -22,8 +21,10 @@ const ButtonJoinGame = () => {
             console.log(error, "The lobby is full or the player is already in the lobby");
         }
     };
+
     joinGame();
-  }, []);
+
+}, []);
 
   return (
     <div>
@@ -33,5 +34,15 @@ const ButtonJoinGame = () => {
 }
 
 
-
+// if (response.lobbies == null){
+//   console.log(error, "The lobby is full");
+// else {
+//   try{
+//     const response = await axios({
+//       method: 'post',
+//       url: `${api.url}/create-lobby`,
+//     })
+//   }
+// }
+// }
 export default ButtonJoinGame
