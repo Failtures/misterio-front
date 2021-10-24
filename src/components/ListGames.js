@@ -74,13 +74,14 @@ const ListGames = (props) => {
                 <TableBody>
 
                     {
+                        
                         games != null ?
                             games.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>{item.name}</TableCell>
                                     <TableCell>{item.current_players}</TableCell>
                                     <TableCell>
-                                        <ButtonJoinGame nameGame={item.name} player={props.nickName}> Join Game </ButtonJoinGame>
+                                        <ButtonJoinGame nameGame={item.name} player={props.player}> Join Game </ButtonJoinGame>
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -88,7 +89,9 @@ const ListGames = (props) => {
                             <TableRow>
 
                             </TableRow>
+                        
                     }
+                    
 
                 </TableBody>
             </Table>

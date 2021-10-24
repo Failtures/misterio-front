@@ -8,6 +8,8 @@ import ButtonCreateGame from './Buttons/ButtonCreateGame';
 import ButtonJoinGame from './Buttons/ButtonJoinGame';
 import ListGames from './ListGames';
 //import Nickname from './Nickname'
+import Prueba from './prueba';
+import { useHistory } from 'react-router';
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -22,6 +24,7 @@ const useStyle = makeStyles({
 })
 
 function Home() {
+    const history = useHistory()
     const [nickName, setNickName] = useState('');
     const [isOpenModal, openModal, closeModal] = useModal(false);
     const classes = useStyle();
@@ -46,6 +49,8 @@ function Home() {
             </div>
             <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
             <p>{nickName}</p>
+
+            <Button variant="contained" color="secondary" onClick={() => {history.push('/')}}>OPRIMIME</Button>
         </div>
     )
 }
