@@ -4,6 +4,7 @@ import "./Modal.css";
 import { TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import api from '../configs/api'
+import {ws} from '../index'
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -19,10 +20,10 @@ const useStyle = makeStyles({
 
 const Modal = ({ children, isOpen, closeModal, player }) => {
 
-    const ws = useRef(null);
-    const [button, setbutton] = useState(false)
-    const [lobbyInfo, setLobbyInfo] = useState([{}])
+    // const [button, setbutton] = useState(false)
+    const [lobbyInfo, setLobbyInfo] = useState({})
     const [gameName, setGameName] = useState('');
+
 
     const takes = {
         'action': 'lobby_create',
@@ -31,19 +32,18 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
     }
 
 
-
     useEffect(() => {
 
-        ws.current = new WebSocket('ws://localhost:8000/create-lobby');
-        // ws.send(JSON.stringify(takes))
-        ws.current.onmessage = (event) => {
-            setLobbyInfo(JSON.parse(event.data));
-        };
 
-        return () => {
-            ws.current.close();
+        ws.onmessage = (e) => {
+            setLobbyInfo(JSON.parse(e.data));
+            const parseJson = JSON.parse(e.data)
+            if(parseJson.action === 'new_lobby') {
+                console.log(parseJson)
+            }
         };
-    }, button);
+        
+    });
 
 
     const handleModalContainer = (e) => e.stopPropagation();
@@ -63,7 +63,7 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
                         <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
                     </div>
                     <div className="button-group">
-                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {setbutton(!button)}}>Create Game</Button>
+                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {ws.send(JSON.stringify(takes))}}>Create Game</Button>
                         <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
                     </div>
                 </form>

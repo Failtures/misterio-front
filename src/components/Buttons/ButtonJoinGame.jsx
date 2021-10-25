@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import axios from 'axios'
 import api from '../../configs/api'
 import { useHistory } from "react-router";
-import ws from "../../index" 
+import {ws} from "../../index" 
 
 const ButtonJoinGame = (props) => {
   // const [button, setButton] = useState(false);
