@@ -81,7 +81,7 @@ const ListGames = (props) => {
                             ))
                             :
                             <TableRow>
-
+                                no games available
                             </TableRow>
 
                     }
