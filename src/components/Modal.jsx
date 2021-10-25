@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect ,useRef } from 'react'
 
 import "./Modal.css";
 import { TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import axios from 'axios'
 import api from '../configs/api'
 
 const useStyle = makeStyles({
@@ -20,7 +19,31 @@ const useStyle = makeStyles({
 
 const Modal = ({ children, isOpen, closeModal, player }) => {
 
+    const ws = useRef(null);
+    const [button, setbutton] = useState(false)
+    const [lobbyInfo, setLobbyInfo] = useState([{}])
     const [gameName, setGameName] = useState('');
+
+    const takes = {
+        'action': 'lobby_create',
+        'host_name': player,
+        'lobby_name': gameName
+    }
+
+
+
+    useEffect(() => {
+
+        ws.current = new WebSocket('ws://localhost:8000/create-lobby');
+        // ws.send(JSON.stringify(takes))
+        ws.current.onmessage = (event) => {
+            setLobbyInfo(JSON.parse(event.data));
+        };
+
+        return () => {
+            ws.current.close();
+        };
+    }, button);
 
 
     const handleModalContainer = (e) => e.stopPropagation();
@@ -40,30 +63,7 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
                         <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
                     </div>
                     <div className="button-group">
-                        <Button variant="contained" className={classes.botonPersonalizado} onClick={async () => {
-
-                            try {
-
-                                const response = await axios({
-                                    method: 'post',
-                                    url: `${api.url}/create-lobby?name=${gameName}&host=${player}`,
-                                    headers: {
-                                        'Content-Type': 'multipart/form-data'
-                                    }
-                                });
-
-                                const data = response.data;
-                                console.log(data)
-                                console.log(data.lobbies)
-
-                            }
-
-                            catch (error) {
-
-                                console.log(error, "The lobby is full or the player is already in the lobby");
-
-                            }
-                        }}>Create Game</Button>
+                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {setbutton(!button)}}>Create Game</Button>
                         <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
                     </div>
                 </form>
@@ -73,4 +73,22 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
 }
 
 export default Modal
+
+
+    // const [gameInfo, setGameInfo] = useState([]);
+
+
+
+    // useEffect(() => {
+
+    //     ws.current = new WebSocket('ws://localhost:8000/lobby/');
+
+    //     ws.current.onmessage = (event) => {
+    //         setGameInfo(JSON.parse(event.data));
+    //     };
+
+    //     return () => {
+    //         ws.current.close();
+    //     };
+    // });
 
