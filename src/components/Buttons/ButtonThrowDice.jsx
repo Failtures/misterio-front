@@ -1,17 +1,22 @@
-import React, { useState } from "react"
+import React from "react"
 import { Button } from "@material-ui/core";
+import ws from "../../index"
 
-const ButtonThrowDice = ({ TrowDice }) => {
-  //const [dice, setDice] = useState('');
-  const ThrowDice = () => {
-    const min = 1;
-    const max = 7;
-    const result = Math.floor(Math.random() * (max - min)) + min
-    return result;
+const ButtonThrowDice = () => {
+  
+  const takes = {
+    "action": "match_roll_dice"
   }
+
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={alert(`Numero: ${ThrowDice()}`)}> Throw Dice </Button>
+      <Button 
+        variant="contained" 
+        color="secondary" 
+        onClick={
+          ws.send(JSON.stringify(takes))
+        }> Throw Dice
+      </Button>
     </div>
   );
 }
