@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
-import { Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
 import api from '../configs/api'
@@ -27,15 +26,6 @@ const ListGames = (props) => {
 
     const [games, setGames] = useState([]);
 
-
-    /*
-    const getGames = async () => {
-        await axios.get(`${api.url}/get-lobbies`)
-            .then(response => setGames(response.data))
-            .catch(error => console.log(error, "ERROR"));
-    };
-    */
-
     useEffect(() => {
 
         const getLobbies = async () => {
@@ -48,7 +38,7 @@ const ListGames = (props) => {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                setGames(response.data.lobbies)
+                setGames(response.data.lobbies.filter(item => item.current_players < 6))
             }
             catch (error) {
                 console.log(error, "ERROR");
@@ -74,14 +64,18 @@ const ListGames = (props) => {
                 <TableBody>
 
                     {
-                        
+
                         games != null ?
                             games.map(item => (
-                                <TableRow key={item.id}>
+                                <TableRow>
                                     <TableCell>{item.name}</TableCell>
                                     <TableCell>{item.current_players}</TableCell>
                                     <TableCell>
-                                        <ButtonJoinGame nameGame={item.name} player={props.player}> Join Game </ButtonJoinGame>
+                                        <ButtonJoinGame
+                                            nameGame={item.name}
+                                            player={props.player}
+                                        > Join Game
+                                        </ButtonJoinGame>
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -89,9 +83,8 @@ const ListGames = (props) => {
                             <TableRow>
 
                             </TableRow>
-                        
+
                     }
-                    
 
                 </TableBody>
             </Table>

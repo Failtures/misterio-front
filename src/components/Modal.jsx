@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import "./Modal.css";
 import { TextField, Button } from '@material-ui/core'
@@ -18,7 +18,7 @@ const useStyle = makeStyles({
     }
 })
 
-const Modal = ({children, isOpen, closeModal, player}) => {
+const Modal = ({ children, isOpen, closeModal, player }) => {
 
     const [gameName, setGameName] = useState('');
 
@@ -30,39 +30,39 @@ const Modal = ({children, isOpen, closeModal, player}) => {
             <div className="modal-container" onClick={handleModalContainer}>
                 <button class="modal-close" onClick={closeModal}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" fill="#000"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" fill="#000" />
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
                 <h1>Create Game</h1>
                 <form>
                     <div className="tfield-group">
-                        <TextField id="outlined-basic" label="Game Name" variant="outlined"  onChange={(e) => { setGameName(e.target.value) }}/>
+                        <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
                     </div>
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={async () => {
-                            
+
                             try {
-  
+
                                 const response = await axios({
-                                  method: 'post',
-                                  url: `${api.url}/create-lobby?name=${gameName}&host=${player}`,
-                                  headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                  }
+                                    method: 'post',
+                                    url: `${api.url}/create-lobby?name=${gameName}&host=${player}`,
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data'
+                                    }
                                 });
-                            
+
                                 const data = response.data;
                                 console.log(data)
                                 console.log(data.lobbies)
-                            
-                              }
-                            
-                              catch (error) {
-                            
+
+                            }
+
+                            catch (error) {
+
                                 console.log(error, "The lobby is full or the player is already in the lobby");
-                            
-                              }
+
+                            }
                         }}>Create Game</Button>
                         <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
                     </div>

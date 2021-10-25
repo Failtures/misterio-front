@@ -10,27 +10,32 @@ const ButtonJoinGame = (props) => {
 
   return (
     <div>
-      <Button variant="contained" color="secondary" href="" onClick={async () => {
+      <Button
+        variant="contained"
+        color="secondary"
+        href=""
+        onClick={
+          async () => {
 
-        try {
+            try {
 
-          const response = await axios({
-            method: 'post',
-            url: `${api.url}/join-player?name=${props.nameGame}&player=${props.player}`,
-            headers: {
-              'Content-Type': 'multipart/form-data',
+              const response = await axios({
+                method: 'post',
+                url: `${api.url}/join-player?name=${props.nameGame}&player=${props.player}`,
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                }
+              });
+
+              history.push(`/Lobby/${props.nameGame}`);
             }
-          });
 
-          history.push('/')
-        }
+            catch (error) {
+              console.log(error, "The lobby is full or the player is already in the lobby");
+            }
 
-        catch (error) {
-          console.log(error, "The lobby is full or the player is already in the lobby");
-        }
-
-      }
-      }> Join Game </Button>
+          }
+        }> Join Game </Button>
     </div>
   );
 };
