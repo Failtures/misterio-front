@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonStartGame from "./Buttons/ButtonStartGame";
+import ButtonCreateGame from "./Buttons/ButtonCreateGame";
 
 const Lobby = () => {
 
@@ -7,7 +7,7 @@ const Lobby = () => {
         
         <div>
             <h1>Lobby</h1>
-            <ButtonStartGame></ButtonStartGame>
+            <ButtonCreateGame></ButtonCreateGame>
         </div>
     );
 };
