@@ -21,7 +21,7 @@ const useStyle = makeStyles({
 
 const Modal = ({ children, isOpen, closeModal, player }) => {
 
-    // const [button, setbutton] = useState(false)
+    const [button, setbutton] = useState(false)
     const history = useHistory()
     const [lobbyInfo, setLobbyInfo] = useState({})
     const [gameName, setGameName] = useState('');
@@ -41,13 +41,16 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
             setLobbyInfo(JSON.parse(e.data));
             const parseJson = JSON.parse(e.data)
             if(parseJson.action === 'new_lobby') {
-                history.push(`Lobby/${lobbyInfo}`)
+                history.push(`/Lobby/:`)
+                // history.push('/')
             }
         };
         
-    });
+    }, button);
 
     console.log(lobbyInfo);
+    // console.log(lobbyInfo.lobby.players[0]);
+    // console.log(lobbyInfo.lobby.name);
 
 
     const handleModalContainer = (e) => e.stopPropagation();
@@ -67,7 +70,12 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
                         <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
                     </div>
                     <div className="button-group">
-                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {ws.send(JSON.stringify(takes))}}>Create Game</Button>
+                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
+                            ws.send(JSON.stringify(takes))
+                            setbutton(!button)}}
+                            >
+                                Create Game
+                            </Button>
                         <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
                     </div>
                 </form>
