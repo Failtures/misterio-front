@@ -7,10 +7,11 @@ import ButtonJoinGame from "./Buttons/ButtonJoinGame";
 
 const useStyle = makeStyles({
     conteiner: {
-        width: 400,
-        height: '100vh',
+        width: 500,
+        height: 400,
         overflow: 'scroll',
-        overflowX: 'hidden'
+        overflowX: 'hidden',
+        backgroundColor: '#1b294a'
     },
     head: {
         position: 'sticky',
