@@ -15,7 +15,7 @@ const Lobby = () => {
     useEffect(() => {
         ws.onmessage = (e) => {
             const parseJson = JSON.parse(e.data)
-    
+            console.log(`lobby: ${parseJson.action}`);
             if (parseJson.action === 'new_player') {
                 setPlayers(parseJson.player_name);
                 console.log(players);

@@ -23,7 +23,7 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
 
     const [button, setbutton] = useState(false)
     const history = useHistory()
-    const [info, setInfo] = useState({})
+    const [info, setInfo] = useState([{}])
     const [gameName, setGameName] = useState('');
 
 
@@ -42,7 +42,7 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
             if (parseJson.action === 'new_lobby') {
                 console.log(`B: ${parseJson.action}`);
                 setInfo(parseJson);
-                // console.log(history);
+                console.log(info);
                 history.push(`/Lobby/:${gameName}`)
             }
         };
