@@ -1,6 +1,6 @@
 import React from "react"
 import { Button } from "@material-ui/core";
-import ws from "../../index"
+import {ws} from "../../index"
 
 const ButtonThrowDice = () => {
   

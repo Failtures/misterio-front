@@ -5,6 +5,7 @@ import { TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import api from '../configs/api'
 import {ws} from '../index'
+import { useHistory } from "react-router";
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -21,6 +22,7 @@ const useStyle = makeStyles({
 const Modal = ({ children, isOpen, closeModal, player }) => {
 
     // const [button, setbutton] = useState(false)
+    const history = useHistory()
     const [lobbyInfo, setLobbyInfo] = useState({})
     const [gameName, setGameName] = useState('');
 
@@ -39,11 +41,13 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
             setLobbyInfo(JSON.parse(e.data));
             const parseJson = JSON.parse(e.data)
             if(parseJson.action === 'new_lobby') {
-                console.log(parseJson)
+                history.push(`Lobby/${lobbyInfo}`)
             }
         };
         
     });
+
+    console.log(lobbyInfo);
 
 
     const handleModalContainer = (e) => e.stopPropagation();

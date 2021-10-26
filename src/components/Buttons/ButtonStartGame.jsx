@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 
-const ButtonCreateGame = () => {
+const ButtonStartGame = () => {
 
     const history = useHistory()
 
@@ -13,6 +13,6 @@ const ButtonCreateGame = () => {
             onClick={history.push('/Game')}>
         </Button>
     );
-};
+}; 
 
-export default ButtonCreateGame;
+export default ButtonStartGame;
