@@ -17,7 +17,6 @@ const Home = () => {
                 <ButtonCreateGame openModal={openModal}/>
                 <ListGames player={nickName}></ListGames> 
                 <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickName} />
-                
             </div>
             <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
         </div>

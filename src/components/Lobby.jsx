@@ -1,7 +1,10 @@
 import React from "react";
+
 import { Button } from '@material-ui/core'
-import ButtonCreateGame from "./Buttons/ButtonCreateGame";
 import { useHistory } from "react-router";
+
+import ButtonStartGame from "./Buttons/ButtonStartGame";
+
 
 const Lobby = () => {
 
@@ -10,8 +13,10 @@ const Lobby = () => {
         
         <div>
             <h1>Lobby</h1>
-            <ButtonCreateGame></ButtonCreateGame>
+
             <Button variant="contained" onClick={()=> history.push('/')} >Exit</Button>
+            <ButtonStartGame></ButtonStartGame>
+
         </div>
     );
 };
