@@ -36,12 +36,14 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
 
     useEffect(() => {
 
-
         ws.onmessage = (e) => {
             const parseJson = JSON.parse(e.data)
+            console.log(`A: ${parseJson.action}`);
             if (parseJson.action === 'new_lobby') {
+                console.log(`B: ${parseJson.action}`);
                 setInfo(parseJson);
-                history.push(`/Lobby/${gameName}`)
+                // console.log(history);
+                history.push(`/Lobby/:${gameName}`)
             }
         };
 

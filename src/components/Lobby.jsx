@@ -18,6 +18,7 @@ const Lobby = () => {
     
             if (parseJson.action === 'new_player') {
                 setPlayers(parseJson.player_name);
+                console.log(players);
             }
         };
 
@@ -30,12 +31,12 @@ const Lobby = () => {
             <ul>
                 {
                     players.map(item => (
-                        <li> item </li>
+                        <li> {item} </li>
                     ))
                 }
             </ul>
 
-            <Button variant="contained">Exit</Button>
+            <Button variant="contained" onClick= {() => history.push('/')}>Exit</Button>
 
         </div>
     );
