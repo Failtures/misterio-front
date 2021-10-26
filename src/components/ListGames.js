@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
 import api from '../configs/api'
 import ButtonJoinGame from "./Buttons/ButtonJoinGame";
-import { getThemeProps } from "@material-ui/system";
 
 const useStyle = makeStyles({
     conteiner: {

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-export const ws = new WebSocket('ws://localhost:8080')
+export const ws = new WebSocket('wss://misterio-famaf.herokuapp.com/ws')
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect ,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import "./Modal.css";
 import { TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import api from '../configs/api'
-import {ws} from '../index'
+import { ws } from '../index'
 import { useHistory } from "react-router";
 
 const useStyle = makeStyles({
@@ -23,13 +23,13 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
 
     const [button, setbutton] = useState(false)
     const history = useHistory()
-    const [lobbyInfo, setLobbyInfo] = useState({})
+    const [info, setInfo] = useState({})
     const [gameName, setGameName] = useState('');
 
 
     const takes = {
         'action': 'lobby_create',
-        'host_name': player,
+        'player_name': player,
         'lobby_name': gameName
     }
 
@@ -38,19 +38,14 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
 
 
         ws.onmessage = (e) => {
-            setLobbyInfo(JSON.parse(e.data));
             const parseJson = JSON.parse(e.data)
-            if(parseJson.action === 'new_lobby') {
-                history.push(`/Lobby/:`)
-                // history.push('/')
+            if (parseJson.action === 'new_lobby') {
+                setInfo(parseJson);
+                history.push(`/Lobby/${gameName}`)
             }
         };
-        
-    }, button);
 
-    console.log(lobbyInfo);
-    // console.log(lobbyInfo.lobby.players[0]);
-    // console.log(lobbyInfo.lobby.name);
+    });
 
 
     const handleModalContainer = (e) => e.stopPropagation();
@@ -72,10 +67,10 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
                             ws.send(JSON.stringify(takes))
-                            setbutton(!button)}}
-                            >
-                                Create Game
-                            </Button>
+                        }}
+                        >
+                            Create Game
+                        </Button>
                         <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
                     </div>
                 </form>
@@ -85,22 +80,3 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
 }
 
 export default Modal
-
-
-    // const [gameInfo, setGameInfo] = useState([]);
-
-
-
-    // useEffect(() => {
-
-    //     ws.current = new WebSocket('ws://localhost:8000/lobby/');
-
-    //     ws.current.onmessage = (event) => {
-    //         setGameInfo(JSON.parse(event.data));
-    //     };
-
-    //     return () => {
-    //         ws.current.close();
-    //     };
-    // });
-

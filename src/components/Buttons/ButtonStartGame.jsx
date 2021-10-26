@@ -10,7 +10,7 @@ const ButtonStartGame = () => {
         <Button
             variant="contained"
             color="secondary"
-            onClick={history.push('/Game')}>
+            >start
         </Button>
     );
 };
