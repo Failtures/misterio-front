@@ -1,33 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { ws } from "../../index"
 
 
 const ButtonJoinGame = (props) => {
-
+  
   const history = useHistory()
   const [lobbyInfo, setLobbyInfo] = useState({})
-  const [button, setButton] = useState(false)
   const takes = {
     "action": "lobby_join",
     "player_name": props.player,
     "lobby_name": props.nameGame
   }
-  
+
   useEffect(() => {
-    
     ws.onmessage = (e) => {
+      setLobbyInfo(JSON.parse(e.data));
       const parseJson = JSON.parse(e.data)
-      console.log(parseJson.action);
-      if (parseJson.action === 'joined_lobby') {
-        console.log(lobbyInfo);
-        setLobbyInfo(parseJson)
-        history.push(`/Lobby/:${props.nameGame}`)
+      if (parseJson.action === 'lobby_join') {
+        history.push(`Lobby/${lobbyInfo}`)
       }
     };
 
-  },[button]);
+  });
 
   return (
     <div>
@@ -35,11 +31,8 @@ const ButtonJoinGame = (props) => {
         variant="contained"
         color="secondary"
         href=""
-        onClick={() =>  { ws.send(JSON.stringify(takes))
-                          setButton(!button) 
-                        }
-        }> 
-          Join Game
+        onClick={() => {ws.send(JSON.stringify(takes))}
+        }> Join Game
       </Button>
 
     </div >
