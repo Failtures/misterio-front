@@ -3,6 +3,10 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { ws } from "../../index"
 
+const isOpenWs = (ws) => {
+  return ws.readyState === ws.OPEN;
+};
+
 
 const ButtonJoinGame = (props) => {
 
@@ -14,12 +18,12 @@ const ButtonJoinGame = (props) => {
     "player_name": props.player,
     "lobby_name": props.nameGame
   }
-  
+
   useEffect(() => {
     
     ws.onmessage = (e) => {
       const parseJson = JSON.parse(e.data)
-      console.log(parseJson.action);
+      console.log(parseJson);
       if (parseJson.action === 'joined_lobby') {
         console.log(lobbyInfo);
         setLobbyInfo(parseJson)
@@ -35,9 +39,12 @@ const ButtonJoinGame = (props) => {
         variant="contained"
         color="secondary"
         href=""
-        onClick={() =>  { ws.send(JSON.stringify(takes))
-                          setButton(!button) 
-                        }
+        onClick={() =>  { 
+            if(isOpenWs(ws)){
+              ws.send(JSON.stringify(takes))
+            }
+            setButton(!button) 
+          }
         }> 
           Join Game
       </Button>

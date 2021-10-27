@@ -24,11 +24,7 @@ const Home = () => {
                 <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickName} />
                 <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
             </div>
-<<<<<<< HEAD
             
-=======
-
->>>>>>> 05ee5f02d85ff00967762a1312cbc17586418490
         </div>
     )
 }
