@@ -15,38 +15,33 @@ const useStyle = makeStyles({
         height: 48,
         padding: '0 30px',
     }
-})
+});
 
 const Modal = ({ isOpen, closeModal, player }) => {
 
-    const history = useHistory()
-    const [button, setButton] = useState(false)
-    const [lobbyInfo, setLobbyInfo] = useState({})
+    const history = useHistory();
+    const [info, setInfo] = useState([{}]);
     const [gameName, setGameName] = useState('');
+    const [button, setButton] = useState(false);
 
-
-    // const takes = {
-    //     'action': 'lobby_create',
-    //     'player_name': player,
-    //     'lobby_name': gameName
-    // }
 
 
     useEffect(() => {
-        console.log('useEffect del modal');
+
         ws.onmessage = (e) => {
             const parseJson = JSON.parse(e.data)
             console.log(`A: ${parseJson.action}`);
             if (parseJson.action === 'new_lobby') {
                 console.log(`B: ${parseJson.action}`);
-                console.log(parseJson);
-                setLobbyInfo(parseJson);
-                history.push(`/Lobby/:${gameName}`)
+                setInfo(parseJson);
+                console.log(info);
+                history.push(`/lobby/${gameName}`)
             }
         };
-        
-    },[button]);
-    
+
+    }, [button]);
+
+
     const handleModalContainer = (e) => e.stopPropagation();
     const classes = useStyle();
     return (
@@ -65,8 +60,8 @@ const Modal = ({ isOpen, closeModal, player }) => {
                     </div>
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
-                            send_(ws, 'lobby_create', player, gameName)
-                            setButton(!button)
+                            send_(ws, 'lobby_create', player, gameName);
+                            setButton(!button);
                         }}
                         >
                             Create Game
@@ -77,6 +72,6 @@ const Modal = ({ isOpen, closeModal, player }) => {
             </div>
         </div>
     )
-}
+};
 
-export default Modal
+export default Modal;

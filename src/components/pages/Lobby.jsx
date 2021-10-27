@@ -13,13 +13,13 @@ const Lobby = () => {
         ws.onmessage = (e) => {
             const parseJson = JSON.parse(e.data)
             console.log(`lobby: ${parseJson.action}`);
-            if (parseJson.action === 'new_player') {
+            if (parseJson.action === 'joined_lobby') {
                 setPlayers(parseJson.player_name);
                 console.log(players);
             }
         };
 
-    });
+    },);
 
     return (
 
