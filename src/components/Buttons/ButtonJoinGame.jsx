@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
-import { ws } from "../../index"
+import { ws, send_ } from "../WebSocket"
 
 
 const ButtonJoinGame = (props) => {
   
   const history = useHistory()
   const [lobbyInfo, setLobbyInfo] = useState({})
-  const takes = {
-    "action": "lobby_join",
-    "player_name": props.player,
-    "lobby_name": props.nameGame
-  }
+  // const takes = {
+  //   "action": "lobby_join",
+  //   "player_name": props.player,
+  //   "lobby_name": props.nameGame
+  // }
 
   useEffect(() => {
     ws.onmessage = (e) => {
@@ -31,7 +31,7 @@ const ButtonJoinGame = (props) => {
         variant="contained"
         color="secondary"
         href=""
-        onClick={() => {ws.send(JSON.stringify(takes))}
+        onClick={() => {send_(ws, 'lobby_join', props.player, props.n)}
         }> Join Game
       </Button>
 

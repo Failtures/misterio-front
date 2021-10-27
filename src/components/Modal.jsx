@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
-
-import "./Modal.css";
-import { TextField, Button } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import api from '../configs/api'
-import { ws } from '../index'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router";
+import { TextField, Button } from '@material-ui/core'
+import { ws, send_ } from './WebSocket'
+import { makeStyles } from '@material-ui/styles'
+import "./Modal.css";
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -19,19 +17,18 @@ const useStyle = makeStyles({
     }
 })
 
-const Modal = ({ children, isOpen, closeModal, player }) => {
+const Modal = ({ isOpen, closeModal, player }) => {
 
-    const [button, setbutton] = useState(false)
     const history = useHistory()
     const [info, setInfo] = useState([{}])
     const [gameName, setGameName] = useState('');
 
 
-    const takes = {
-        'action': 'lobby_create',
-        'player_name': player,
-        'lobby_name': gameName
-    }
+    // const takes = {
+    //     'action': 'lobby_create',
+    //     'player_name': player,
+    //     'lobby_name': gameName
+    // }
 
 
     useEffect(() => {
@@ -68,7 +65,7 @@ const Modal = ({ children, isOpen, closeModal, player }) => {
                     </div>
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
-                            ws.send(JSON.stringify(takes))
+                            send_(ws, 'lobby_create', player, gameName)
                         }}
                         >
                             Create Game

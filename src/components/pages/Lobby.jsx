@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from "react";
-
 import { Button } from '@material-ui/core'
 import { useHistory } from "react-router";
-
-import ButtonStartGame from "./Buttons/ButtonStartGame";
-import { ws } from "../index";
+import { ws } from "../WebSocket";
 
 
 const Lobby = () => {

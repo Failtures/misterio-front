@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './Home.css';
-import { useModal } from '../hooks/useModal'
-import { TextField, Button } from '@material-ui/core'
-import Modal from './Modal';
-import ButtonCreateGame from './Buttons/ButtonCreateGame';
-import ListGames from './ListGames';
-import ButtonThrowDice from './Buttons/ButtonThrowDice';
-import ThrowDice from './Buttons/ButtonThrowDice';
-import { color } from '@mui/system';
+import { useModal } from '../../hooks/useModal'
+import { TextField } from '@material-ui/core'
+import Modal from '../Modal';
+import ButtonCreateGame from '../Buttons/ButtonCreateGame';
+import ListGames from '../ListGames';
+
+
+
 
 const Home = () => {
 
