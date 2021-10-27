@@ -16,15 +16,17 @@ const Home = () => {
 
     return (
         <div className="container">
-            <h1 style={{color:'white'}}>MISTERIO</h1>
+            <h1 style={{color:'white'}}>MISTERY</h1>
             <div className="section">
                 <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
                 <ButtonCreateGame openModal={openModal} />
                 <ListGames player={nickName}></ListGames>
                 <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickName} />
-                <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
             </div>
+<<<<<<< HEAD
             
+=======
+>>>>>>> f5c302d9535565d4ab9b1909e0c01661627a218d
         </div>
     )
 }
