@@ -7,6 +7,7 @@ import { ws, send_ } from "../WebSocket"
 const ButtonJoinGame = (props) => {
   
   const history = useHistory()
+  const [button, setButton] = useState(false)
   const [lobbyInfo, setLobbyInfo] = useState({})
   // const takes = {
   //   "action": "lobby_join",
@@ -18,12 +19,14 @@ const ButtonJoinGame = (props) => {
     ws.onmessage = (e) => {
       setLobbyInfo(JSON.parse(e.data));
       const parseJson = JSON.parse(e.data)
+      console.log(`A: ${parseJson.action}`);
       if (parseJson.action === 'lobby_join') {
+        console.log(parseJson);
         history.push(`Lobby/${lobbyInfo}`)
       }
     };
 
-  });
+  },[button]);
 
   return (
     <div>
@@ -31,7 +34,8 @@ const ButtonJoinGame = (props) => {
         variant="contained"
         color="secondary"
         href=""
-        onClick={() => {send_(ws, 'lobby_join', props.player, props.n)}
+        onClick={() => {send_(ws, 'lobby_join', props.player, props.nameGame)
+                        setButton(!button)}
         }> Join Game
       </Button>
 

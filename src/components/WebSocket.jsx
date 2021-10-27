@@ -1,6 +1,6 @@
 export const ws = new WebSocket('wss://misterio-famaf.herokuapp.com/ws')
 
-export const isOpenWs = (ws) => {
+const isOpenWs = (ws) => {
     return ws.readyState === ws.OPEN;
 };
 
