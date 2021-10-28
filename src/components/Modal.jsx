@@ -22,6 +22,15 @@ const Modal = ({ isOpen, closeModal, player }) => {
     const history = useHistory();
     const [gameName, setGameName] = useState('');
 
+    const handleCreateGame = () => {
+        if(gameName === ''){
+            alert('introduce game name')
+        }else{
+            send_(ws, 'lobby_create', player, gameName);
+            history.push(`/lobby/${gameName}`);
+        }
+    }
+
 
     const handleModalContainer = (e) => e.stopPropagation();
     const classes = useStyle();
@@ -41,8 +50,7 @@ const Modal = ({ isOpen, closeModal, player }) => {
                     </div>
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
-                            send_(ws, 'lobby_create', player, gameName);
-                            history.push(`/lobby/${gameName}`);
+                            handleCreateGame()
                         }}
                         >
                             Create Game

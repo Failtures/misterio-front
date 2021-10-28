@@ -19,7 +19,7 @@ const Home = () => {
             <h1 style={{color:'white'}}>MISTERY</h1>
             <div className="section">
                 <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
-                <ButtonCreateGame openModal={openModal} />
+                <ButtonCreateGame openModal={openModal} nickname={nickName}/>
                 <ListGames player={nickName}></ListGames>
                 <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickName} />
             </div>

@@ -7,6 +7,15 @@ import { ws, send_ } from "../WebSocket"
 const ButtonJoinGame = (props) => {
 
   const history = useHistory()
+
+  const handleJoinGame = () => {
+    if(props.player === ''){
+      alert('introduce nickname')
+    }else{
+      send_(ws, 'lobby_join', props.player, props.nameGame);
+      history.push(`/lobby/${props.nameGame}`);
+    }
+  }
  
   return (
     <div>
@@ -14,8 +23,7 @@ const ButtonJoinGame = (props) => {
         variant="contained"
         color="secondary"
         onClick={() => {
-          send_(ws, 'lobby_join', props.player, props.nameGame);
-          history.push(`/lobby/${props.nameGame}`);
+          handleJoinGame()
         }
         }> Join Game
       </Button>
