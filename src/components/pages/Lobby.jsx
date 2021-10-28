@@ -37,14 +37,16 @@ const Lobby = () => {
                 console.log(`new_player` &{new_player});
                 arrayAuxiliar = players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
+                arrayAuxiliar = [... new Set(arrayAuxiliar)]
                 console.log(`Arrego auxiliar: ${arrayAuxiliar}`);
-                setPlayers(... new Set(arrayAuxiliar));
+                setPlayers(arrayAuxiliar);
                 // players.push(parseJson.player_name)
             }
         };
 
     });
 
+    // console.log(arrayAuxiliar);
 
     return (
 
