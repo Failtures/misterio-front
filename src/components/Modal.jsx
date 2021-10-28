@@ -20,26 +20,7 @@ const useStyle = makeStyles({
 const Modal = ({ isOpen, closeModal, player }) => {
 
     const history = useHistory();
-    const [info, setInfo] = useState([{}]);
     const [gameName, setGameName] = useState('');
-    const [button, setButton] = useState(false);
-
-
-
-    useEffect(() => {
-
-        ws.onmessage = (e) => {
-            const parseJson = JSON.parse(e.data)
-            console.log(`A: ${parseJson.action}`);
-            if (parseJson.action === 'new_lobby') {
-                console.log(`B: ${parseJson.action}`);
-                setInfo(parseJson);
-                console.log(info);
-                history.push(`/lobby/${gameName}`)
-            }
-        };
-
-    }, [button]);
 
 
     const handleModalContainer = (e) => e.stopPropagation();
@@ -61,7 +42,7 @@ const Modal = ({ isOpen, closeModal, player }) => {
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
                             send_(ws, 'lobby_create', player, gameName);
-                            setButton(!button);
+                            history.push(`/lobby/${gameName}`);
                         }}
                         >
                             Create Game
