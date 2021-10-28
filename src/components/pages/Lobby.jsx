@@ -17,14 +17,11 @@ const Lobby = () => {
             const parseJson = JSON.parse(e.data)
             console.log(`lobby: ${parseJson.action}`);
             console.log(parseJson);
-            if (parseJson.action === 'new_lobby') {
-                console.log(parseJson);
+
+            if (parseJson.action === 'joined_lobby') {
                 setPlayers(parseJson.lobby.players);
             }
-            else if (parseJson.action === 'joined_lobby') {
-                setPlayers(parseJson.lobby.players);
-                setLobbyInfo(parseJson)
-            }
+            /*
             else if(parseJson.action === 'new_player'){
                 arrayAuxiliar = players.slice()
                 arrayAuxiliar.push(parseJson.player_name)
@@ -32,6 +29,7 @@ const Lobby = () => {
                 setPlayers(arrayAuxiliar)
                 // players.push(parseJson.player_name)
             }
+            */
         };
 
     });
