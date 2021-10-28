@@ -1,42 +1,42 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from '@material-ui/core'
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
+import ButtonStartGame from "../Buttons/ButtonStartGame";
 
 
 const Lobby = () => {
 
-    const history = useHistory()
-    // const [button, setButton] = useState(false)
-    const [players, setPlayers] = useState([])
-    const [lobbyInfo, setLobbyInfo] = useState({})
-    let arrayAuxiliar = []
+    const history = useHistory();
+    const [players, setPlayers] = useState([]);
+    const [host, setHost] = useState('');
+    const [lobbyName, setLobbyName] = useState('');
+
+    let arrayAuxiliar = [];
 
     useEffect(() => {
+
         ws.onmessage = (e) => {
-            const parseJson = JSON.parse(e.data)
-            console.log(`lobby: ${parseJson.action}`);
-            console.log(parseJson);
+
+            const parseJson = JSON.parse(e.data);
+
             if (parseJson.action === 'new_lobby') {
-                console.log(parseJson);
+                setLobbyName(parseJson.lobby.name);
+                setHost(parseJson.lobby.host);
                 setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'joined_lobby') {
                 setPlayers(parseJson.lobby.players);
-                setLobbyInfo(parseJson);
             }
-            else if(parseJson.action === 'new_player'){
+            else if (parseJson.action === 'new_player') {
                 arrayAuxiliar = players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
-                console.log(`Arrego auxiliar: ${arrayAuxiliar}`);
                 setPlayers(arrayAuxiliar);
-                // players.push(parseJson.player_name)
             }
+
         };
 
     });
-
-    // console.log(arrayAuxiliar);
 
     return (
 
@@ -50,8 +50,13 @@ const Lobby = () => {
                 }
             </ul>
 
-            <Button variant="contained" onClick= {() => history.push('/')}>Exit</Button>
-
+            <Button variant="contained" onClick={() => history.push('/')}>Exit</Button>
+            <ButtonStartGame
+                lobby_name={lobbyName}
+                action={'lobby_start_match'}
+                player_name={host}
+            >
+            </ButtonStartGame>
         </div>
     );
 };
