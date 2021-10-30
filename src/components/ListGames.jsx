@@ -55,7 +55,7 @@ const ListGames = (props) => {
             <Table>
                 <TableHead className={clase.head}>
                     <TableRow>
-                        <TableCell >Game name</TableCell>
+                        <TableCell>Game name</TableCell>
                         <TableCell>Players</TableCell>
                         <TableCell></TableCell>
                     </TableRow>

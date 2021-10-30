@@ -1,16 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from '@material-ui/core'
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 
-
 const Lobby = () => {
-
-    const history = useHistory()
-    // const [button, setButton] = useState(false)
-    const [players, setPlayers] = useState([])
-    const [lobbyInfo, setLobbyInfo] = useState({})
-    let arrayAuxiliar = []
+    const history = useHistory();
+    const [players, setPlayers] = useState([]);
+    const [lobbyInfo, setLobbyInfo] = useState({});
+    let arrayAuxiliar = [];
 
     useEffect(() => {
         ws.onmessage = (e) => {
@@ -25,21 +22,21 @@ const Lobby = () => {
                 setPlayers(parseJson.lobby.players);
                 setLobbyInfo(parseJson);
             }
-            else if(parseJson.action === 'new_player'){
+            else if (parseJson.action === 'new_player') {
                 arrayAuxiliar = players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
-                console.log(`Arrego auxiliar: ${arrayAuxiliar}`);
+                console.log(`Arreglo auxiliar: ${arrayAuxiliar}`);
                 setPlayers(arrayAuxiliar);
                 // players.push(parseJson.player_name)
             }
+
         };
 
     });
 
-    // console.log(arrayAuxiliar);
+     // console.log(arrayAuxiliar);
 
     return (
-
         <div>
             <h1>Lobby</h1>
             <ul>
@@ -49,11 +46,8 @@ const Lobby = () => {
                     ))
                 }
             </ul>
-
-            <Button variant="contained" onClick= {() => history.push('/')}>Exit</Button>
-
+            <Button variant="contained" onClick={() => history.push('/')}>Exit</Button>    
         </div>
     );
 };
-
 export default Lobby;

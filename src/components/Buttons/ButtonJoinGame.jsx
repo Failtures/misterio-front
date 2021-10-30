@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { ws, send_ } from "../WebSocket"

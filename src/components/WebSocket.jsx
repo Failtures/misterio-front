@@ -10,6 +10,7 @@ export const send_ = (ws, action, player_name, lobby_name) => {
         'action': action,
         'player_name': player_name,
         'lobby_name': lobby_name
+        
     };
 
     if (!isOpenWs(ws)) return;
