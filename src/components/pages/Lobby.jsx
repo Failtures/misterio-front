@@ -33,7 +33,10 @@ const Lobby = () => {
                 arrayAuxiliar.push(parseJson.player_name);
                 setPlayers(arrayAuxiliar);
             }
-
+            else if (parseJson.action === 'match_started') {
+                console.log('Partida comenzada');
+                history.push(`/game/${parseJson.match.name}`);
+            }
         };
 
     });
@@ -51,12 +54,16 @@ const Lobby = () => {
             </ul>
 
             <Button variant="contained" onClick={() => history.push('/')}>Exit</Button>
-            <ButtonStartGame
-                lobby_name={lobbyName}
-                action={'lobby_start_match'}
-                player_name={host}
-            >
-            </ButtonStartGame>
+            {
+                host &&
+                <ButtonStartGame
+                    lobby_name={lobbyName}
+                    action={'lobby_start_match'}
+                    player_name={host}
+                >
+                </ButtonStartGame>
+            }
+
         </div>
     );
 };
