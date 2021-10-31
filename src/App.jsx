@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Route exact path={'/'} component={Home}></Route>
           <Route exact path={'/lobby/:game'} component={Lobby}></Route>
-          <Route exact path={'/game/:game'} component={Game}></Route> 
+          <Route exact path={'/game/:game'} component={Game}></Route>
         </Switch>
       </div>
     </BrowserRouter>
