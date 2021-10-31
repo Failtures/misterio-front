@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import ButtonStartGame from "../Buttons/ButtonStartGame";
 
-
 const Lobby = () => {
 
     const history = useHistory();
@@ -34,7 +33,6 @@ const Lobby = () => {
                 setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
-                console.log('Partida comenzada');
                 history.push(`/game/${parseJson.match.name}`);
             }
         };
