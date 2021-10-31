@@ -5,9 +5,16 @@ import { ws } from '../WebSocket'
 
 const Game = () => {
 
+
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
+
+    const takes = {
+        'action': 'match_roll_dice',
+        'match_name': match_name
+    };
+
 
     useEffect(() => {
 
@@ -26,7 +33,7 @@ const Game = () => {
         <div>
             <h1>Game</h1>
 
-            <ButtonThrowDice matchName={match_name}>
+            <ButtonThrowDice  dice={() => ws.send(JSON.stringify(takes))}>
 
             </ButtonThrowDice>
             {dice}
