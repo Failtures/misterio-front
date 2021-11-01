@@ -12,6 +12,7 @@ const Lobby = () => {
     const [host, setHost] = useState('');
     const [lobbyName, setLobbyName] = useState('');
 
+    let latest = 0;
     let arrayAuxiliar = [];
 
     useEffect(() => {
@@ -27,9 +28,10 @@ const Lobby = () => {
             }
             else if (parseJson.action === 'joined_lobby') {
                 setPlayers(parseJson.lobby.players);
+                latest = parseJson.lobby.players.length - 1;
+                setPlayer(parseJson.lobby.players[latest])
             }
             else if (parseJson.action === 'new_player') {
-                setPlayer(parseJson.player_name)
                 arrayAuxiliar = players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
                 setPlayers(arrayAuxiliar);
@@ -41,7 +43,7 @@ const Lobby = () => {
         };
 
     });
-
+    // console.log(players);
     return (
 
         <div>
