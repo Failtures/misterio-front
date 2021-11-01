@@ -9,6 +9,7 @@ const Game = () => {
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
+    const [turn, setTurn] = useState('');
 
     useEffect(() => {
 
@@ -20,7 +21,7 @@ const Game = () => {
                 setDice(parsedJson.dice);
             }
             else if(parsedJson.action === 'turn_passed'){
-                console.log(parsedJson);
+                SetTurn(parsedJson.current_turn)
             }
         };
     });
@@ -29,70 +30,16 @@ const Game = () => {
 
         <div>
             <h1>Game</h1>
+            
+            <p>{turn}</p>
 
-            <ButtonThrowDice matchName={match_name} >
-
-            </ButtonThrowDice>
+            <ButtonThrowDice matchName={match_name}/>
             <ButtonEndTurn matchName = {match_name}/>
-            {dice}
+
+            <p>{dice}</p>
 
         </div>
     );
 };
 
 export default Game;
-
-
-// import React from "react";
-// import { useParams } from "react-router-dom";
-// import ButtonThrowDice from "../Buttons/ButtonThrowDice";
-// import ButtonEndTurn from "../Buttons/ButtonEndTurn";
-
-
-// const Game = () => {
-
-//     const params = useParams();
-
-//     const match_name = params.game;
-
-//     return (
-
-//         <div>
-//             <h1>Game</h1>
-
-//             <ButtonThrowDice matchName = {match_name}>
-//             </ButtonThrowDice>
-//             <ButtonEndTurn matchName = {match_name}/>
-
-//         </div>
-//     );
-// };
-
-// export default Game;
-
-
-// import React from "react";
-// import { useParams } from "react-router-dom";
-// import ButtonEndTurn from "../Buttons/ButtonEndTurn";
-// import ButtonThrowDice from "../Buttons/ButtonThrowDice";
-
-
-// const Game = () => {
-
-//     const params = useParams();
-
-//     const match_name = params.game;
-
-//     return (
-
-//         <div>
-//             <h1>Game</h1>
-
-//             <ButtonThrowDice matchName = {match_name}/>
-//             <ButtonEndTurn matchName = {match_name}/>
-
-//         </div>
-//     );
-// };
-
-// export default Game;
