@@ -23,10 +23,6 @@ const Home = () => {
                 <ListGames player={nickName}></ListGames>
                 <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickName} />
             </div>
-<<<<<<< HEAD
-            
-=======
->>>>>>> f5c302d9535565d4ab9b1909e0c01661627a218d
         </div>
     )
 }

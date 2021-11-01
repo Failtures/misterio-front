@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button } from '@material-ui/core'
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import ButtonStartGame from "../Buttons/ButtonStartGame";
+import ButtonExitLobby from "../Buttons/ButtonExitLobby";
 
 const Lobby = () => {
 
     const history = useHistory();
     const [players, setPlayers] = useState([]);
+    const [player, setPlayer] = useState('')
     const [host, setHost] = useState('');
     const [lobbyName, setLobbyName] = useState('');
 
@@ -28,6 +29,7 @@ const Lobby = () => {
                 setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'new_player') {
+                setPlayer(parseJson.player_name)
                 arrayAuxiliar = players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
                 setPlayers(arrayAuxiliar);
@@ -51,18 +53,17 @@ const Lobby = () => {
                     ))
                 }
             </ul>
-
-            <Button variant="contained" onClick={() => history.push('/')}>Exit</Button>
+            {/* <Button variant="contained" onClick={() => history.push('/')}>Exit</Button> */}
             {
                 host &&
                 <ButtonStartGame
-                    lobby_name={lobbyName}
-                    action={'lobby_start_match'}
-                    player_name={host}
+                lobby_name={lobbyName}
+                action={'lobby_start_match'}
+                player_name={host}
                 >
                 </ButtonStartGame>
             }
-
+            <ButtonExitLobby lobby_name={lobbyName} host={host} player={player}/>
         </div>
     );
 };
