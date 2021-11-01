@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useModal } from '../../hooks/useModal'
+import { ws } from '../WebSocket'
+import ButtonAccuse from "../Buttons/ButtonAccuse";
 import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
-import { ws } from '../WebSocket'
+import ModalWichCardAccuse from "../Modals/ModalWichCardAccuse";
 
 const Game = () => {
-
+    const [isOpenModal, openModal, closeModal] = useModal(false);
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
@@ -35,7 +38,8 @@ const Game = () => {
 
             <ButtonThrowDice matchName={match_name}/>
             <ButtonEndTurn matchName = {match_name}/>
-
+            <ButtonAccuse openModal={openModal}/>
+            <ModalWichCardAccuse isOpen={isOpenModal} closeModal={closeModal} />
             <p>{dice}</p>
 
         </div>
