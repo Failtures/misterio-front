@@ -38,12 +38,16 @@ const Lobby = () => {
             }
             else if (parseJson.action === 'match_started') {
                 history.push(`/game/${parseJson.match.name}`);
-
+            }
+            else if (parseJson.action === 'lobby_removed') {
+                console.log(parseJson);
+            }
+            else if (parseJson.action === 'player_leaved') {
+                console.log(parseJson);
             }
         };
 
     });
-    // console.log(players);
     return (
 
         <div>
@@ -55,7 +59,6 @@ const Lobby = () => {
                     ))
                 }
             </ul>
-            {/* <Button variant="contained" onClick={() => history.push('/')}>Exit</Button> */}
             {
                 host &&
                 <ButtonStartGame
