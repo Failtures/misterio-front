@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { ws } from '../WebSocket'
 
 const ButtonThrowDice = (props) => {
 
@@ -14,12 +13,11 @@ const ButtonThrowDice = (props) => {
       <Button
         variant="contained"
         color="secondary"
-        onClick={() => { ws.send(JSON.stringify(takes)) }}
+        onClick={() => { props.dice() }}
       > Throw Dice
       </Button>
     </div>
   );
 }
-
 
 export default ButtonThrowDice;
