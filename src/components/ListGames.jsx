@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
 import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
-import api from '../configs/api'
 import ButtonJoinGame from "./Buttons/ButtonJoinGame";
 
 const useStyle = makeStyles({
@@ -33,7 +32,7 @@ const ListGames = (props) => {
             try {
                 const response = await axios({
                     method: 'get',
-                    url: `${api.url}/get-lobbies`,
+                    url: 'https://misterio-famaf.herokuapp.com/get-lobbies',
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -56,7 +55,7 @@ const ListGames = (props) => {
             <Table>
                 <TableHead className={clase.head}>
                     <TableRow>
-                        <TableCell >Game name</TableCell>
+                        <TableCell>Game name</TableCell>
                         <TableCell>Players</TableCell>
                         <TableCell></TableCell>
                     </TableRow>

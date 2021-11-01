@@ -1,7 +1,8 @@
 import './App.css';
-import Home from './components/Home';
+import Home from './components/pages/Home';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Lobby from './components/Lobby';
+import Lobby from './components/pages/Lobby';
+import Game from './components/pages/Game';
 
 function App() {
 
@@ -10,7 +11,8 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path={'/'} component={Home}></Route>
-          <Route exact path={'/Lobby/:gameName'} component={Lobby}></Route>
+          <Route exact path={'/lobby/:game'} component={Lobby}></Route>
+          <Route exact path={'/game/:game'} component={Game}></Route>
         </Switch>
       </div>
     </BrowserRouter>
