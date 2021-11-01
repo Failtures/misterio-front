@@ -21,7 +21,7 @@ const Game = () => {
                 setDice(parsedJson.dice);
             }
             else if(parsedJson.action === 'turn_passed'){
-                SetTurn(parsedJson.current_turn)
+                setTurn(parsedJson.current_turn)
             }
         };
     });
