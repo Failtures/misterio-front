@@ -7,12 +7,11 @@ import ButtonExitLobby from "../Buttons/ButtonExitLobby";
 const Lobby = () => {
 
     const history = useHistory();
+
     const [players, setPlayers] = useState([]);
-    const [player, setPlayer] = useState('')
     const [host, setHost] = useState('');
     const [lobbyName, setLobbyName] = useState('');
 
-    let latest = 0;
     let arrayAuxiliar = [];
 
     useEffect(() => {
@@ -28,8 +27,6 @@ const Lobby = () => {
             }
             else if (parseJson.action === 'joined_lobby') {
                 setPlayers(parseJson.lobby.players);
-                latest = parseJson.lobby.players.length - 1;
-                setPlayer(parseJson.lobby.players[latest])
             }
             else if (parseJson.action === 'new_player') {
                 arrayAuxiliar = players.slice();
@@ -42,13 +39,14 @@ const Lobby = () => {
             else if (parseJson.action === 'lobby_removed') {
                 console.log(parseJson);
             }
-            else if (parseJson.action === 'player_leaved') {
+            else if (parseJson.action === 'player_left') {
                 console.log(parseJson);
             }
-            console.log(parseJson);
+
         };
 
     });
+
     return (
 
         <div>
@@ -63,13 +61,14 @@ const Lobby = () => {
             {
                 host &&
                 <ButtonStartGame
-                lobby_name={lobbyName}
-                action={'lobby_start_match'}
-                player_name={host}
+                    lobby_name={lobbyName}
+                    action={'lobby_start_match'}
+                    player_name={host}
                 >
                 </ButtonStartGame>
             }
-            <ButtonExitLobby lobby_name={lobbyName} host={host} player={player}/>
+            <ButtonExitLobby lobby_name={lobbyName} />
+
         </div>
     );
 };
