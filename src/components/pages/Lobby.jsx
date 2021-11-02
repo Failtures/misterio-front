@@ -42,7 +42,7 @@ const Lobby = () => {
             else if (parseJson.action === 'lobby_removed') {
                 console.log(parseJson);
             }
-            else if (parseJson.action === 'player_left') {
+            else if (parseJson.action === 'player_leaved') {
                 console.log(parseJson);
             }
             console.log(parseJson);

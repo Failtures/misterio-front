@@ -2,28 +2,31 @@ import React from 'react'
 import {send_, ws} from '../WebSocket'
 
 
-function ButtonExitLobby({lobby_name, host, player}) {
+function ButtonExitLobby(props) {
+
+    //{'action': 'lobby_leave', 'player_name': PLAYER_NAME, 'lobby_name' = LOBBY_NAME}
+    //Si se va un jugador cualquiera devuelve: {'action': 'player_left', 'player_name': player}
 
     const handleClick = () => {
-        if(host) {
-            console.log(`soy el host: ${host}`);
-            // const takes = {
-            //     'action': 'lobby_leave',
-            //     'player_name': props.host,
-            //     'lobby_name': props.lobby_name
-            // }
-            // ws.send(JSON.stringify(takes));
-            send_(ws, 'lobby_leave', host, lobby_name);          
+        if(props.host) {
+            console.log(`soy el host: ${props.host}`);
+            const takes = {
+                'action': 'lobby_leave',
+                'player_name': props.host,
+                'lobby_name': props.lobby_name
+            }
+            ws.send(JSON.stringify(takes));
+            // send_(ws, 'lobby_leave', props.host, props.lobby_name);          
         }
-        else if(player) {
-            console.log(`no soy el host, soy el player ${player}`);
-            // const takes = {
-            //     'action': 'lobby_leave',
-            //     'player_name': props.player,
-            //     'lobby_name': props.lobby_name
-            // }
-            // ws.send(JSON.stringify(takes));
-            send_(ws, 'lobby_leave', player, lobby_name);
+        else if(props.player) {
+            console.log(`no soy el host, soy el player ${props.player}`);
+            const takes = {
+                'action': 'lobby_leave',
+                'player_name': props.player,
+                'lobby_name': props.lobby_name
+            }
+            ws.send(JSON.stringify(takes));
+            // send_(ws, 'lobby_leave', props.player, props.lobby_name);
         }
     }
 
