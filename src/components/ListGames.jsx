@@ -27,9 +27,9 @@ const ListGames = (props) => {
             }
         };
 
-        getLobbies();
+        setInterval(getLobbies(), 10000);
 
-    }, []);
+    });
 
 
     return (
@@ -46,7 +46,7 @@ const ListGames = (props) => {
 
                     {
 
-                        games != null ?
+                        games &&
                             games.map(item => (
                                 <TableRow>
                                     <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
@@ -60,10 +60,6 @@ const ListGames = (props) => {
                                     </TableCell>
                                 </TableRow>
                             ))
-                            :
-                            <TableRow>
-                                no games available
-                            </TableRow>
 
                     }
 

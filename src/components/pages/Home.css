@@ -69,3 +69,14 @@ h1 {
 .footer p {
     color: white;
 }
+
+
+.aside::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.aside {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
