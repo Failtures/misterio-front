@@ -3,9 +3,10 @@ import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import ButtonStartGame from "../Buttons/ButtonStartGame";
 import ButtonExitLobby from "../Buttons/ButtonExitLobby";
-
+import { useParams } from "react-router-dom";
 const Lobby = () => {
 
+    const params = useParams();
     const history = useHistory();
 
     const [players, setPlayers] = useState([]);
@@ -19,6 +20,8 @@ const Lobby = () => {
         ws.onmessage = (e) => {
 
             const parseJson = JSON.parse(e.data);
+            console.log(parseJson.action)
+            console.log(parseJson.info)
 
             if (parseJson.action === 'new_lobby') {
                 setLobbyName(parseJson.lobby.name);
@@ -26,6 +29,7 @@ const Lobby = () => {
                 setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'joined_lobby') {
+                console.log(parseJson)
                 setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'new_player') {
@@ -36,10 +40,11 @@ const Lobby = () => {
             else if (parseJson.action === 'match_started') {
                 history.push(`/game/${parseJson.match.name}`);
             }
-            else if (parseJson.action === 'lobby_removed') {
+            else if (parseJson.action === 'player_left') {
                 console.log(parseJson);
             }
-            else if (parseJson.action === 'player_left') {
+        
+            else if (parseJson.action === 'lobby_removed') {
                 console.log(parseJson);
             }
 
@@ -67,7 +72,7 @@ const Lobby = () => {
                 >
                 </ButtonStartGame>
             }
-            <ButtonExitLobby lobby_name={lobbyName} />
+            <ButtonExitLobby lobby_name={params.game} />
 
         </div>
     );

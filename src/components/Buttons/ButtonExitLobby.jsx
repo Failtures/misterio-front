@@ -1,14 +1,11 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { ws } from '../WebSocket'
 import { ThemeContext } from '../context/ContextGeneral';
 
 
 function ButtonExitLobby(props) {
 
-    //{'action': 'lobby_leave', 'player_name': PLAYER_NAME, 'lobby_name' = LOBBY_NAME}
-    //Si se va un jugador cualquiera devuelve: {'action': 'player_left', 'player_name': player}
-
-    const { nickname } = useContext(ThemeContext)
+    const { nickname } = useContext(ThemeContext);
 
     const takes = {
         'action': 'lobby_leave',
@@ -17,11 +14,13 @@ function ButtonExitLobby(props) {
     };
 
     return (
-
-        <button onClick={() => { ws.send(JSON.stringify(takes)) }}>
+        <button onClick={() => {
+            console.log(props.lobby_name)
+            ws.send(JSON.stringify(takes));
+            console.log(nickname);
+        }}>
             Exit
         </button>
-
     );
 };
 
