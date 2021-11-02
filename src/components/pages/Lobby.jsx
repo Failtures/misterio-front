@@ -20,6 +20,7 @@ const Lobby = () => {
     const [players, setPlayers] = useState([]);
     const [host, setHost] = useState('');
     const [lobbyName, setLobbyName] = useState('');
+    const [exit, setExit] = useState(false)
 
     let arrayAuxiliar = [];
 
@@ -50,7 +51,6 @@ const Lobby = () => {
             else if (parseJson.action === 'player_left') {
             }
             else if (parseJson.action === 'lobby_removed') {
-                console.log('removed')
                 history.push('/');
             }
 
@@ -78,7 +78,7 @@ const Lobby = () => {
                 >
                 </ButtonStartGame>
             }
-            <ButtonExitLobby lobby_name={params.game} />
+            <ButtonExitLobby lobby_name={params.game} exit={exit} />
 
         </div>
     );

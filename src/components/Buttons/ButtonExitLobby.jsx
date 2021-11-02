@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { ws } from '../WebSocket'
 import { ThemeContext } from '../context/ContextGeneral';
 import { useHistory } from "react-router";
+import { Button } from "@material-ui/core";
 
 function ButtonExitLobby(props) {
 
@@ -16,13 +17,16 @@ function ButtonExitLobby(props) {
     };
 
     return (
-        <button onClick={() => {
-            ws.send(JSON.stringify(takes));
-            history.push('/');
-            console.log('onClick')
-        }}>
+        <Button 
+            variant="contained"
+            color="error"
+            onClick={() => {
+                ws.send(JSON.stringify(takes));
+                history.push('/');
+            }}
+        >
             Exit
-        </button>
+        </Button>
     );
 };
 
