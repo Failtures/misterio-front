@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { ws } from '../WebSocket'
 import { ThemeContext } from '../context/ContextGeneral';
-
+import { useHistory } from "react-router";
 
 function ButtonExitLobby(props) {
 
+
+    const history = useHistory()
     const { nickname } = useContext(ThemeContext);
 
     const takes = {
@@ -15,9 +17,9 @@ function ButtonExitLobby(props) {
 
     return (
         <button onClick={() => {
-            console.log(props.lobby_name)
             ws.send(JSON.stringify(takes));
-            console.log(nickname);
+            history.push('/');
+            console.log('onClick')
         }}>
             Exit
         </button>

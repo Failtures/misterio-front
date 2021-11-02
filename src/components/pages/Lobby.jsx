@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import ButtonStartGame from "../Buttons/ButtonStartGame";
 import ButtonExitLobby from "../Buttons/ButtonExitLobby";
 import { useParams } from "react-router-dom";
+
+import { ThemeContext } from '../context/ContextGeneral';
+
+
 const Lobby = () => {
 
+
+    const { nickname } = useContext(ThemeContext);
+
     const params = useParams();
+
     const history = useHistory();
 
     const [players, setPlayers] = useState([]);
@@ -21,7 +29,6 @@ const Lobby = () => {
 
             const parseJson = JSON.parse(e.data);
             console.log(parseJson.action)
-            console.log(parseJson.info)
 
             if (parseJson.action === 'new_lobby') {
                 setLobbyName(parseJson.lobby.name);
@@ -41,11 +48,10 @@ const Lobby = () => {
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
-                console.log(parseJson);
             }
-        
             else if (parseJson.action === 'lobby_removed') {
-                console.log(parseJson);
+                console.log('removed')
+                history.push('/');
             }
 
         };
