@@ -6,7 +6,8 @@ import Modal from '../Modal';
 import ButtonCreateGame from '../Buttons/ButtonCreateGame';
 import ListGames from '../ListGames';
 
-import { ThemeContext } from '../context/ContextGeneral';
+import { ThemeContext } from '../../context/ContextGeneral';
+import MchooseCardsSuspect from '../modals/MchooseCardsSuspect';
 
 const Home = () => {
 
@@ -18,6 +19,7 @@ const Home = () => {
 
             <div className="header">
                 <h1>MISTERY</h1>
+                <MchooseCardsSuspect />
             </div>
 
             <div className="section">

@@ -5,7 +5,7 @@ import ButtonStartGame from "../Buttons/ButtonStartGame";
 import ButtonExitLobby from "../Buttons/ButtonExitLobby";
 import { useParams } from "react-router-dom";
 
-import { ThemeContext } from '../context/ContextGeneral';
+import { ThemeContext } from '../../context/ContextGeneral';
 
 
 const Lobby = () => {
