@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import './Home.css';
+import { ThemeContext } from '../context/ContextGeneral';
+
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
 import Modal from '../Modal';
 import ButtonCreateGame from '../Buttons/ButtonCreateGame';
 import ListGames from '../ListGames';
-
-import { ThemeContext } from '../context/ContextGeneral';
+import './Home.css';
 
 const Home = () => {
 
-    const {nickname, setNickName} = useContext(ThemeContext)
+    const { setNickName } = useContext(ThemeContext);
     const [isOpenModal, openModal, closeModal] = useModal(false);
 
     return (
@@ -22,7 +22,7 @@ const Home = () => {
 
             <div className="section">
                 <div className="aside">
-                    <ListGames player={nickname}></ListGames>
+                    <ListGames />
                 </div>
 
                 <div className="create-conteiner">
@@ -35,7 +35,7 @@ const Home = () => {
 
             </div>
 
-            <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickname} />
+            <Modal isOpen={isOpenModal} closeModal={closeModal} />
 
             <div className="footer">
                 <p>FOOTER</p>
