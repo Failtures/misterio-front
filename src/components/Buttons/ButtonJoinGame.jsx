@@ -1,45 +1,39 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router";
-import { ThemeContext } from '../context/ContextGeneral';
-import { ws } from "../WebSocket";
-
+import React from "react";
 import { Button } from "@material-ui/core";
+import { useHistory } from "react-router";
+import { ws, send_ } from "../WebSocket"
 
-const ButtonJoinGame = () => {
+const isOpenWs = (ws) => {
+  return ws.readyState === ws.OPEN;
+};
 
-  const history = useHistory();
-  const { nickname, gameName } = useContext(ThemeContext);
 
-  const takes = {
-    'action': 'lobby_join',
-    'player_name': nickname,
-    'lobby_name': gameName
-  };
+const ButtonJoinGame = (props) => {
+
+  const history = useHistory()
 
   const handleJoinGame = () => {
-
-    if (nickname === '') {
-      alert('introduce nickname');
+    if(props.player === ''){
+      alert('introduce nickname')
+    }else{
+      send_(ws, 'lobby_join', props.player, props.nameGame);
+      history.push(`/lobby/${props.nameGame}`);
     }
-    else {
-      ws.send(JSON.stringify(takes));
-      history.push(`/lobby/${gameName}`);
-    }
-  };
-
+  }
+ 
   return (
     <div>
       <Button
         variant="contained"
         color="secondary"
         onClick={() => {
-          handleJoinGame();
+          handleJoinGame()
         }
         }> Join Game
       </Button>
-    </div>
+    </div >
   );
-
+  
 };
 
 export default ButtonJoinGame;

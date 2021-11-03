@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
-import axios from 'axios';
+import axios from 'axios'
 import ButtonJoinGame from "./Buttons/ButtonJoinGame";
 
-const ListGames = () => {
+const ListGames = (props) => {
 
     const [games, setGames] = useState([]);
 
@@ -25,7 +25,7 @@ const ListGames = () => {
                 console.log(error, "ERROR");
             }
         };
-
+        
         getLobbies();
 
     }, []);
@@ -45,15 +45,19 @@ const ListGames = () => {
                     {
 
                         games &&
-                        games.map(item => (
-                            <TableRow>
-                                <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
-                                <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
-                                <TableCell>
-                                    <ButtonJoinGame> Join Game</ButtonJoinGame>
-                                </TableCell>
-                            </TableRow>
-                        ))
+                            games.map(item => (
+                                <TableRow>
+                                    <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
+                                    <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
+                                    <TableCell>
+                                        <ButtonJoinGame
+                                            nameGame={item.name}
+                                            player={props.player}
+                                        > Join Game
+                                        </ButtonJoinGame>
+                                    </TableCell>
+                                </TableRow>
+                            ))
 
                     }
 
