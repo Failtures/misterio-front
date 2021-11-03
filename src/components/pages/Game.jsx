@@ -9,11 +9,11 @@ import './Lobby.css'
 const Game = () => {
 
     const [modal, setModal] = useState(true);
-
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
     const [turn, setTurn] = useState('');
+    const [diceRolled, setDiceRolled] = useState(false);
 
     const openModal = () => {
         setModal(true);
@@ -38,9 +38,15 @@ const Game = () => {
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
+                if (diceRolled === false){
+                    setDiceRolled(true)
+                }
             }
             else if (parsedJson.action === 'turn_passed') {
                 setTurn(parsedJson.current_turn)
+                if(diceRolled === true){
+                    setDiceRolled(false)
+                }
             }
         };
     });
@@ -48,27 +54,20 @@ const Game = () => {
     return (
 
         <div>
-            <h1>Game</h1>
+            <h2>Game</h2>
 
             <p>{turn}</p>
 
-            <ButtonThrowDice matchName={match_name} />
+            <ButtonThrowDice diceRolled = {diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
 
             <p>{dice}</p>
-
-            <ButtonThrowDice dice={() => ws.send(JSON.stringify(takes))}>
-
-            </ButtonThrowDice>
-            {dice}
 
             <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
                 <div className="Modal-container">
                     <h2>Suerte para la proxima wachin!!</h2>
                 </div>
             </div>
-
-
         </div>
     );
 };
