@@ -15,15 +15,32 @@ const Home = () => {
 
     return (
         <div className="container">
-            <h1 style={{color:'white'}}>MISTERY</h1>
-            <div className="section">
-                <TextField id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
-                <ButtonCreateGame openModal={openModal} nickname={nickname}/>
-                <ListGames player={nickname}></ListGames>
-                <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickname} />
+
+            <div className="header">
+                <h1>MISTERY</h1>
             </div>
 
-            <p>{nickname}</p>
+            <div className="section">
+                <div className="aside">
+                    <ListGames player={nickname}></ListGames>
+                </div>
+
+                <div className="create-conteiner">
+                    <div className="create-loggin">
+                        <TextField className="nick" id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
+                        <ButtonCreateGame className="create" openModal={openModal} />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickname} />
+
+            <div className="footer">
+                <p>FOOTER</p>
+            </div>
+
         </div>
     )
 }
