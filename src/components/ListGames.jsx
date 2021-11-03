@@ -28,7 +28,7 @@ const ListGames = (props) => {
         
         getLobbies();
 
-    });
+    }, []);
 
     return (
         <div>

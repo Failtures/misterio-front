@@ -23,9 +23,6 @@ const Game = () => {
         setModal(false);
     };
 
-    const params = useParams();
-    const [dice, setDice] = useState(0);
-    const match_name = params.game;
 
     const takes = {
         'action': 'match_roll_dice',
