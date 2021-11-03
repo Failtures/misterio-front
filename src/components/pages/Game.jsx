@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useModal } from '../../hooks/useModal'
+import { ws } from '../WebSocket'
+import ButtonAccuse from "../Buttons/ButtonAccuse";
 import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
-import { ws } from '../WebSocket'
+import ModalWichCardAccuse from "../Modals/ModalWichCardAccuse";
 import './Lobby.css'
 
 
 const Game = () => {
-
+    const [isOpenModal, openModal, closeModal] = useModal(false);
     const [modal, setModal] = useState(true);
     const params = useParams();
     const [dice, setDice] = useState(0);
@@ -15,13 +18,13 @@ const Game = () => {
     const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
 
-    const openModal = () => {
-        setModal(true);
-    };
+    // const openModal = () => {
+    //     setModal(true);
+    // };
 
-    const closeModal = () => {
-        setModal(false);
-    };
+    // const closeModal = () => {
+    //     setModal(false);
+    // };
 
 
     const takes = {
@@ -38,13 +41,13 @@ const Game = () => {
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
-                if (diceRolled === false){
+                if (diceRolled === false) {
                     setDiceRolled(true)
                 }
             }
             else if (parsedJson.action === 'turn_passed') {
                 setTurn(parsedJson.current_turn)
-                if(diceRolled === true){
+                if (diceRolled === true) {
                     setDiceRolled(false)
                 }
             }
@@ -58,8 +61,11 @@ const Game = () => {
 
             <p>{turn}</p>
 
-            <ButtonThrowDice diceRolled = {diceRolled} matchName={match_name} />
+            <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
+            <ButtonAccuse openModal={openModal} />
+            <ModalWichCardAccuse isOpen={isOpenModal} closeModal={closeModal} />
+
 
             <p>{dice}</p>
 
@@ -68,7 +74,7 @@ const Game = () => {
                     <h2>Suerte para la proxima wachin!!</h2>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
