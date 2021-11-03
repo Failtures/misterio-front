@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
-import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
 import ButtonJoinGame from "./Buttons/ButtonJoinGame";
 
@@ -27,10 +26,9 @@ const ListGames = (props) => {
             }
         };
 
-        setInterval(getLobbies(), 10000);
+        /*setInterval(getLobbies(), 10000);*/
 
     });
-
 
     return (
         <div>
