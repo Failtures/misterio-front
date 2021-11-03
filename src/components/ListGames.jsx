@@ -25,8 +25,8 @@ const ListGames = (props) => {
                 console.log(error, "ERROR");
             }
         };
-
-        /*setInterval(getLobbies(), 10000);*/
+        
+        getLobbies();
 
     });
 
