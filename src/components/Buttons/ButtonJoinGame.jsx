@@ -3,6 +3,10 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { ws, send_ } from "../WebSocket"
 
+const isOpenWs = (ws) => {
+  return ws.readyState === ws.OPEN;
+};
+
 
 const ButtonJoinGame = (props) => {
 

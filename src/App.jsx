@@ -4,15 +4,19 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Lobby from './components/pages/Lobby';
 import Game from './components/pages/Game';
 
+import ThemeContext from './components/context/ContextGeneral';
+
 function App() {
 
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route exact path={'/'} component={Home}></Route>
-          <Route exact path={'/lobby/:game'} component={Lobby}></Route>
-          <Route exact path={'/game/:game'} component={Game}></Route>
+          <ThemeContext>
+            <Route exact path={'/'} component={Home}></Route>
+            <Route exact path={'/lobby/:game'} component={Lobby}></Route>
+            <Route exact path={'/game/:game'} component={Game}></Route>
+          </ThemeContext>
         </Switch>
       </div>
     </BrowserRouter>

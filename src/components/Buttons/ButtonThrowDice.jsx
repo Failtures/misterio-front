@@ -14,12 +14,16 @@ const ButtonThrowDice = (props) => {
       <Button
         variant="contained"
         color="secondary"
-        onClick={() => { ws.send(JSON.stringify(takes)) }}
-      > Throw Dice
+        disabled = {props.diceRolled}
+        onClick={() => {
+          ws.send(JSON.stringify(takes))
+          
+        }}
+      >
+         Throw Dice
       </Button>
     </div>
   );
 }
-
 
 export default ButtonThrowDice;

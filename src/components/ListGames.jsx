@@ -1,25 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
-import { makeStyles } from '@material-ui/styles'
 import axios from 'axios'
 import ButtonJoinGame from "./Buttons/ButtonJoinGame";
-
-const useStyle = makeStyles({
-    conteiner: {
-        width: 500,
-        height: 400,
-        overflow: 'scroll',
-        overflowX: 'hidden',
-        backgroundColor: '#1b294a'
-    },
-    head: {
-        position: 'sticky',
-        width: 600,
-        top: '0%',
-        background: '#ccc',
-        zIndex: 2
-    }
-});
 
 const ListGames = (props) => {
 
@@ -43,17 +25,15 @@ const ListGames = (props) => {
                 console.log(error, "ERROR");
             }
         };
-
+        
         getLobbies();
 
     }, []);
 
-    const clase = useStyle();
-
     return (
-        <div className={clase.conteiner}>
+        <div>
             <Table>
-                <TableHead className={clase.head}>
+                <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
                     <TableRow>
                         <TableCell>Game name</TableCell>
                         <TableCell>Players</TableCell>
@@ -64,11 +44,11 @@ const ListGames = (props) => {
 
                     {
 
-                        games != null ?
+                        games &&
                             games.map(item => (
                                 <TableRow>
-                                    <TableCell>{item.name}</TableCell>
-                                    <TableCell>{item.current_players}</TableCell>
+                                    <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
+                                    <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
                                     <TableCell>
                                         <ButtonJoinGame
                                             nameGame={item.name}
@@ -78,10 +58,6 @@ const ListGames = (props) => {
                                     </TableCell>
                                 </TableRow>
                             ))
-                            :
-                            <TableRow>
-                                no games available
-                            </TableRow>
 
                     }
 

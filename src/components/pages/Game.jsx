@@ -6,13 +6,32 @@ import ButtonAccuse from "../Buttons/ButtonAccuse";
 import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
 import ModalWichCardAccuse from "../Modals/ModalWichCardAccuse";
+import './Lobby.css'
+
 
 const Game = () => {
     const [isOpenModal, openModal, closeModal] = useModal(false);
+    const [modal, setModal] = useState(true);
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
     const [turn, setTurn] = useState('');
+    const [diceRolled, setDiceRolled] = useState(false);
+
+    // const openModal = () => {
+    //     setModal(true);
+    // };
+
+    // const closeModal = () => {
+    //     setModal(false);
+    // };
+
+
+    const takes = {
+        'action': 'match_roll_dice',
+        'match_name': match_name
+    };
+
 
     useEffect(() => {
 
@@ -22,9 +41,15 @@ const Game = () => {
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
+                if (diceRolled === false) {
+                    setDiceRolled(true)
+                }
             }
-            else if(parsedJson.action === 'turn_passed'){
+            else if (parsedJson.action === 'turn_passed') {
                 setTurn(parsedJson.current_turn)
+                if (diceRolled === true) {
+                    setDiceRolled(false)
+                }
             }
         };
     });
@@ -32,17 +57,24 @@ const Game = () => {
     return (
 
         <div>
-            <h1>Game</h1>
-            
+            <h2>Game</h2>
+
             <p>{turn}</p>
 
-            <ButtonThrowDice matchName={match_name}/>
-            <ButtonEndTurn matchName = {match_name}/>
-            <ButtonAccuse openModal={openModal}/>
+            <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
+            <ButtonEndTurn matchName={match_name} />
+            <ButtonAccuse openModal={openModal} />
             <ModalWichCardAccuse isOpen={isOpenModal} closeModal={closeModal} />
+
+
             <p>{dice}</p>
 
-        </div>
+            <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
+                <div className="Modal-container">
+                    <h2>Suerte para la proxima wachin!!</h2>
+                </div>
+            </div>
+        </div >
     );
 };
 
