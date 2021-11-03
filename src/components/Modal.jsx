@@ -1,14 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router";
-import { ws } from './WebSocket';
-
-import { ThemeContext } from './context/ContextGeneral';
-
-import { TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { TextField, Button } from '@material-ui/core'
+import { ws, send_ } from './WebSocket'
+import { makeStyles } from '@material-ui/styles'
 import "./Modal.css";
-
-
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -22,31 +17,23 @@ const useStyle = makeStyles({
     }
 });
 
-const Modal = ({ isOpen, closeModal }) => {
-
-    const { nickname, gameName, setGameName } = useContext(ThemeContext);
+const Modal = ({ isOpen, closeModal, player }) => {
 
     const history = useHistory();
-
-    const takes = {
-        'action': 'lobby_create',
-        'player_name': nickname,
-        'lobby_name': gameName
-    };
+    const [gameName, setGameName] = useState('');
 
     const handleCreateGame = () => {
-        if (gameName === '') {
-            alert('introduce game name');
-        } else {
-            ws.send(JSON.stringify(takes));
+        if(gameName === ''){
+            alert('introduce game name')
+        }else{
+            send_(ws, 'lobby_create', player, gameName);
             history.push(`/lobby/${gameName}`);
         }
-    };
+    }
 
-    const handleModalContainer = e => e.stopPropagation();
 
+    const handleModalContainer = (e) => e.stopPropagation();
     const classes = useStyle();
-
     return (
         <div className={`modal ${isOpen && "is-open"}`} onClick={closeModal}>
             <div className="modal-container" onClick={handleModalContainer}>
@@ -59,29 +46,16 @@ const Modal = ({ isOpen, closeModal }) => {
                 <h1>Create Game</h1>
                 <form>
                     <div className="tfield-group">
-                        <TextField
-                            id="outlined-basic"
-                            label="Game Name"
-                            variant="outlined"
-                            onChange={(e) => { setGameName(e.target.value) }} />
+                        <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
                     </div>
                     <div className="button-group">
-                        <Button
-                            variant="contained"
-                            className={classes.botonPersonalizado}
-                            onClick={() => {
-                                handleCreateGame()
-                            }}
+                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
+                            handleCreateGame()
+                        }}
                         >
                             Create Game
                         </Button>
-                        <Button
-                            variant="contained"
-                            onClick={closeModal}
-                            className={classes.botonPersonalizado}
-                        >
-                            Exit
-                        </Button>
+                        <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
                     </div>
                 </form>
             </div>
