@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
-import ButtonStartGame from "../Buttons/ButtonStartGame";
-import ButtonExitLobby from "../Buttons/ButtonExitLobby";
+import ButtonStartGame from "../buttons/ButtonStartGame";
+import ButtonExitLobby from "../buttons/ButtonExitLobby";
 import { useParams } from "react-router-dom";
 
 import { ThemeContext } from '../../context/ContextGeneral';
