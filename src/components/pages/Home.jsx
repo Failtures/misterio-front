@@ -2,12 +2,11 @@ import React, { useContext } from 'react';
 import './Home.css';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
-import Modal from '../Modal';
+import ModalCreateGame from '../modals/ModalCreateGame';
 import ButtonCreateGame from '../Buttons/ButtonCreateGame';
 import ListGames from '../ListGames';
 
 import { ThemeContext } from '../../context/ContextGeneral';
-import MchooseCardsSuspect from '../modals/MchooseCardsSuspect';
 
 const Home = () => {
 
@@ -19,7 +18,6 @@ const Home = () => {
 
             <div className="header">
                 <h1>MISTERY</h1>
-                <MchooseCardsSuspect />
             </div>
 
             <div className="section">
@@ -37,7 +35,7 @@ const Home = () => {
 
             </div>
 
-            <Modal isOpen={isOpenModal} closeModal={closeModal} player={nickname} />
+            <ModalCreateGame isOpen={isOpenModal} closeModal={closeModal} player={nickname} />
 
             <div className="footer">
                 <p>FOOTER</p>

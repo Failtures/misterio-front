@@ -4,24 +4,28 @@ import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
 import { ws } from '../WebSocket'
 import './Lobby.css'
+import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
+import { useModal } from '../../hooks/useModal'
 
 
 const Game = () => {
 
-    const [modal, setModal] = useState(true);
+    const [isOpenModal, openModal, closeModal] = useModal(false);
+
+    // const [modal, setModal] = useState(false);
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
     const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
 
-    const openModal = () => {
-        setModal(true);
-    };
+    // const openModal = () => {
+    //     setModal(true);
+    // };
 
-    const closeModal = () => {
-        setModal(false);
-    };
+    // const closeModal = () => {
+    //     setModal(false);
+    // };
 
 
     const takes = {
@@ -48,9 +52,11 @@ const Game = () => {
                     setDiceRolled(false)
                 }
             }
+            else if(parsedJson.action === 'question') {
+                console.log(parsedJson);
+            }
         };
     });
-
     return (
 
         <div>
@@ -60,14 +66,15 @@ const Game = () => {
 
             <ButtonThrowDice diceRolled = {diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
-
+            <button onClick={()=> openModal()}>Suspect</button>
+            <MchooseCardsSuspect isOpen={isOpenModal} closeModal={closeModal} match_name={match_name}/>
             <p>{dice}</p>
 
-            <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
+            {/* <div className={`Modal ${isOpenModal && "open"}`} onClick={closeModal}>
                 <div className="Modal-container">
                     <h2>Suerte para la proxima wachin!!</h2>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
