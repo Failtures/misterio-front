@@ -17,4 +17,4 @@ const ButtonCreateGame = ({ openModal, nickname }) => {
   );
 }
 
-export default ButtonCreateGame
+export default ButtonCreateGame;

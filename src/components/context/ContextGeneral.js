@@ -5,10 +5,9 @@ export const ThemeContext = createContext();
 const ContextGeneral = (props) => {
 
     const [nickname, setNickName] = useState('');
-    const [gameName, setGameName] = useState('');
 
     return (
-        <ThemeContext.Provider value={{nickname, setNickName, gameName, setGameName}}>
+        <ThemeContext.Provider value={{nickname, setNickName}}>
             {props.children}
             
         </ThemeContext.Provider>
