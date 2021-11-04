@@ -1,12 +1,17 @@
 import React from 'react'
 import { Button } from "@material-ui/core";
-//import { ws, send_ } from "../WebSocket"
 
-const ButtonAccuse= ({openModal}) => {
-    
+const ButtonAccuse = ({ openModal }) => {
+
     return (
         <div>
-            <Button variant="contained" color="secondary" onClick={openModal}> Accuse </Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={openModal}
+            >
+                Accuse
+            </Button>
         </div>
     )
 }
