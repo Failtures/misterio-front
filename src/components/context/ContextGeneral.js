@@ -10,6 +10,7 @@ const ContextGeneral = (props) => {
     return (
         <ThemeContext.Provider value={{nickname, setNickName, gameName, setGameName}}>
             {props.children}
+            
         </ThemeContext.Provider>
     );
 };
