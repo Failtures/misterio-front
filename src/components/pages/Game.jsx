@@ -2,30 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
+import './Lobby.css'
 import ButtonAccuse from "../Buttons/ButtonAccuse";
 import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
-<<<<<<< HEAD
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
-=======
-import ModalWichCardAccuse from "../Modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../Modals/ModalWinOrLost";
-
->>>>>>> Modal-WichCardAccuse
-import './Lobby.css'
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 
 
 const Game = () => {
 
     const [isOpenModal, openModal, closeModal] = useModal(false);
-<<<<<<< HEAD
 
     // const [modal, setModal] = useState(false);
-=======
     const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
 
->>>>>>> Modal-WichCardAccuse
     const params = useParams();
     const match_name = params.game;
     const [dice, setDice] = useState(0);
