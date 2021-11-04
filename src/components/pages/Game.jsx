@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
@@ -10,15 +10,15 @@ import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 
+import Bloc from "./Bloc";
+
+import { ThemeContext } from '../../context/ContextGeneral';
 
 const Game = () => {
 
     const [isOpenAccuse, openModalAccuse, closeModalAccuse] = useModal(false);
     const [isOpenSuspect, openModalSuspect, closeModalSuspect] = useModal(false);
-
-
-    // const [modal, setModal] = useState(false);
-    // const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
+    const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(false);
 
     const params = useParams();
     const match_name = params.game;
@@ -28,6 +28,8 @@ const Game = () => {
 
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
+
+    const { nickname } = useContext(ThemeContext);
 
     useEffect(() => {
 
@@ -48,15 +50,17 @@ const Game = () => {
                     setDiceRolled(false)
                 }
             }
-            else if(parsedJson.action === 'question') {
+            else if (parsedJson.action === 'question') {
                 console.log(parsedJson);
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
+                if (nickname == parsedJson.winner) { openModalWinOrLost() }
                 console.log(`ganaste ${winner}`);
             }
             else if (parsedJson.action === 'player_deleted') {
-                setLoser(parsedJson.loser)
+                setLoser(parsedJson.loser);
+                if (nickname == parsedJson.loser) { openModalWinOrLost() }
                 console.log(`perdiste ${loser}`);
             }
         };
@@ -72,10 +76,20 @@ const Game = () => {
             <ButtonEndTurn matchName={match_name} />
             <ButtonAccuse openModal={openModalAccuse} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
-            <button onClick={()=> openModalSuspect()}>Suspect</button>
-            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name}/>
-            
+            <button onClick={() => openModalSuspect()}>Suspect</button>
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
+
+            <ModalWinOrLost
+                isOpenWinOrLost={isOpenWinOrLost}
+                closeModalWinOrLost={closeModalWinOrLost}
+                loser={loser}
+                winner={winner}
+            />
+
             <p>{dice}</p>
+
+            <Bloc></Bloc>
+
         </div>
     );
 };

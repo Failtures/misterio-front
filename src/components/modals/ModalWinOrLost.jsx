@@ -1,7 +1,7 @@
 import React from 'react'
 import "./ModalWichCardAccuse.css";
 
-const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser, msg }) => {
+const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser }) => {
 
     const handleModalContainer = (e) => e.stopPropagation();
 
@@ -15,9 +15,8 @@ const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser, m
                     </svg>
                 </button>
 
-                {winner && <p>{msg}</p>}
-
-                {loser &&  <p>{msg}</p>}
+                {loser && <h2>{`You lost ${loser}`}</h2>}
+                {winner && <h2>{`You win ${winner}`}</h2>}
 
             </div>
         </div>
