@@ -1,4 +1,4 @@
-.modal {
+.modal-suspect {
     position: fixed;
     z-index: 999;
     top: 0;
@@ -11,15 +11,12 @@
     align-items: center;
 }
 
-.modal.is-open {
+.modal-suspect.is-open {
     display: flex;
 }
 
-.modal-container.bcolor {
-    background-color: #bc9889;
-}
 
-.modal-container {
+.modal-container-suspect {
     position: relative;
     padding: 1rem;
     min-width: 500px;
@@ -31,7 +28,11 @@
     background-color: #fff;
 }
 
-.modal-close {
+.modal-container-suspect.bcolor {
+    background-color: #bc9889;
+}
+
+.modal-close-suspect {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -45,7 +46,7 @@
     cursor: pointer;
 }
 
-.modal-close:hover {
+.modal-close-suspect:hover {
     background: rgba(0, 0, 0, 0.15);
 }
 
@@ -55,12 +56,12 @@ svg {
 }
 
 
-.modal-container.bcolor.aside::-webkit-scrollbar {
+.modal-container-suspect.bcolor.aside::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.modal-container.bcolor.aside {
+.modal-container-suspect.bcolor.aside {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }

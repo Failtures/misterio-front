@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
 import axios from 'axios'
-import ButtonJoinGame from "./Buttons/ButtonJoinGame";
+import ButtonJoinGame from "./buttons/ButtonJoinGame";
 
 const ListGames = (props) => {
 

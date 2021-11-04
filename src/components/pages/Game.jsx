@@ -3,20 +3,22 @@ import { useParams } from "react-router-dom";
 import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
 import './Lobby.css'
-import ButtonAccuse from "../Buttons/ButtonAccuse";
-import ButtonThrowDice from "../Buttons/ButtonThrowDice";
-import ButtonEndTurn from "../Buttons/ButtonEndTurn";
+import ButtonAccuse from "../buttons/ButtonAccuse";
+import ButtonThrowDice from "../buttons/ButtonThrowDice";
+import ButtonEndTurn from "../buttons/ButtonEndTurn";
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
-import ModalWinOrLost from "../Modals/ModalWinOrLost";
+import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 
 
 const Game = () => {
 
-    const [isOpenModal, openModal, closeModal] = useModal(false);
+    const [isOpenAccuse, openModalAccuse, closeModalAccuse] = useModal(false);
+    const [isOpenSuspect, openModalSuspect, closeModalSuspect] = useModal(false);
+
 
     // const [modal, setModal] = useState(false);
-    const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
+    // const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
 
     const params = useParams();
     const match_name = params.game;
@@ -68,10 +70,10 @@ const Game = () => {
 
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
-            <ButtonAccuse openModal={openModal} />
-            <ModalWichCardAccuse matchName={match_name} isOpen={isOpenModal} closeModal={closeModal} />
-            <button onClick={()=> openModal()}>Suspect</button>
-            <MchooseCardsSuspect isOpen={isOpenModal} closeModal={closeModal} match_name={match_name}/>
+            <ButtonAccuse openModal={openModalAccuse} />
+            <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
+            <button onClick={()=> openModalSuspect()}>Suspect</button>
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name}/>
             
             <p>{dice}</p>
         </div>

@@ -3,7 +3,7 @@ import './Home.css';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
 import ModalCreateGame from '../modals/ModalCreateGame';
-import ButtonCreateGame from '../Buttons/ButtonCreateGame';
+import ButtonCreateGame from '../buttons/ButtonCreateGame';
 import ListGames from '../ListGames';
 
 import { ThemeContext } from '../../context/ContextGeneral';
@@ -11,7 +11,7 @@ import { ThemeContext } from '../../context/ContextGeneral';
 const Home = () => {
 
     const {nickname, setNickName} = useContext(ThemeContext)
-    const [isOpenModal, openModal, closeModal] = useModal(false);
+    const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false);
 
     return (
         <div className="container">
@@ -28,14 +28,14 @@ const Home = () => {
                 <div className="create-conteiner">
                     <div className="create-loggin">
                         <TextField className="nick" id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { setNickName(e.target.value) }} />
-                        <ButtonCreateGame className="create" openModal={openModal} />
+                        <ButtonCreateGame className="create" openModal={openModalCreateGame} />
                     </div>
 
                 </div>
 
             </div>
 
-            <ModalCreateGame isOpen={isOpenModal} closeModal={closeModal} player={nickname} />
+            <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} player={nickname} />
 
             <div className="footer">
                 <p>FOOTER</p>
