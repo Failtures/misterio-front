@@ -9,6 +9,7 @@ import ButtonEndTurn from "../buttons/ButtonEndTurn";
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
+import PlayerToken from "../PlayerToken";
 
 
 const Game = () => {
@@ -73,9 +74,9 @@ const Game = () => {
             <ButtonAccuse openModal={openModalAccuse} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <button onClick={()=> openModalSuspect()}>Suspect</button>
-            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name}/>
-            
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name}/>          
             <p>{dice}</p>
+            <PlayerToken />
         </div>
     );
 };
