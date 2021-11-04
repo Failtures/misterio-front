@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useModal } from '../../hooks/useModal'
+import { ThemeContext } from '../../context/ContextGeneral';
 import { ws } from '../WebSocket'
 import './Lobby.css'
 import ButtonAccuse from "../buttons/ButtonAccuse";
@@ -21,6 +22,9 @@ const Game = () => {
     // const [modal, setModal] = useState(false);
     // const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
 
+
+    const {players, setPlayers} = useContext(ThemeContext)
+    
     const params = useParams();
     const match_name = params.game;
     const [dice, setDice] = useState(0);
@@ -66,9 +70,7 @@ const Game = () => {
 
         <div>
             <h2>Game</h2>
-
             <p>{turn}</p>
-
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
             <ButtonAccuse openModal={openModalAccuse} />
@@ -76,7 +78,7 @@ const Game = () => {
             <button onClick={()=> openModalSuspect()}>Suspect</button>
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name}/>          
             <p>{dice}</p>
-            <PlayerToken />
+            <PlayerToken players={players}/>
         </div>
     );
 };

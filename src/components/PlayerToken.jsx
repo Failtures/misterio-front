@@ -3,23 +3,32 @@ import { makeStyles } from '@material-ui/styles'
 
 
 
-const PlayerToken = () => {
+const PlayerToken = ({ players }) => {
 
-    const useStyles = makeStyles ({
+    const useStyles = makeStyles({
         token: {
-            width:'50px', 
-            height:'50px', 
-            backgroundColor:'yellow', 
-            borderRadius:'100%', 
+            width: '50px',
+            height: '50px',
+            backgroundColor: 'yellow',
+            borderRadius: '100%',
             border: '1px solid black'
         }
     })
 
     const classes = useStyles();
-
-
+    console.log(players);
     return (
-        <div className={classes.token} />        
+        <>
+            <div className={classes.token} />
+            <ul>
+                {
+                    players.map((item) => (
+                        <li>{item}</li>
+                    ))
+                }
+
+            </ul>
+        </>
     )
 }
 

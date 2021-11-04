@@ -11,13 +11,14 @@ import { ThemeContext } from '../../context/ContextGeneral';
 const Lobby = () => {
 
 
-    const { nickname } = useContext(ThemeContext);
+    // const { nickname } = useContext(ThemeContext);
+
+    const {players, setPlayers} = useContext(ThemeContext)
 
     const params = useParams();
-
     const history = useHistory();
 
-    const [players, setPlayers] = useState([]);
+    // const [players, setPlayers] = useState([]);
     const [host, setHost] = useState('');
     const [lobbyName, setLobbyName] = useState('');
     const [exit, setExit] = useState(false)

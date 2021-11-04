@@ -12,7 +12,6 @@ const Home = () => {
 
     const {nickname, setNickName} = useContext(ThemeContext)
     const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false);
-
     return (
         <div className="container">
 
