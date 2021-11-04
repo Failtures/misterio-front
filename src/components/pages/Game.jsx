@@ -6,24 +6,31 @@ import ButtonAccuse from "../Buttons/ButtonAccuse";
 import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
 import ModalWichCardAccuse from "../Modals/ModalWichCardAccuse";
+import ModalWinOrLost from "../Modals/ModalWinOrLost";
+
 import './Lobby.css'
 
 
 const Game = () => {
 
     const [isOpenModal, openModal, closeModal] = useModal(false);
-    const [modal, setModal] = useState(true);
+    const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
+
     const params = useParams();
-    const [dice, setDice] = useState(0);
     const match_name = params.game;
+    const [dice, setDice] = useState(0);
     const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
+
+    const [winner, setWinner] = useState('');
+    const [loser, setLoser] = useState('');
 
     useEffect(() => {
 
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
+            console.log(parsedJson.action)
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -37,6 +44,14 @@ const Game = () => {
                     setDiceRolled(false)
                 }
             }
+            else if (parsedJson.action === 'game_over') {
+                setWinner(parsedJson.winner);
+                console.log(`ganaste ${winner}`);
+            }
+            else if (parsedJson.action === 'player_deleted') {
+                setLoser(parsedJson.loser)
+                console.log(`perdiste ${loser}`);
+            }
         };
     });
 
@@ -49,17 +64,11 @@ const Game = () => {
 
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
-            <ButtonAccuse matchName = {match_name} openModal={openModal} />
-            <ModalWichCardAccuse isOpen={isOpenModal} closeModal={closeModal} />
-
-
+            <ButtonAccuse openModal={openModal} />
+            <ModalWichCardAccuse matchName={match_name} isOpen={isOpenModal} closeModal={closeModal} />
+            
             <p>{dice}</p>
 
-            {/* <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
-                <div className="Modal-container">
-                    <h2>Suerte para la proxima wachin!!</h2>
-                </div>
-            </div> */}
         </div >
     );
 };

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button } from "@material-ui/core";
 
-const ButtonAccuse= ({openModal, props}) => {
-    
+const ButtonAccuse = ({ openModal }) => {
+
     return (
         <div>
-            <Button 
+            <Button
                 variant="contained"
                 color="secondary"
-                onClick={openModal}                
+                onClick={openModal}
             >
                 Accuse
             </Button>

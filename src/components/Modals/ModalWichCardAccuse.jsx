@@ -3,15 +3,15 @@ import { ws } from '../WebSocket';
 import { Button } from "@material-ui/core";
 import "./ModalWichCardAccuse.css";
 
-const ModalWichCardAccuse = ({ isOpen, closeModal, match_name}) => {
+const ModalWichCardAccuse = ({ isOpen, closeModal, matchName}) => {
 
     const handleModalContainer = (e) => e.stopPropagation();
-    const [victim, setVictim] = useState('')
-    const [monster, setMonster] = useState('')
-    const [room, setRoom] = useState('')
+    const [victim, setVictim] = useState('');
+    const [monster, setMonster] = useState('');
+    const [room, setRoom] = useState('');
     const takes = {
         'action': 'match_accuse',
-        'match_name': match_name,
+        'match_name': matchName,
         'monster': monster,
         'victim': victim,
         'room': room
