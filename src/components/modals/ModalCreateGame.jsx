@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router";
 import { TextField, Button } from '@material-ui/core'
-import { ws, send_ } from './WebSocket'
+import { ws, send_ } from '../WebSocket'
 import { makeStyles } from '@material-ui/styles'
-import "./Modal.css";
+import "./ModalCreateGame.css";
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -17,7 +17,7 @@ const useStyle = makeStyles({
     }
 });
 
-const Modal = ({ isOpen, closeModal, player }) => {
+const ModalCreateGame = ({ isOpen, closeModal, player }) => {
 
     const history = useHistory();
     const [gameName, setGameName] = useState('');
@@ -43,7 +43,7 @@ const Modal = ({ isOpen, closeModal, player }) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
-                <h1>Create Game</h1>
+                <h2>Create Game</h2>
                 <form>
                     <div className="tfield-group">
                         <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
@@ -63,4 +63,4 @@ const Modal = ({ isOpen, closeModal, player }) => {
     )
 };
 
-export default Modal;
+export default ModalCreateGame;

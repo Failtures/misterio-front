@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Lobby from './components/pages/Lobby';
 import Game from './components/pages/Game';
 
-import ThemeContext from './components/context/ContextGeneral';
+import ThemeContext from './context/ContextGeneral';
 
 function App() {
 

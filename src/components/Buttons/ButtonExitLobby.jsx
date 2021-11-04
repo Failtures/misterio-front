@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ws } from '../WebSocket'
-import { ThemeContext } from '../context/ContextGeneral';
+import { ThemeContext } from '../../context/ContextGeneral';
 import { useHistory } from "react-router";
 import { Button } from "@material-ui/core";
 

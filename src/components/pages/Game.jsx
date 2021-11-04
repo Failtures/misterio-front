@@ -5,13 +5,16 @@ import { ws } from '../WebSocket'
 import ButtonAccuse from "../Buttons/ButtonAccuse";
 import ButtonThrowDice from "../Buttons/ButtonThrowDice";
 import ButtonEndTurn from "../Buttons/ButtonEndTurn";
-import ModalWichCardAccuse from "../Modals/ModalWichCardAccuse";
+import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import './Lobby.css'
+import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 
 
 const Game = () => {
+
     const [isOpenModal, openModal, closeModal] = useModal(false);
-    const [modal, setModal] = useState(true);
+
+    // const [modal, setModal] = useState(false);
     const params = useParams();
     const [dice, setDice] = useState(0);
     const match_name = params.game;
@@ -51,9 +54,11 @@ const Game = () => {
                     setDiceRolled(false)
                 }
             }
+            else if(parsedJson.action === 'question') {
+                console.log(parsedJson);
+            }
         };
     });
-
     return (
 
         <div>
@@ -67,14 +72,16 @@ const Game = () => {
             <ModalWichCardAccuse isOpen={isOpenModal} closeModal={closeModal} />
 
 
+            <button onClick={()=> openModal()}>Suspect</button>
+            <MchooseCardsSuspect isOpen={isOpenModal} closeModal={closeModal} match_name={match_name}/>
             <p>{dice}</p>
 
-            <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
+            {/* <div className={`Modal ${isOpenModal && "open"}`} onClick={closeModal}>
                 <div className="Modal-container">
                     <h2>Suerte para la proxima wachin!!</h2>
                 </div>
-            </div>
-        </div >
+            </div> */}
+        </div>
     );
 };
 

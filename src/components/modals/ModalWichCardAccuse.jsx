@@ -1,6 +1,6 @@
 import React from 'react'
 //import { ws, send_ } from './WebSocket'
-import "../Modal.css";
+import "./ModalWichCardAccuse.css";
 
 const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
 
