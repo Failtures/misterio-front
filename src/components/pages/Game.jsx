@@ -10,6 +10,7 @@ import './Lobby.css'
 
 
 const Game = () => {
+
     const [isOpenModal, openModal, closeModal] = useModal(false);
     const [modal, setModal] = useState(true);
     const params = useParams();
@@ -17,21 +18,6 @@ const Game = () => {
     const match_name = params.game;
     const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
-
-    // const openModal = () => {
-    //     setModal(true);
-    // };
-
-    // const closeModal = () => {
-    //     setModal(false);
-    // };
-
-
-    const takes = {
-        'action': 'match_roll_dice',
-        'match_name': match_name
-    };
-
 
     useEffect(() => {
 
@@ -63,17 +49,17 @@ const Game = () => {
 
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
-            <ButtonAccuse openModal={openModal} />
+            <ButtonAccuse matchName = {match_name} openModal={openModal} />
             <ModalWichCardAccuse isOpen={isOpenModal} closeModal={closeModal} />
 
 
             <p>{dice}</p>
 
-            <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
+            {/* <div className={`Modal ${modal && "open"}`} onClick={closeModal}>
                 <div className="Modal-container">
                     <h2>Suerte para la proxima wachin!!</h2>
                 </div>
-            </div>
+            </div> */}
         </div >
     );
 };
