@@ -1,0 +1,17 @@
+.board.container {
+    position: relative;
+}
+
+.canvas-container {
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
+}
+
+.img-container {
+    position: absolute;
+    z-index: 2;
+    left: 0px;
+    top: 0px;
+}

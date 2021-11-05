@@ -5,21 +5,24 @@ import Lobby from './components/pages/Lobby';
 import Game from './components/pages/Game';
 
 import ThemeContext from './context/ContextGeneral';
+import Board from './components/Board';
 
 function App() {
-
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <ThemeContext>
-            <Route exact path={'/'} component={Home}></Route>
-            <Route exact path={'/lobby/:game'} component={Lobby}></Route>
-            <Route exact path={'/game/:game'} component={Game}></Route>
-          </ThemeContext>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div>
+      <Board />
+    </div>
+    // <BrowserRouter>
+    //   <div className="App">
+    //     <Switch>
+    //       <ThemeContext>
+    //         <Route exact path={'/'} component={Home}></Route>
+    //         <Route exact path={'/lobby/:game'} component={Lobby}></Route>
+    //         <Route exact path={'/game/:game'} component={Game}></Route>
+    //       </ThemeContext>
+    //     </Switch>
+    //   </div>
+    // </BrowserRouter>
   );
 }
 
