@@ -5,12 +5,12 @@ import Lobby from './components/pages/Lobby';
 import Game from './components/pages/Game';
 
 import ThemeContext from './context/ContextGeneral';
-import Board from './components/Board';
+import Canvas from './components/Canvas';
 
 function App() {
   return (
     <div>
-      <Board />
+      <Canvas />
     </div>
     // <BrowserRouter>
     //   <div className="App">

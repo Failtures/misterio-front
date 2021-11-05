@@ -7,7 +7,7 @@ const Board = () => {
     return (
         <div className="board-container">
             <div className="canvas-container">
-                <Canvas />
+                {/* <Canvas /> */}
             </div>
             <div className="img-container">
                 <img src={tablero}
