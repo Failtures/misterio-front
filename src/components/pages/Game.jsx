@@ -10,7 +10,8 @@ import ButtonEndTurn from "../buttons/ButtonEndTurn";
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
-import PlayerToken from "../PlayerToken";
+import ButtonSuspect from "../buttons/ButtonSuspect";
+import Board from "../boardComponents/Board";
 
 
 const Game = () => {
@@ -23,7 +24,7 @@ const Game = () => {
     // const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
 
 
-    const {players, setPlayers} = useContext(ThemeContext)
+    // const {players, setPlayers} = useContext(ThemeContext)
     
     const params = useParams();
     const match_name = params.game;
@@ -71,14 +72,14 @@ const Game = () => {
         <div>
             <h2>Game</h2>
             <p>{turn}</p>
+            <Board matchName={match_name}/>
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
             <ButtonAccuse openModal={openModalAccuse} />
+            <ButtonSuspect openModal={openModalSuspect} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
-            <button onClick={()=> openModalSuspect()}>Suspect</button>
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name}/>          
             <p>{dice}</p>
-            <PlayerToken players={players}/>
         </div>
     );
 };

@@ -6,8 +6,8 @@ import "./MchooseCardsSuspect.css";
 
 const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
 
-    const { nickname } = useContext(ThemeContext);
-    console.log(nickname);
+    const dictStates = useContext(ThemeContext);
+    console.log(dictStates.nickname);
     console.log(match_name);
     const [victim, setVictim] = useState('')
     const [monster, setMonster] = useState('')
@@ -15,7 +15,7 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
 
     const takes = {
         'action': 'match_suspect',
-        'player_name': nickname,
+        'player_name': dictStates.nickname,
         'match_name': match_name,
         'monster': monster,
         'victim': victim,

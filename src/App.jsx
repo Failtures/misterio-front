@@ -7,7 +7,6 @@ import Game from './components/pages/Game';
 import ThemeContext from './context/ContextGeneral';
 
 function App() {
-
   return (
     <BrowserRouter>
       <div className="App">

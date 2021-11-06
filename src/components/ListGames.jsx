@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
 import axios from 'axios'
 import ButtonJoinGame from "./buttons/ButtonJoinGame";
+// import { ThemeContext } from '../context/ContextGeneral';
 
-const ListGames = (props) => {
+const ListGames = () => {
 
     const [games, setGames] = useState([]);
+    // const dictStates = useContext(ThemeContext)
 
     useEffect(() => {
 
@@ -52,7 +54,6 @@ const ListGames = (props) => {
                                     <TableCell>
                                         <ButtonJoinGame
                                             nameGame={item.name}
-                                            player={props.player}
                                         > Join Game
                                         </ButtonJoinGame>
                                     </TableCell>

@@ -13,7 +13,7 @@ const Lobby = () => {
 
     // const { nickname } = useContext(ThemeContext);
 
-    const {players, setPlayers} = useContext(ThemeContext)
+    const dictStates = useContext(ThemeContext)
 
     const params = useParams();
     const history = useHistory();
@@ -35,18 +35,19 @@ const Lobby = () => {
             if (parseJson.action === 'new_lobby') {
                 setLobbyName(parseJson.lobby.name);
                 setHost(parseJson.lobby.host);
-                setPlayers(parseJson.lobby.players);
+                dictStates.setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'joined_lobby') {
                 console.log(parseJson)
-                setPlayers(parseJson.lobby.players);
+                dictStates.setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'new_player') {
-                arrayAuxiliar = players.slice();
+                arrayAuxiliar = dictStates.players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
-                setPlayers(arrayAuxiliar);
+                dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
+                console.log(parseJson);
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
@@ -65,7 +66,7 @@ const Lobby = () => {
             <h2>Lobby</h2>
             <ul>
                 {
-                    players.map(item => (
+                    dictStates.players.map(item => (
                         <li> {item} </li>
                     ))
                 }

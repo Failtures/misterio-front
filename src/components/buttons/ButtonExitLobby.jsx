@@ -8,11 +8,11 @@ function ButtonExitLobby(props) {
 
 
     const history = useHistory()
-    const { nickname } = useContext(ThemeContext);
+    const dictStates = useContext(ThemeContext);
 
     const takes = {
         'action': 'lobby_leave',
-        'player_name': nickname,
+        'player_name': dictStates.nickname,
         'lobby_name': props.lobby_name
     };
 
