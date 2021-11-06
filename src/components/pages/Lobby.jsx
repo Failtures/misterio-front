@@ -46,6 +46,7 @@ const Lobby = () => {
                 setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
+                console.log(parseJson);
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {

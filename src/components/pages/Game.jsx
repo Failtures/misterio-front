@@ -10,6 +10,7 @@ import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 import ButtonSuspect from "../buttons/ButtonSuspect";
+import Board from "../boardComponents/Board";
 
 
 const Game = () => {
@@ -66,9 +67,8 @@ const Game = () => {
 
         <div>
             <h2>Game</h2>
-
             <p>{turn}</p>
-
+            <Board matchName={match_name}/>
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
             <ButtonAccuse openModal={openModalAccuse} />
