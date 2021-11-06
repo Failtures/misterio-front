@@ -27,12 +27,14 @@ const Lobby = () => {
         'match_name': match_name
     };
 
-    const takesSalem = {
-        'action': 'match_use_witch',
-        'player_name': nickname,
-        'match_name': match_name,
-        'card_type': 'SALEM_WITCH'
-    };
+    /*
+    const obj = hand.find(element => element.name === "Salem Witch")
+                console.log(`Tengo la bruja? ${obj !== null}`);
+                if (obj) {
+                    ws.send(JSON.stringify(takesSalem));
+                }
+    */
+
 
     let arrayAuxiliar = [];
 
@@ -56,7 +58,7 @@ const Lobby = () => {
             }
             else if (parseJson.action === 'match_started') {
                 ws.send(JSON.stringify(takesGetHand))
-                ws.send(JSON.stringify(takesSalem))
+
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {

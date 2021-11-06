@@ -34,12 +34,25 @@ const Game = () => {
 
     const [hand, setHand] = useState([]);
 
+    const takesSalem = {
+        'action': 'match_use_witch',
+        'player_name': nickname,
+        'match_name': match_name,
+        'card_type': 'SALEM_WITCH'
+    };
+
+
+    //{'action': 'get_hand', 'hand': [Card]}
+    //Card: {'type': CardType, 'name': str}
+    //CardType = {MONSTER, VICTIM, ROOM, SALEM_WITCH}
+    //Salem Witch
+    //
 
     useEffect(() => {
         console.log('useefect')
-        
+
         ws.onmessage = (e) => {
-           
+
             const parsedJson = JSON.parse(e.data);
 
             console.log(parsedJson.action)
@@ -53,28 +66,30 @@ const Game = () => {
             else if (parsedJson.action === 'turn_passed') {
                 setTurn(parsedJson.current_turn)
                 if (diceRolled === true) {
-                    setDiceRolled(false)
+                    setDiceRolled(false);
                 };
             }
             else if (parsedJson.action === 'question') {
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
-                if (nickname == parsedJson.winner) {
-                    openModalWinOrLost()
+                if (nickname === parsedJson.winner) {
+                    openModalWinOrLost();
                 };
             }
             else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
-                if (nickname == parsedJson.loser) {
-                    openModalWinOrLost()
+                if (nickname === parsedJson.loser) {
+                    openModalWinOrLost();
                 };
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
+                //ws.send(JSON.stringify(takesSalem));
+                
             }
             else if (parsedJson.action === 'mystery_card') {
-                console.log(parsedJson.action);
+                console.log(parsedJson.card);
             };
         };
     });
