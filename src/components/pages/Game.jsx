@@ -22,6 +22,7 @@ const Game = () => {
 
     const params = useParams();
     const match_name = params.game;
+
     const [dice, setDice] = useState(0);
     const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
@@ -31,40 +32,53 @@ const Game = () => {
 
     const { nickname } = useContext(ThemeContext);
 
+    const [hand, setHand] = useState([]);
+
+
     useEffect(() => {
-
+        console.log('useefect')
+        
         ws.onmessage = (e) => {
-
+           
             const parsedJson = JSON.parse(e.data);
+
             console.log(parsedJson.action)
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
                 if (diceRolled === false) {
                     setDiceRolled(true)
-                }
+                };
             }
             else if (parsedJson.action === 'turn_passed') {
                 setTurn(parsedJson.current_turn)
                 if (diceRolled === true) {
                     setDiceRolled(false)
-                }
+                };
             }
             else if (parsedJson.action === 'question') {
-                console.log(parsedJson);
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
-                if (nickname == parsedJson.winner) { openModalWinOrLost() }
-                console.log(`ganaste ${winner}`);
+                if (nickname == parsedJson.winner) {
+                    openModalWinOrLost()
+                };
             }
             else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
-                if (nickname == parsedJson.loser) { openModalWinOrLost() }
-                console.log(`perdiste ${loser}`);
+                if (nickname == parsedJson.loser) {
+                    openModalWinOrLost()
+                };
             }
+            else if (parsedJson.action === 'get_hand') {
+                setHand(parsedJson.hand);
+            }
+            else if (parsedJson.action === 'mystery_card') {
+                console.log(parsedJson.action);
+            };
         };
     });
+
     return (
 
         <div>
@@ -90,6 +104,7 @@ const Game = () => {
 
             <Bloc></Bloc>
 
+            {hand.map(item => item.name)}
         </div>
     );
 };
