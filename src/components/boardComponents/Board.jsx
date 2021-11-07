@@ -94,7 +94,7 @@ const Board = ({ matchName }) => {
                 <Square color='#a5682a' type="normal" id={"72"} posX={6} posY={2} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"73"} posX={13} posY={2} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"74"} posX={6} posY={1} matchName={matchName} />
-                <Square color='#a5682a' type="normal" id={"75"} posX={6} posY={1} matchName={matchName} />
+                <Square color='#a5682a' type="normal" id={"75"} posX={13} posY={1} matchName={matchName} />
                 <Square color='#a5682a' type="beginning" id={"76 init"} posX={6} posY={0} matchName={matchName} />
                 <Square color='#a5682a' type="beginning" id={"77 init"} posX={13} posY={0} matchName={matchName} />
 

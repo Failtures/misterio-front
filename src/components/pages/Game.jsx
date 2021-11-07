@@ -67,8 +67,10 @@ const Game = () => {
             }
             else if(parsedJson.action === 'player_position') {
                 console.log(parsedJson);
-                dictStates.setPosY(parsedJson.pos_y)
-                dictStates.setPosX(parsedJson.pos_x)
+                if(dictStates.nickname === dictStates.turn){
+                    dictStates.setPosY(parsedJson.pos_y)
+                    dictStates.setPosX(parsedJson.pos_x)
+                }
                 console.log(parsedJson.pos_x);
                 console.log(parsedJson.pos_y);
             }

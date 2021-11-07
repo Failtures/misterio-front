@@ -43,12 +43,14 @@ const Lobby = () => {
                 let pos = 0;
                 let pos_x = 0;
                 let pos_y = 0;
-                console.log(parseJson.match);
-                for (let i = 0; i < parseJson.match.players.length; i++) {
-                    if(dictStates.nickname === parseJson.match.players[i]) {
+                // console.log(parseJson.match.player_position.player_position);
+                for (let i = 0; i < parseJson.match.player_position.player_position.length; i++) {
+
+                    if(dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
                         dictStates.setTokenColor(colors_token[i])
                         pos = i
-                    }                 
+                    }   
+
                 }
                 pos_x = parseJson.match.player_position.player_position[pos].pos_x;
                 pos_y = parseJson.match.player_position.player_position[pos].pos_y;
