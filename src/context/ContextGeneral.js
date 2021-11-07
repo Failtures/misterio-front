@@ -4,15 +4,13 @@ export const ThemeContext = createContext();
 
 const ContextGeneral = (props) => {
 
-
-
-    const [position, setPosition] = useState([])
     const [nickname, setNickname] = useState('');
     const [players, setPlayers] = useState([]);
     const [lobbyName, setLobbyName] = useState('')
     const [posX, setPosX] = useState(0)
     const [posY, setPosY] = useState(0)
     const [turn, setTurn] = useState('')
+    const [tokenColor, setTokenColor] = useState('')
 
     const dictStates = {
         nickname: nickname,
@@ -21,27 +19,15 @@ const ContextGeneral = (props) => {
         posX: posX,
         posY: posY,
         turn: turn,
-        position: position,
+        tokenColor: tokenColor,
 
-        setNickname: (nickname) => setNickname(nickname),
-        setPlayers: (players) => setPlayers(players),
-        setLobbyName: (lobbyName) => setLobbyName(lobbyName),
-        setPosX: (posX) => setPosX(posX),
-        setPosY: (posY) => setPosY(posY),
-        setTurn: (turn) => setTurn(turn),
-        setPosition: (nickname, posX, posY) => {
-            const aux = [
-                {
-                    nickname: nickname,
-                    pos: {
-                        posX: posX,
-                        posY: posY
-                    }
-                }
-            ]
-            console.log(aux);
-            setPosition([aux])
-        }
+        setNickname: nickname => setNickname(nickname),
+        setPlayers: players => setPlayers(players),
+        setLobbyName: lobbyName => setLobbyName(lobbyName),
+        setPosX: posX => setPosX(posX),
+        setPosY: posY => setPosY(posY),
+        setTurn: turn => setTurn(turn),
+        setTokenColor: tokenColor => setTokenColor(tokenColor)
 
     }
 

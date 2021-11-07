@@ -9,8 +9,7 @@ import { ThemeContext } from '../../context/ContextGeneral';
 
 const Lobby = () => {
 
-
-
+    const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
     const dictStates = useContext(ThemeContext)
 
     const history = useHistory();
@@ -41,14 +40,21 @@ const Lobby = () => {
                 dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
+                let pos = 0;
+                let pos_x = 0;
+                let pos_y = 0;
                 console.log(parseJson.match);
                 for (let i = 0; i < parseJson.match.players.length; i++) {
-                    dictStates.setPosition(parseJson.match.players[i], parseJson.match.player_position.player_position[i].pos_x, parseJson.match.player_position.player_position[i].pos_y)
+                    if(dictStates.nickname === parseJson.match.players[i]) {
+                        dictStates.setTokenColor(colors_token[i])
+                        pos = i
+                    }                 
                 }
-
-                console.log(dictStates.position);
-
-                dictStates.setTurn(parseJson.match.turn)
+                pos_x = parseJson.match.player_position.player_position[pos].pos_x;
+                pos_y = parseJson.match.player_position.player_position[pos].pos_y;
+                dictStates.setPosX(pos_x);
+                dictStates.setPosY(pos_y);
+                dictStates.setTurn(parseJson.match.turn);            
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
@@ -58,6 +64,12 @@ const Lobby = () => {
             }
         };
     });
+
+    console.log(`turno inicial: ${dictStates.turn}`);
+    console.log(`color del jugador: ${dictStates.tokenColor}`);
+    console.log(`posicion X inicial: ${dictStates.posX}`);
+    console.log(`posicion Y inicial: ${dictStates.posY}`);
+    
 
     return (
 

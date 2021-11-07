@@ -1,13 +1,21 @@
 import { makeStyles } from '@material-ui/styles'
+import { useContext } from 'react'
+import { ThemeContext } from '../../context/ContextGeneral'
 import {ws} from '../WebSocket'
 
 const Square = ({color, id, posX, posY, matchName}) => {
+
+    const dictStates = useContext(ThemeContext)
 
     const takes = {
         'action': 'match_move',
         'match_name': matchName,
         'pos_x': posX,
         'pos_y': posY
+    }
+
+    if(posX === dictStates.posX && posY === dictStates.posY) {
+        color = dictStates.tokenColor
     }
 
     const useStyle = makeStyles({

@@ -7,8 +7,6 @@ import "./MchooseCardsSuspect.css";
 const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
 
     const dictStates = useContext(ThemeContext);
-    console.log(dictStates.nickname);
-    console.log(match_name);
     const [victim, setVictim] = useState('')
     const [monster, setMonster] = useState('')
     const [room, setRoom] = useState('')

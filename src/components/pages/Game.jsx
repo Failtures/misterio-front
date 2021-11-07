@@ -29,13 +29,10 @@ const Game = () => {
     const params = useParams();
     const match_name = params.game;
     const [dice, setDice] = useState(0);
-    // const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
-
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
 
-    console.log(dictStates.nickname);
 
     useEffect(() => {
 
@@ -70,6 +67,10 @@ const Game = () => {
             }
             else if(parsedJson.action === 'player_position') {
                 console.log(parsedJson);
+                dictStates.setPosY(parsedJson.pos_y)
+                dictStates.setPosX(parsedJson.pos_x)
+                console.log(parsedJson.pos_x);
+                console.log(parsedJson.pos_y);
             }
         };
     });
