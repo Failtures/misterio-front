@@ -58,7 +58,6 @@ const Lobby = () => {
             }
             else if (parseJson.action === 'match_started') {
                 ws.send(JSON.stringify(takesGetHand))
-
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {

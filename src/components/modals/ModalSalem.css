@@ -1,0 +1,67 @@
+.modal-salem {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-salem.is-open {
+    display: flex;
+}
+
+
+.modal-container-salem {
+    position: relative;
+    padding: 1rem;
+    min-width: 500px;
+    max-width: 600px;
+    min-height: 300px;
+    max-height: 800px;
+    border-radius: 10px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.modal-container-salem.bcolor {
+    background-color: #bc9889;
+}
+
+.modal-close-salem {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    border-radius: 5px;
+    transition: .3s ease all;
+    color: 0;
+    cursor: pointer;
+}
+
+.modal-close-salem:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+.modal-container-salem.bcolor.aside::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.modal-container-salem.bcolor.aside {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

@@ -9,6 +9,7 @@ import ButtonEndTurn from "../buttons/ButtonEndTurn";
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
+import ModalSalem from "../modals/ModalSalem";
 
 import Bloc from "./Bloc";
 
@@ -19,6 +20,7 @@ const Game = () => {
     const [isOpenAccuse, openModalAccuse, closeModalAccuse] = useModal(false);
     const [isOpenSuspect, openModalSuspect, closeModalSuspect] = useModal(false);
     const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(false);
+    const [isOpenSalem, openModalSalem, closeModalSalem] = useModal(false);
 
     const params = useParams();
     const match_name = params.game;
@@ -34,12 +36,6 @@ const Game = () => {
 
     const [hand, setHand] = useState([]);
 
-    const takesSalem = {
-        'action': 'match_use_witch',
-        'player_name': nickname,
-        'match_name': match_name,
-        'card_type': 'SALEM_WITCH'
-    };
 
 
     //{'action': 'get_hand', 'hand': [Card]}
@@ -49,13 +45,14 @@ const Game = () => {
     //
 
     useEffect(() => {
-        console.log('useefect')
 
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
 
+
             console.log(parsedJson.action)
+            console.log(parsedJson.info)
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -85,8 +82,12 @@ const Game = () => {
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
-                //ws.send(JSON.stringify(takesSalem));
-                
+                const obj = parsedJson.hand.find(element => element.name === "Salem Witch")
+                console.log(obj)
+                if (obj) {
+                    openModalSalem()
+                }
+
             }
             else if (parsedJson.action === 'mystery_card') {
                 console.log(parsedJson.card);
@@ -106,6 +107,8 @@ const Game = () => {
             <ButtonAccuse openModal={openModalAccuse} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <button onClick={() => openModalSuspect()}>Suspect</button>
+            <ModalSalem match_name={match_name} isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
+
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
 
             <ModalWinOrLost

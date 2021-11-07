@@ -25,14 +25,15 @@ const ListGames = (props) => {
                 console.log(error, "ERROR");
             }
         };
-        
+
         getLobbies();
 
     }, []);
 
     return (
         <div>
-            <Table>
+
+            {games && <Table>
                 <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
                     <TableRow>
                         <TableCell>Game name</TableCell>
@@ -44,25 +45,25 @@ const ListGames = (props) => {
 
                     {
 
-                        games &&
-                            games.map(item => (
-                                <TableRow>
-                                    <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
-                                    <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
-                                    <TableCell>
-                                        <ButtonJoinGame
-                                            nameGame={item.name}
-                                            player={props.player}
-                                        > Join Game
-                                        </ButtonJoinGame>
-                                    </TableCell>
-                                </TableRow>
-                            ))
+                        games.map(item => (
+                            <TableRow>
+                                <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
+                                <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
+                                <TableCell>
+                                    <ButtonJoinGame
+                                        nameGame={item.name}
+                                        player={props.player}
+                                    > Join Game
+                                    </ButtonJoinGame>
+                                </TableCell>
+                            </TableRow>
+                        ))
 
                     }
 
                 </TableBody>
-            </Table>
+            </Table>}
+
         </div>
     );
 };
