@@ -27,15 +27,6 @@ const Lobby = () => {
         'match_name': match_name
     };
 
-    /*
-    const obj = hand.find(element => element.name === "Salem Witch")
-                console.log(`Tengo la bruja? ${obj !== null}`);
-                if (obj) {
-                    ws.send(JSON.stringify(takesSalem));
-                }
-    */
-
-
     let arrayAuxiliar = [];
 
     useEffect(() => {
@@ -57,7 +48,7 @@ const Lobby = () => {
                 setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
-                ws.send(JSON.stringify(takesGetHand))
+                ws.send(JSON.stringify(takesGetHand));
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {

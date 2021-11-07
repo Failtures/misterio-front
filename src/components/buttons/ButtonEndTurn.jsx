@@ -10,18 +10,19 @@ const ButtonEndTurn = (props) => {
     };
 
     return (
-        <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => { 
-                ws.send(JSON.stringify(takes)) 
-            }}
-        >
-            End Turn
-        </Button>
-    )
+        <div>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                    ws.send(JSON.stringify(takes))
+                }}
+            >
+                End Turn
+            </Button>
+        </div>
 
-}
-
+    );
+};
 
 export default ButtonEndTurn;

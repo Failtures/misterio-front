@@ -36,23 +36,11 @@ const Game = () => {
 
     const [hand, setHand] = useState([]);
 
-
-
-    //{'action': 'get_hand', 'hand': [Card]}
-    //Card: {'type': CardType, 'name': str}
-    //CardType = {MONSTER, VICTIM, ROOM, SALEM_WITCH}
-    //Salem Witch
-    //
-
     useEffect(() => {
 
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
-
-
-            console.log(parsedJson.action)
-            console.log(parsedJson.info)
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -83,11 +71,9 @@ const Game = () => {
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
                 const obj = parsedJson.hand.find(element => element.name === "Salem Witch")
-                console.log(obj)
                 if (obj) {
-                    openModalSalem()
-                }
-
+                    openModalSalem();
+                };
             }
             else if (parsedJson.action === 'mystery_card') {
                 console.log(parsedJson.card);
@@ -108,9 +94,7 @@ const Game = () => {
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <button onClick={() => openModalSuspect()}>Suspect</button>
             <ModalSalem match_name={match_name} isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
-
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
-
             <ModalWinOrLost
                 isOpenWinOrLost={isOpenWinOrLost}
                 closeModalWinOrLost={closeModalWinOrLost}
@@ -122,7 +106,7 @@ const Game = () => {
 
             <Bloc></Bloc>
 
-            {hand.map(item => item.name)}
+            {hand.map(item => `${item.name}- `)}
         </div>
     );
 };
