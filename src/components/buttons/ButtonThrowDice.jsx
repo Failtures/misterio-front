@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { ws } from '../WebSocket'
+import { ThemeContext } from "../../context/ContextGeneral";
 
 const ButtonThrowDice = (props) => {
+
+  const dictStates = useContext(ThemeContext)
 
   const takes = {
     'action': 'match_roll_dice',

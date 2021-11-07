@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { ws } from "../WebSocket";
+import { ThemeContext } from "../../context/ContextGeneral";
 
 const ButtonStartGame = (props) => {
 
+    const dictStates = useContext(ThemeContext)
+    // console.log(dictStates);
     return (
         <Button
             variant="contained"
@@ -12,7 +15,7 @@ const ButtonStartGame = (props) => {
                 ws.send(JSON.stringify({
                     'action': props.action,
                     'player_name': props.player_name,
-                    'lobby_name': props.lobby_name
+                    'lobby_name': dictStates.lobbyName
                 }));
             }
             }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from "react-router";
 import { TextField, Button } from '@material-ui/core'
 import { ws, send_ } from '../WebSocket'
 import { makeStyles } from '@material-ui/styles'
+import { ThemeContext } from '../../context/ContextGeneral';
 import "./ModalCreateGame.css";
 
 const useStyle = makeStyles({
@@ -17,16 +18,18 @@ const useStyle = makeStyles({
     }
 });
 
-const ModalCreateGame = ({ isOpen, closeModal, player }) => {
+const ModalCreateGame = ({ isOpen, closeModal }) => {
 
+    const dictStates = useContext(ThemeContext)
+    const [gameName, setGameName] = useState(''); 
     const history = useHistory();
-    const [gameName, setGameName] = useState('');
 
     const handleCreateGame = () => {
         if(gameName === ''){
             alert('introduce game name')
         }else{
-            send_(ws, 'lobby_create', player, gameName);
+            console.log(`gameName de ModalCreateGame: ${gameName}`);
+            send_(ws, 'lobby_create', dictStates.nickname, gameName);
             history.push(`/lobby/${gameName}`);
         }
     }

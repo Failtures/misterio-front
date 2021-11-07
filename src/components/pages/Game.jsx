@@ -24,16 +24,18 @@ const Game = () => {
     // const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(true);
 
 
-    // const {players, setPlayers} = useContext(ThemeContext)
+    const dictStates = useContext(ThemeContext)
     
     const params = useParams();
     const match_name = params.game;
     const [dice, setDice] = useState(0);
-    const [turn, setTurn] = useState('');
+    // const [turn, setTurn] = useState('');
     const [diceRolled, setDiceRolled] = useState(false);
 
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
+
+    console.log(dictStates.nickname);
 
     useEffect(() => {
 
@@ -49,7 +51,8 @@ const Game = () => {
                 }
             }
             else if (parsedJson.action === 'turn_passed') {
-                setTurn(parsedJson.current_turn)
+                console.log(parsedJson);
+                dictStates.setTurn(parsedJson.current_turn)
                 if (diceRolled === true) {
                     setDiceRolled(false)
                 }
@@ -65,13 +68,16 @@ const Game = () => {
                 setLoser(parsedJson.loser)
                 console.log(`perdiste ${loser}`);
             }
+            else if(parsedJson.action === 'player_position') {
+                console.log(parsedJson);
+            }
         };
     });
     return (
 
         <div>
             <h2>Game</h2>
-            <p>{turn}</p>
+            <p>{dictStates.turn}</p>
             <Board matchName={match_name}/>
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />

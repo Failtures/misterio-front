@@ -29,7 +29,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} player={dictStates.nickname} />
+            <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} />
             <div className="footer">
                 <p>FOOTER</p>
             </div>

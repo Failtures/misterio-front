@@ -3,7 +3,6 @@ import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
-import { useParams } from "react-router-dom";
 
 import { ThemeContext } from '../../context/ContextGeneral';
 
@@ -11,16 +10,12 @@ import { ThemeContext } from '../../context/ContextGeneral';
 const Lobby = () => {
 
 
-    // const { nickname } = useContext(ThemeContext);
 
     const dictStates = useContext(ThemeContext)
 
-    const params = useParams();
     const history = useHistory();
 
-    // const [players, setPlayers] = useState([]);
     const [host, setHost] = useState('');
-    const [lobbyName, setLobbyName] = useState('');
     const [exit, setExit] = useState(false)
 
     let arrayAuxiliar = [];
@@ -30,15 +25,14 @@ const Lobby = () => {
         ws.onmessage = (e) => {
 
             const parseJson = JSON.parse(e.data);
-            console.log(parseJson.action)
 
             if (parseJson.action === 'new_lobby') {
-                setLobbyName(parseJson.lobby.name);
+                dictStates.setLobbyName(parseJson.lobby.name)
                 setHost(parseJson.lobby.host);
                 dictStates.setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'joined_lobby') {
-                console.log(parseJson)
+                dictStates.setLobbyName(parseJson.lobby.name)
                 dictStates.setPlayers(parseJson.lobby.players);
             }
             else if (parseJson.action === 'new_player') {
@@ -47,7 +41,14 @@ const Lobby = () => {
                 dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
-                console.log(parseJson);
+                console.log(parseJson.match);
+                for (let i = 0; i < parseJson.match.players.length; i++) {
+                    dictStates.setPosition(parseJson.match.players[i], parseJson.match.player_position.player_position[i].pos_x, parseJson.match.player_position.player_position[i].pos_y)
+                }
+
+                console.log(dictStates.position);
+
+                dictStates.setTurn(parseJson.match.turn)
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
@@ -55,9 +56,7 @@ const Lobby = () => {
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
             }
-
         };
-
     });
 
     return (
@@ -74,13 +73,12 @@ const Lobby = () => {
             {
                 host &&
                 <ButtonStartGame
-                    lobby_name={lobbyName}
                     action={'lobby_start_match'}
                     player_name={host}
                 >
                 </ButtonStartGame>
             }
-            <ButtonExitLobby lobby_name={params.game} exit={exit} />
+            <ButtonExitLobby exit={exit} />
 
         </div>
     );

@@ -9,11 +9,11 @@ function ButtonExitLobby(props) {
 
     const history = useHistory()
     const dictStates = useContext(ThemeContext);
-
+    // console.log(dictStates);
     const takes = {
         'action': 'lobby_leave',
         'player_name': dictStates.nickname,
-        'lobby_name': props.lobby_name
+        'lobby_name': dictStates.lobbyName
     };
 
     return (

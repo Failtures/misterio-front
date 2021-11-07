@@ -1,28 +1,12 @@
 // import tablero from '../../img/MisterioBoard.jpg'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Square from './Square'
 import './Board.css'
 import Room from './Room'
-import {ws} from '../WebSocket'
 
 // return: {'action': 'player_position', 'pos_x': <int>, 'pos_y': <int>, 'square': <str>}
 
 const Board = ({matchName}) => {
-
-    useEffect(() => {
-
-        ws.onmessage = (e) => {
-
-            const parsedJson = JSON.parse(e.data);
-            console.log(parsedJson.action)
-
-            if (parsedJson.action === 'player_position') {
-                console.log(parsedJson);
-            }
-
-        };
-    });
-
 
     return (
         <div className="board-container">
