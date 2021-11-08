@@ -17,8 +17,9 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
         'match_name': match_name,
         'monster': monster,
         'victim': victim,
-        'room': room
+        'room': dictStates.square
     }
+
 
     const handleModalContainer = (e) => e.stopPropagation();
     return (
@@ -61,8 +62,10 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
                     <input type="radio" value="Dr. Jekyll and Mr Hyde" name="gender" onClick={(e) => setMonster(e.target.value)} /> Dr. Jekyll and Mr Hyde
                 </form>
                 <br></br>
-                <form>
-                    <p>Rooms:</p>
+                <div>
+                    <p>Rooms: {dictStates.square}</p>
+                </div>
+                {/* <form>
                     <input type="radio" value="Bedroom" name="gender" onClick={(e) => setRoom(e.target.value)} /> Bedroom
                     <br></br>
                     <input type="radio" value="Library" name="gender" onClick={(e) => setRoom(e.target.value)} /> Library
@@ -78,15 +81,16 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
                     <input type="radio" value="Dining" name="gender" onClick={(e) => setRoom(e.target.value)} /> Dining
                     <br></br>
                     <input type="radio" value="Living" name="gender" onClick={(e) => setRoom(e.target.value)} /> Living
-                </form>
+                </form> */}
                 <br></br>
-                <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${room}`}</p>
+                <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
                 <Button
                     variant="contained"
                     color="secondary"
                     onClick={() => {
                         ws.send(JSON.stringify(takes));
                         closeModal();
+                        dictStates.setButtonSuspect(false)
                     }
                     }> COMNFIRM SUSPECT
                 </Button>

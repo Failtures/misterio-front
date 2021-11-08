@@ -11,6 +11,8 @@ const ContextGeneral = (props) => {
     const [posY, setPosY] = useState(0)
     const [turn, setTurn] = useState('')
     const [tokenColor, setTokenColor] = useState('')
+    const [square, setSquare] = useState('')
+    const [buttonSuspect, setButtonSuspect] = useState(true)
 
     const dictStates = {
         nickname: nickname,
@@ -20,6 +22,8 @@ const ContextGeneral = (props) => {
         posY: posY,
         turn: turn,
         tokenColor: tokenColor,
+        square: square,
+        buttonSuspect: buttonSuspect,
 
         setNickname: nickname => setNickname(nickname),
         setPlayers: players => setPlayers(players),
@@ -27,7 +31,9 @@ const ContextGeneral = (props) => {
         setPosX: posX => setPosX(posX),
         setPosY: posY => setPosY(posY),
         setTurn: turn => setTurn(turn),
-        setTokenColor: tokenColor => setTokenColor(tokenColor)
+        setTokenColor: tokenColor => setTokenColor(tokenColor),
+        setSquare: square => setSquare(square),
+        setButtonSuspect: buttonSuspect => setButtonSuspect(buttonSuspect)
 
     }
 

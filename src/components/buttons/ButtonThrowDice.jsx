@@ -9,7 +9,7 @@ const ButtonThrowDice = (props) => {
 
   const takes = {
     'action': 'match_roll_dice',
-    'match_name': props.matchName
+    'match_name': dictStates.lobbyName
   };
 
   return (
@@ -17,7 +17,7 @@ const ButtonThrowDice = (props) => {
       <Button
         variant="contained"
         color="secondary"
-        disabled = {props.diceRolled}
+        disabled = {dictStates.nickname === dictStates.turn ? false : true}
         onClick={() => {
           ws.send(JSON.stringify(takes))
           

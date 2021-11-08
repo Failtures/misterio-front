@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
-import { ws, send_ } from '../WebSocket'
+import { ws } from '../WebSocket'
+import { ThemeContext } from "../../context/ContextGeneral";
 
-const ButtonEndTurn = (props) => {
+const ButtonEndTurn = () => {
+
+    const dictStates = useContext(ThemeContext)
 
     const takes = {
         'action': 'match_end_turn',
-        'match_name': props.matchName
+        'match_name': dictStates.lobbyName
     };
 
     return (
@@ -14,8 +17,10 @@ const ButtonEndTurn = (props) => {
             <Button
                 variant="contained"
                 color="secondary"
+                disabled={dictStates.nickname === dictStates.turn ? false : true}
                 onClick={() => {
-                    ws.send(JSON.stringify(takes))
+                    ws.send(JSON.stringify(takes));
+                    dictStates.setButtonSuspect(true)
                 }}
             >
                 End Turn

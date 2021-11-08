@@ -8,11 +8,7 @@ const ButtonUseSalem = ({ selection }) => {
   const dictStates = useContext(ThemeContext);
 
   const buttonRef = useRef(null);
-
-  console.log(dictStates.nickname);
-  console.log(dictStates.lobbyName);
-  console.log(selection);
-
+  
   const takesSalem = {
     'action': 'match_use_witch',
     'player_name': dictStates.nickname,

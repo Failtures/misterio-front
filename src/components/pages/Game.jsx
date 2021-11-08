@@ -34,7 +34,20 @@ const Game = () => {
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
 
+
+    const [buttonSuspect, setButtonSuspect] = useState(true);
+
+    const buttonSuspFalse = () => setButtonSuspect(false)
+    const buttonSuspTrue = () => setButtonSuspect(false)
+
+
+
+
     useEffect(() => {
+        // buttonSuspFalse();
+        // console.log(buttonSuspect);
+        // buttonSuspTrue();
+        // console.log(buttonSuspect);
 
         ws.onmessage = (e) => {
 
@@ -55,6 +68,7 @@ const Game = () => {
                 };
             }
             else if (parsedJson.action === 'question') {
+                console.log(parsedJson);
             }
             else if (parsedJson.action === 'game_over') {
                 // setWinner(parsedJson.winner);
@@ -69,7 +83,12 @@ const Game = () => {
                 if (dictStates.nickname === dictStates.turn) {
                     dictStates.setPosY(parsedJson.pos_y)
                     dictStates.setPosX(parsedJson.pos_x)
+<<<<<<< HEAD
                 };
+=======
+                    dictStates.setSquare(parsedJson.square)
+                }
+>>>>>>> choose_cards_to_suspect-sprint2
                 console.log(parsedJson.pos_x);
                 console.log(parsedJson.pos_y);
             }
@@ -92,9 +111,15 @@ const Game = () => {
         <div>
             <h2>Game</h2>
             <p>{dictStates.turn}</p>
+<<<<<<< HEAD
             <Board matchName={match_name} />
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
+=======
+            <Board matchName={match_name}/>
+            <ButtonThrowDice diceRolled={diceRolled} />
+            <ButtonEndTurn />
+>>>>>>> choose_cards_to_suspect-sprint2
             <ButtonAccuse openModal={openModalAccuse} />
             <ButtonSuspect openModal={openModalSuspect} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
