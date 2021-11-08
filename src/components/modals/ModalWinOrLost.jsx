@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import "./ModalWichCardAccuse.css";
 import { ThemeContext } from '../../context/ContextGeneral';
 
@@ -19,8 +19,31 @@ const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser })
                     </svg>
                 </button>
 
-                { dictStates.nickname === winner ? <h2>{`You win ${winner}`}</h2> : <h2>{`You lost ${dictStates.nickname}`}</h2>}
+                {
+                    (function () {
 
+                        if (winner) {
+
+                            if (winner === dictStates.nickname) {
+                                return <h2>{`You win${winner}`}</h2>
+                            }
+                            else {
+                                return <h2>{`You Lost ${dictStates.nickname}`}</h2>
+                            }
+                        }
+
+                        if (loser) {
+
+                            if (loser === dictStates.nickname) {
+                                return <h2>{`You Lost${loser}`}</h2>
+                            }
+                            else {
+                                return <h2>{`${loser} Lost`}</h2>
+                            }
+                        }
+
+                    }).call(this)
+                }
             </div>
         </div>
     )

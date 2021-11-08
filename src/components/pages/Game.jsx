@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useModal } from '../../hooks/useModal'
 import { ThemeContext } from '../../context/ContextGeneral';
@@ -13,6 +13,7 @@ import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 import ButtonSuspect from "../buttons/ButtonSuspect";
 import Board from "../boardComponents/Board";
 import ModalSalem from "../modals/ModalSalem";
+import { Button } from "@material-ui/core";
 import Bloc from "./Bloc";
 
 const Game = () => {
@@ -34,20 +35,13 @@ const Game = () => {
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
 
+    const [salem, setSalem] = useState({});
 
-    const [buttonSuspect, setButtonSuspect] = useState(true);
+    const [mistery, setMistery] = useState('');
 
-    const buttonSuspFalse = () => setButtonSuspect(false)
-    const buttonSuspTrue = () => setButtonSuspect(false)
-
-
-
+    const refButtonMistery = useRef(null);
 
     useEffect(() => {
-        // buttonSuspFalse();
-        // console.log(buttonSuspect);
-        // buttonSuspTrue();
-        // console.log(buttonSuspect);
 
         ws.onmessage = (e) => {
 
@@ -71,12 +65,12 @@ const Game = () => {
                 console.log(parsedJson);
             }
             else if (parsedJson.action === 'game_over') {
-                // setWinner(parsedJson.winner);
-                // openModalWinOrLost();
+                setWinner(parsedJson.winner);
+                openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_deleted') {
-                // setLoser(parsedJson.loser);
-                // openModalWinOrLost();
+                setLoser(parsedJson.loser);
+                openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_position') {
                 console.log(parsedJson);
@@ -90,14 +84,13 @@ const Game = () => {
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
-                console.log(parsedJson);
-                const obj = parsedJson.hand.find(element => element.name === "Salem Witch")
-                if (obj) {
-                    openModalSalem();
-                };
+                setSalem(parsedJson.hand.find(element => element.name === "Salem Witch"));
             }
             else if (parsedJson.action === 'mystery_card') {
-                console.log(parsedJson.card);
+                setMistery(parsedJson.card.name);
+                setHand(hand.filter(card => card.name !== "Salem Witch"));
+                refButtonMistery.current.style.display = "none";
+                closeModalSalem();
             };
         };
     });
@@ -107,7 +100,7 @@ const Game = () => {
         <div>
             <h2>Game</h2>
             <p>{dictStates.turn}</p>
-            <Board matchName={match_name}/>
+            <Board matchName={match_name} />
             <ButtonThrowDice diceRolled={diceRolled} />
             <ButtonEndTurn />
             <ButtonAccuse openModal={openModalAccuse} />
@@ -122,11 +115,16 @@ const Game = () => {
                 winner={winner}
             />
 
+            {salem && <Button ref={refButtonMistery} variant="contained"
+                color="secondary" onClick={openModalSalem}>Use Salem</Button>}
+            {mistery && <p>{`Mistery card: ${mistery}`}</p>}
+
             <p>{dice}</p>
 
             <Bloc></Bloc>
 
             {hand.map(item => `${item.name}- `)}
+
         </div>
     );
 };

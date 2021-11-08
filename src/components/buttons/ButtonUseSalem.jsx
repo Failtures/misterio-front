@@ -27,7 +27,7 @@ const ButtonUseSalem = ({ selection }) => {
           if (selection) { buttonRef.current.disabled = true }
         }}
       >
-        Use Salem
+        Confirm
       </Button>
     </div>
   );

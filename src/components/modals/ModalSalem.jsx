@@ -16,9 +16,8 @@ const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
-                <h2>Select to Suspect</h2>
                 <form>
-                    <p>Que desesas saber?:</p>
+                    <h2>what do you want to know?</h2>
                     <input type="radio" value="MONSTER" name="gender" onClick={(e) => setSelection(e.target.value)} /> Monster
                     <br></br>
                     <input type="radio" value="VICTIM" name="gender" onClick={(e) => setSelection(e.target.value)} /> Victim
@@ -26,9 +25,6 @@ const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
                     <input type="radio" value="ROOM" name="gender" onClick={(e) => setSelection(e.target.value)} /> Room
                     <ButtonUseSalem selection={selection} />
                 </form>
-
-
-
             </div>
         </div>
 
