@@ -31,7 +31,7 @@ const Home = () => {
             </div>
             <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} />
             <div className="footer">
-                <p>FOOTER</p>
+                <p>FAILTURES</p>
             </div>
 
         </div>
