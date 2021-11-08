@@ -39,6 +39,7 @@ const Game = () => {
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
+            console.log(parsedJson.action);
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -56,12 +57,12 @@ const Game = () => {
             else if (parsedJson.action === 'question') {
             }
             else if (parsedJson.action === 'game_over') {
-                setWinner(parsedJson.winner);
-                openModalWinOrLost();
+                // setWinner(parsedJson.winner);
+                // openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_deleted') {
-                setLoser(parsedJson.loser);
-                openModalWinOrLost();
+                // setLoser(parsedJson.loser);
+                // openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_position') {
                 console.log(parsedJson);
