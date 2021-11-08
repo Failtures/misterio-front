@@ -3,16 +3,16 @@ import { ws } from '../WebSocket';
 import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
 
-const ButtonUseSalem = ({ match_name, selection }) => {
+const ButtonUseSalem = ({ selection }) => {
 
-  const { nickname } = useContext(ThemeContext);
+  const dictStates = useContext(ThemeContext);
 
   const buttonRef = useRef(null);
 
   const takesSalem = {
     'action': 'match_use_witch',
-    'player_name': nickname,
-    'match_name': match_name,
+    'player_name': dictStates.nickname,
+    'match_name': dictStates.lobbyName,
     'card_type': selection
   };
 

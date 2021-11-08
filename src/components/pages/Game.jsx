@@ -100,8 +100,7 @@ const Game = () => {
             <ButtonAccuse openModal={openModalAccuse} />
             <ButtonSuspect openModal={openModalSuspect} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
-            <button onClick={() => openModalSuspect()}>Suspect</button>
-            <ModalSalem match_name={match_name} isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
+            <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
             <ModalWinOrLost
                 isOpenWinOrLost={isOpenWinOrLost}

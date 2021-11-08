@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ButtonUseSalem from '../buttons/ButtonUseSalem';
 import "./ModalSalem.css"
 
-const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem, match_name }) => {
+const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
 
     const [selection, setSelection] = useState('')
 
@@ -24,7 +24,7 @@ const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem, match_name }) => {
                     <input type="radio" value="VICTIM" name="gender" onClick={(e) => setSelection(e.target.value)} /> Victim
                     <br></br>
                     <input type="radio" value="ROOM" name="gender" onClick={(e) => setSelection(e.target.value)} /> Room
-                    <ButtonUseSalem match_name={match_name} selection={selection} />
+                    <ButtonUseSalem selection={selection} />
                 </form>
 
 
