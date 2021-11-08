@@ -34,7 +34,7 @@ const Room = ({room}) => {
             dictRoom.grPosX = 1;
             dictRoom.grPosY = 7;
             break;
-        case 'Dining':
+        case 'Living':
             dictRoom.color = 'yellow';
             dictRoom.gcPosX = 1;
             dictRoom.gcPosY = 7;
@@ -62,7 +62,7 @@ const Room = ({room}) => {
             dictRoom.grPosX = 15;
             dictRoom.grPosY = 21;
             break;
-        case 'Living':
+        case 'Dining':
             dictRoom.color = 'purple';
             dictRoom.gcPosX = 8;
             dictRoom.gcPosY = 14;

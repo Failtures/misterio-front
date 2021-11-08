@@ -33,17 +33,21 @@ const Game = () => {
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
-    const [buttonSuspect, setButtonSuspect] = useState(true)
 
-    const buttonSuspTrue = () => {
-        setButtonSuspect(true)
-    }
 
-    const buttonSuspFalse = () => {
-        setButtonSuspect(false)
-    }
+    const [buttonSuspect, setButtonSuspect] = useState(true);
+
+    const buttonSuspFalse = () => setButtonSuspect(false)
+    const buttonSuspTrue = () => setButtonSuspect(false)
+
+
+
 
     useEffect(() => {
+        // buttonSuspFalse();
+        // console.log(buttonSuspect);
+        // buttonSuspTrue();
+        // console.log(buttonSuspect);
 
         ws.onmessage = (e) => {
 
@@ -108,12 +112,12 @@ const Game = () => {
             <p>{dictStates.turn}</p>
             <Board matchName={match_name}/>
             <ButtonThrowDice diceRolled={diceRolled} />
-            <ButtonEndTurn buttonSuspTrue={buttonSuspTrue}/>
+            <ButtonEndTurn />
             <ButtonAccuse openModal={openModalAccuse} />
-            <ButtonSuspect openModal={openModalSuspect} buttonSuspect={buttonSuspect}/>
+            <ButtonSuspect openModal={openModalSuspect} />
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
-            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} buttonSuspFalse={buttonSuspFalse}/>
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
             <ModalWinOrLost
                 isOpenWinOrLost={isOpenWinOrLost}
                 closeModalWinOrLost={closeModalWinOrLost}

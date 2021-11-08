@@ -37,7 +37,7 @@ const Board = ({ matchName }) => {
                 <Square color='#a5682a' type="normal" id={"14"} posX={1} posY={13} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"15"} posX={2} posY={13} matchName={matchName} />
                 <Square color='#a5682a' type="snake" id={"16 snake"} posX={3} posY={13} matchName={matchName} />
-                <Square color='#a5682a' type="Dining" id={"17 Din"} posX={4} posY={13} matchName={matchName} />
+                <Square color='#a5682a' type="Dining" id={"17 Liv"} posX={4} posY={13} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"18"} posX={5} posY={13} matchName={matchName} />
                 <Square color='#a5682a' type="trap" id={"19 trap"} posX={6} posY={13} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"21"} posX={7} posY={13} matchName={matchName} />
@@ -59,7 +59,7 @@ const Board = ({ matchName }) => {
                 <Square color='#a5682a' type="normal" id={"37"} posX={13} posY={11} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"38"} posX={6} posY={10} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"39"} posX={13} posY={10} matchName={matchName} />
-                <Square color='#a5682a' type="Dining" id={"40 Din"} posX={6} posY={9} matchName={matchName} />
+                <Square color='#a5682a' type="Dining" id={"40 Liv"} posX={6} posY={9} matchName={matchName} />
                 <Square color='#a5682a' type="Pantheon" id={"41 panth"} posX={13} posY={9} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"42"} posX={6} posY={8} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"43"} posX={13} posY={8} matchName={matchName} />
@@ -68,14 +68,14 @@ const Board = ({ matchName }) => {
                 <Square color='#a5682a' type="beginning" id={"46 init"} posX={0} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"47"} posX={1} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"48"} posX={2} posY={6} matchName={matchName} />
-                <Square color='#a5682a' type="Dining" id={"49 Din"} posX={3} posY={6} matchName={matchName} />
+                <Square color='#a5682a' type="Dining" id={"49 Liv"} posX={3} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="spider" id={"50 spid"} posX={4} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"51"} posX={5} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="trap" id={"52 trap"} posX={6} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"53"} posX={7} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"54"} posX={8} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"55"} posX={9} posY={6} matchName={matchName} />
-                <Square color='#a5682a' type="Living" id={"56 Liv"} posX={10} posY={6} matchName={matchName} />
+                <Square color='#a5682a' type="Living" id={"56 Din"} posX={10} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"57"} posX={11} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="normal" id={"58"} posX={12} posY={6} matchName={matchName} />
                 <Square color='#a5682a' type="trap" id={"59 trap"} posX={13} posY={6} matchName={matchName} />
