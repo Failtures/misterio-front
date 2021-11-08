@@ -63,18 +63,14 @@ const Game = () => {
             }
             else if (parsedJson.action === 'question') {
             }
-
-
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
-                console.log(`El ganador es: ${winner}`);
+                openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
-                console.log(`El perdedor es: ${winner}`);           
+                openModalWinOrLost();
             }
-
-
             else if (parsedJson.action === 'player_position') {
                 console.log(parsedJson);
                 if (dictStates.nickname === dictStates.turn) {
