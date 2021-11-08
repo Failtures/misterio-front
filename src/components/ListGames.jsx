@@ -8,6 +8,23 @@ const ListGames = () => {
 
     const [games, setGames] = useState([]);
 
+    const getLobbies = async () => {
+
+        try {
+            const response = await axios({
+                method: 'get',
+                url: 'https://misterio-famaf.herokuapp.com/get-lobbies',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            setGames(response.data.lobbies.filter(item => item.current_players < 6))
+        }
+        catch (error) {
+            console.log(error, "ERROR");
+        }
+    };
+
     useEffect(() => {
 
         const getLobbies = async () => {
@@ -44,7 +61,7 @@ const ListGames = () => {
                             <TableCell>
                                 <Button variant="contained"
                                     color="secondary"
-
+                                    onClick={getLobbies}
                                 >
                                     Refresh
                                 </Button>

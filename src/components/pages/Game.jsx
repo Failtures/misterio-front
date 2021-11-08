@@ -24,7 +24,7 @@ const Game = () => {
 
 
     const dictStates = useContext(ThemeContext)
-    
+
     const params = useParams();
     const match_name = params.game;
 
@@ -57,22 +57,18 @@ const Game = () => {
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
-                if (dictStates.nickname === parsedJson.winner) {
-                    openModalWinOrLost();
-                };
+                openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
-                if (dictStates.nickname === parsedJson.loser) {
-                    openModalWinOrLost();
-                };
+                openModalWinOrLost();
             }
-            else if(parsedJson.action === 'player_position') {
+            else if (parsedJson.action === 'player_position') {
                 console.log(parsedJson);
-                if(dictStates.nickname === dictStates.turn){
+                if (dictStates.nickname === dictStates.turn) {
                     dictStates.setPosY(parsedJson.pos_y)
                     dictStates.setPosX(parsedJson.pos_x)
-                }
+                };
                 console.log(parsedJson.pos_x);
                 console.log(parsedJson.pos_y);
             }
@@ -95,7 +91,7 @@ const Game = () => {
         <div>
             <h2>Game</h2>
             <p>{dictStates.turn}</p>
-            <Board matchName={match_name}/>
+            <Board matchName={match_name} />
             <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
             <ButtonEndTurn matchName={match_name} />
             <ButtonAccuse openModal={openModalAccuse} />
