@@ -4,7 +4,7 @@ import { ThemeContext } from '../../context/ContextGeneral';
 import { useHistory } from "react-router";
 import { Button } from "@material-ui/core";
 
-function ButtonExitLobby(props) {
+function ButtonExitLobby() {
 
 
     const history = useHistory()

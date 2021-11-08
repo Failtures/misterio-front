@@ -13,10 +13,7 @@ import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 import ButtonSuspect from "../buttons/ButtonSuspect";
 import Board from "../boardComponents/Board";
 import ModalSalem from "../modals/ModalSalem";
-
 import Bloc from "./Bloc";
-
-import { ThemeContext } from '../../context/ContextGeneral';
 
 const Game = () => {
 
@@ -60,13 +57,13 @@ const Game = () => {
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
-                if (nickname === parsedJson.winner) {
+                if (dictStates.nickname === parsedJson.winner) {
                     openModalWinOrLost();
                 };
             }
             else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
-                if (nickname === parsedJson.loser) {
+                if (dictStates.nickname === parsedJson.loser) {
                     openModalWinOrLost();
                 };
             }

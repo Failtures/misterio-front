@@ -23,8 +23,8 @@ const Lobby = () => {
 
     const takesGetHand = {
         'action': 'match_get_hand',
-        'player_name': nickname,
-        'match_name': match_name
+        'player_name': dictStates.nickname,
+        'match_name': dictStates.lobbyName
     };
 
     let arrayAuxiliar = [];
@@ -47,7 +47,7 @@ const Lobby = () => {
             else if (parseJson.action === 'new_player') {
                 arrayAuxiliar = dictStates.players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
-                setPlayers(arrayAuxiliar);
+                dictStates.setPlayers(arrayAuxiliar);
                 setNewPlayer(parseJson.player_name);
                 alertRef.current.style.display = 'block';
 
@@ -107,7 +107,7 @@ const Lobby = () => {
                     player_name={host}
                 />
             }
-            <ButtonExitLobby exit={exit} />
+            <ButtonExitLobby />
             <Alert style={{ display: 'none' }} ref={alertRef} onClose={() => { alertRef.current.style.display = "none" }} variant="filled" severity="info">
                 A new player has joined:{newplayer}
             </Alert>
