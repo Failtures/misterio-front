@@ -1,4 +1,4 @@
-import React, { useContext }from "react"
+import React, { useContext } from "react"
 import { Button } from "@material-ui/core";
 import { ThemeContext } from "../../context/ContextGeneral";
 
@@ -7,10 +7,10 @@ const ButtonCreateGame = ({ openModal }) => {
   const dictStates = useContext(ThemeContext)
 
   const handleModal = () => {
-    if(dictStates.nickname === ''){
+    if (dictStates.nickname === '') {
       alert('introduce nickname')
-    }else{
-      openModal()
+    } else {
+      openModal();
     }
   }
   return (

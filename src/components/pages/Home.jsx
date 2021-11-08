@@ -5,7 +5,6 @@ import { TextField } from '@material-ui/core'
 import ModalCreateGame from '../modals/ModalCreateGame';
 import ButtonCreateGame from '../buttons/ButtonCreateGame';
 import ListGames from '../ListGames';
-
 import { ThemeContext } from '../../context/ContextGeneral';
 
 const Home = () => {
@@ -31,7 +30,7 @@ const Home = () => {
             </div>
             <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} />
             <div className="footer">
-                <p>FOOTER</p>
+                <p> &copy;FAILTURES</p>
             </div>
 
         </div>

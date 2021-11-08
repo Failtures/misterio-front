@@ -21,13 +21,13 @@ const useStyle = makeStyles({
 const ModalCreateGame = ({ isOpen, closeModal }) => {
 
     const dictStates = useContext(ThemeContext)
-    const [gameName, setGameName] = useState(''); 
+    const [gameName, setGameName] = useState('');
     const history = useHistory();
 
     const handleCreateGame = () => {
-        if(gameName === ''){
+        if (gameName === '') {
             alert('introduce game name')
-        }else{
+        } else {
             console.log(`gameName de ModalCreateGame: ${gameName}`);
             send_(ws, 'lobby_create', dictStates.nickname, gameName);
             history.push(`/lobby/${gameName}`);
