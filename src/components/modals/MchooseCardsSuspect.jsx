@@ -4,7 +4,7 @@ import { ws } from '../WebSocket'
 import { ThemeContext } from '../../context/ContextGeneral';
 import "./MchooseCardsSuspect.css";
 
-const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
+const MchooseCardsSuspect = ({ isOpen, closeModal, match_name, buttonSuspFalse }) => {
 
     const dictStates = useContext(ThemeContext);
     const [victim, setVictim] = useState('')
@@ -19,6 +19,9 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
         'victim': victim,
         'room': room
     }
+
+
+    const handleClick = ()=> buttonSuspFalse;
 
     const handleModalContainer = (e) => e.stopPropagation();
     return (
@@ -87,6 +90,7 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
                     onClick={() => {
                         ws.send(JSON.stringify(takes));
                         closeModal();
+                        handleClick()
                     }
                     }> COMNFIRM SUSPECT
                 </Button>

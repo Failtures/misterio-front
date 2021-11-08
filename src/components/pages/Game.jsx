@@ -33,6 +33,15 @@ const Game = () => {
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
+    const [buttonSuspect, setButtonSuspect] = useState(true)
+
+    const buttonSuspTrue = () => {
+        setButtonSuspect(true)
+    }
+
+    const buttonSuspFalse = () => {
+        setButtonSuspect(false)
+    }
 
     useEffect(() => {
 
@@ -54,6 +63,7 @@ const Game = () => {
                 };
             }
             else if (parsedJson.action === 'question') {
+                console.log(parsedJson);
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
@@ -72,6 +82,7 @@ const Game = () => {
                 if(dictStates.nickname === dictStates.turn){
                     dictStates.setPosY(parsedJson.pos_y)
                     dictStates.setPosX(parsedJson.pos_x)
+                    dictStates.setSquare(parsedJson.square)
                 }
                 console.log(parsedJson.pos_x);
                 console.log(parsedJson.pos_y);
@@ -96,13 +107,13 @@ const Game = () => {
             <h2>Game</h2>
             <p>{dictStates.turn}</p>
             <Board matchName={match_name}/>
-            <ButtonThrowDice diceRolled={diceRolled} matchName={match_name} />
-            <ButtonEndTurn matchName={match_name} />
+            <ButtonThrowDice diceRolled={diceRolled} />
+            <ButtonEndTurn buttonSuspTrue={buttonSuspTrue}/>
             <ButtonAccuse openModal={openModalAccuse} />
-            <ButtonSuspect openModal={openModalSuspect} />
+            <ButtonSuspect openModal={openModalSuspect} buttonSuspect={buttonSuspect}/>
             <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
-            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} buttonSuspFalse={buttonSuspFalse}/>
             <ModalWinOrLost
                 isOpenWinOrLost={isOpenWinOrLost}
                 closeModalWinOrLost={closeModalWinOrLost}
