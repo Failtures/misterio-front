@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import ButtonStartGame from "../buttons/ButtonStartGame";
@@ -6,16 +6,26 @@ import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
 import { ThemeContext } from '../../context/ContextGeneral';
 
+import { Alert } from "@material-ui/core";
 
 const Lobby = () => {
 
+    const [host, setHost] = useState('');
+    const [newplayer, setNewPlayer] = useState('')
+
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
+
     const dictStates = useContext(ThemeContext)
 
     const history = useHistory();
 
-    const [host, setHost] = useState('');
-    const [exit, setExit] = useState(false)
+    const alertRef = useRef(null);
+
+    const takesGetHand = {
+        'action': 'match_get_hand',
+        'player_name': nickname,
+        'match_name': match_name
+    };
 
     let arrayAuxiliar = [];
 
@@ -37,29 +47,35 @@ const Lobby = () => {
             else if (parseJson.action === 'new_player') {
                 arrayAuxiliar = dictStates.players.slice();
                 arrayAuxiliar.push(parseJson.player_name);
+                setPlayers(arrayAuxiliar);
+                setNewPlayer(parseJson.player_name);
+                alertRef.current.style.display = 'block';
+
                 dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
+                ws.send(JSON.stringify(takesGetHand));
                 let pos = 0;
                 let pos_x = 0;
                 let pos_y = 0;
                 // console.log(parseJson.match.player_position.player_position);
                 for (let i = 0; i < parseJson.match.player_position.player_position.length; i++) {
 
-                    if(dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
+                    if (dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
                         dictStates.setTokenColor(colors_token[i])
                         pos = i
-                    }   
+                    }
 
                 }
                 pos_x = parseJson.match.player_position.player_position[pos].pos_x;
                 pos_y = parseJson.match.player_position.player_position[pos].pos_y;
                 dictStates.setPosX(pos_x);
                 dictStates.setPosY(pos_y);
-                dictStates.setTurn(parseJson.match.turn);            
+                dictStates.setTurn(parseJson.match.turn);
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
+
             }
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
@@ -71,7 +87,6 @@ const Lobby = () => {
     console.log(`color del jugador: ${dictStates.tokenColor}`);
     console.log(`posicion X inicial: ${dictStates.posX}`);
     console.log(`posicion Y inicial: ${dictStates.posY}`);
-    
 
     return (
 
@@ -84,15 +99,18 @@ const Lobby = () => {
                     ))
                 }
             </ul>
+
             {
                 host &&
                 <ButtonStartGame
                     action={'lobby_start_match'}
                     player_name={host}
-                >
-                </ButtonStartGame>
+                />
             }
             <ButtonExitLobby exit={exit} />
+            <Alert style={{ display: 'none' }} ref={alertRef} onClose={() => { alertRef.current.style.display = "none" }} variant="filled" severity="info">
+                A new player has joined:{newplayer}
+            </Alert>
 
         </div>
     );

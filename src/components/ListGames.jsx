@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
 import axios from 'axios'
 import ButtonJoinGame from "./buttons/ButtonJoinGame";
-// import { ThemeContext } from '../context/ContextGeneral';
+import { Button } from "@material-ui/core";
 
 const ListGames = () => {
 
@@ -26,28 +26,36 @@ const ListGames = () => {
                 console.log(error, "ERROR");
             }
         };
-        
+
         getLobbies();
 
     }, []);
 
     return (
         <div>
-            <Table>
-                <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
-                    <TableRow>
-                        <TableCell>Game name</TableCell>
-                        <TableCell>Players</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
 
-                    {
+            {
+                games &&
+                <Table>
+                    <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
+                        <TableRow>
+                            <TableCell>Game name</TableCell>
+                            <TableCell>Players</TableCell>
+                            <TableCell>
+                                <Button variant="contained"
+                                    color="secondary"
 
-                        games &&
+                                >
+                                    Refresh
+                                </Button>
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+
+                        {
                             games.map(item => (
-                                <TableRow>
+                                <TableRow key={item.name}>
                                     <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
                                     <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
                                     <TableCell>
@@ -59,10 +67,12 @@ const ListGames = () => {
                                 </TableRow>
                             ))
 
-                    }
+                        }
 
-                </TableBody>
-            </Table>
+                    </TableBody>
+                </Table>
+            }
+
         </div>
     );
 };

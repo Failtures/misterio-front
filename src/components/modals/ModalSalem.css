@@ -1,4 +1,4 @@
-.modal {
+.modal-salem {
     position: fixed;
     z-index: 999;
     top: 0;
@@ -11,23 +11,28 @@
     align-items: center;
 }
 
-.modal.is-open {
+.modal-salem.is-open {
     display: flex;
 }
 
-.modal-container {
+
+.modal-container-salem {
     position: relative;
     padding: 1rem;
-    min-width: 600px;
-    max-width: 1500px;
+    min-width: 500px;
+    max-width: 600px;
     min-height: 300px;
-    max-height: 600px;
+    max-height: 800px;
     border-radius: 10px;
     overflow-y: auto;
-    background-color: rgb(85, 33, 33);
+    background-color: #fff;
 }
 
-.modal-close {
+.modal-container-salem.bcolor {
+    background-color: #bc9889;
+}
+
+.modal-close-salem {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -41,11 +46,22 @@
     cursor: pointer;
 }
 
-.modal-close:hover {
-    background: rgba(134, 4, 4, 0.15);
+.modal-close-salem:hover {
+    background: rgba(0, 0, 0, 0.15);
 }
 
 svg {
     width: 100%;
     height: 100%;
+}
+
+
+.modal-container-salem.bcolor.aside::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.modal-container-salem.bcolor.aside {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
