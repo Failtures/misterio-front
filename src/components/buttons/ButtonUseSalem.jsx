@@ -9,6 +9,10 @@ const ButtonUseSalem = ({ selection }) => {
 
   const buttonRef = useRef(null);
 
+  console.log(dictStates.nickname);
+  console.log(dictStates.lobbyName);
+  console.log(selection);
+
   const takesSalem = {
     'action': 'match_use_witch',
     'player_name': dictStates.nickname,

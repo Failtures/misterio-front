@@ -78,6 +78,7 @@ const Game = () => {
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
+                console.log(parsedJson);
                 const obj = parsedJson.hand.find(element => element.name === "Salem Witch")
                 if (obj) {
                     openModalSalem();
