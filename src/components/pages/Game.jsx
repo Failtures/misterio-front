@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useModal } from '../../hooks/useModal'
 import { ThemeContext } from '../../context/ContextGeneral';
@@ -13,6 +13,7 @@ import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
 import ButtonSuspect from "../buttons/ButtonSuspect";
 import Board from "../boardComponents/Board";
 import ModalSalem from "../modals/ModalSalem";
+import { Button } from "@material-ui/core";
 import Bloc from "./Bloc";
 
 const Game = () => {
@@ -34,11 +35,18 @@ const Game = () => {
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
 
+    const [salem, setSalem] = useState({});
+
+    const [mistery, setMistery] = useState('');
+
+    const refButtonMistery = useRef(null);
+
     useEffect(() => {
 
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
+            console.log(parsedJson.action);
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -55,33 +63,35 @@ const Game = () => {
             }
             else if (parsedJson.action === 'question') {
             }
+
+
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
-                openModalWinOrLost();
+                console.log(`El ganador es: ${winner}`);
             }
             else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
-                openModalWinOrLost();
+                console.log(`El perdedor es: ${winner}`);           
             }
+
+
             else if (parsedJson.action === 'player_position') {
                 console.log(parsedJson);
                 if (dictStates.nickname === dictStates.turn) {
-                    dictStates.setPosY(parsedJson.pos_y)
-                    dictStates.setPosX(parsedJson.pos_x)
+                    dictStates.setPosY(parsedJson.pos_y);
+                    dictStates.setPosX(parsedJson.pos_x);
                 };
                 console.log(parsedJson.pos_x);
                 console.log(parsedJson.pos_y);
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
-                console.log(parsedJson);
-                const obj = parsedJson.hand.find(element => element.name === "Salem Witch")
-                if (obj) {
-                    openModalSalem();
-                };
+                setSalem(parsedJson.hand.find(element => element.name === "Salem Witch"));
             }
             else if (parsedJson.action === 'mystery_card') {
-                console.log(parsedJson.card);
+                setMistery(parsedJson.card.name);
+                setHand(hand.filter(card => card.name !== "Salem Witch"))
+                refButtonMistery.current.style.display = "none";
             };
         };
     });
@@ -106,11 +116,16 @@ const Game = () => {
                 winner={winner}
             />
 
+            {salem && <Button  ref={refButtonMistery} variant="contained"
+                color="secondary" onClick={openModalSalem}>Use Salem</Button>}
+            {mistery && <p>{`Mistery card: ${mistery}`}</p>}
+
             <p>{dice}</p>
 
             <Bloc></Bloc>
 
             {hand.map(item => `${item.name}- `)}
+
         </div>
     );
 };
