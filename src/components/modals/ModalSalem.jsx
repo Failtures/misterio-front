@@ -1,5 +1,8 @@
+// import
 import React, { useState } from 'react'
+// components
 import ButtonUseSalem from '../buttons/ButtonUseSalem';
+// CSS styles
 import "./ModalSalem.css"
 
 const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
@@ -7,7 +10,9 @@ const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
     const [selection, setSelection] = useState('')
 
     const handleModalContainer = (e) => e.stopPropagation();
+
     return (
+        
         <div className={`modal-salem ${isOpenSalem && "is-open"}`} onClick={closeModalSalem}>
             <div className="modal-container-salem bcolor aside" onClick={handleModalContainer}>
                 <button className="modal-close-salem" onClick={closeModalSalem}>
@@ -26,12 +31,8 @@ const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
                     <input type="radio" value="ROOM" name="gender" onClick={(e) => setSelection(e.target.value)} /> Room
                     <ButtonUseSalem selection={selection} />
                 </form>
-
-
-
             </div>
         </div>
-
     )
 }
 

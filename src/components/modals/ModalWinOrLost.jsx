@@ -1,13 +1,14 @@
+// imports
 import React, {useContext} from 'react'
-import "./ModalWichCardAccuse.css";
 import { ThemeContext } from '../../context/ContextGeneral';
-
+// CSS styles
+import "./ModalWichCardAccuse.css";
 
 const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser }) => {
 
-    const handleModalContainer = (e) => e.stopPropagation();
-
     const dictStates = useContext(ThemeContext);
+
+    const handleModalContainer = (e) => e.stopPropagation();
 
     return (
         <div className={`modal ${isOpenWinOrLost && "is-open"}`} onClick={closeModalWinOrLost}>
@@ -18,13 +19,10 @@ const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser })
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
-
                 { dictStates.nickname === winner ? <h2>{`You win ${winner}`}</h2> : <h2>{`You lost ${dictStates.nickname}`}</h2>}
-
             </div>
         </div>
     )
 };
-
 
 export default ModalWinOrLost;

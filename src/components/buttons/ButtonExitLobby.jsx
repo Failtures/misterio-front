@@ -1,3 +1,4 @@
+// imports
 import React, { useContext } from 'react'
 import { ws } from '../WebSocket'
 import { ThemeContext } from '../../context/ContextGeneral';
@@ -6,10 +7,10 @@ import { Button } from "@material-ui/core";
 
 function ButtonExitLobby() {
 
+    const dictStates = useContext(ThemeContext);
 
     const history = useHistory()
-    const dictStates = useContext(ThemeContext);
-    // console.log(dictStates);
+    
     const takes = {
         'action': 'lobby_leave',
         'player_name': dictStates.nickname,

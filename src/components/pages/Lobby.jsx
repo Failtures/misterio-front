@@ -1,25 +1,26 @@
+// imports
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
+import { ThemeContext } from '../../context/ContextGeneral';
+import { Alert } from "@material-ui/core";
+// Components
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
-import { ThemeContext } from '../../context/ContextGeneral';
-
-import { Alert } from "@material-ui/core";
-
 const Lobby = () => {
 
-    const [host, setHost] = useState('');
-    const [newplayer, setNewPlayer] = useState('')
-
+    let arrayAuxiliar = [];
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
-
+    
     const dictStates = useContext(ThemeContext)
 
     const history = useHistory();
 
     const alertRef = useRef(null);
+
+    const [host, setHost] = useState('');
+    const [newplayer, setNewPlayer] = useState('')
 
     const takesGetHand = {
         'action': 'match_get_hand',
@@ -27,7 +28,6 @@ const Lobby = () => {
         'match_name': dictStates.lobbyName
     };
 
-    let arrayAuxiliar = [];
 
     useEffect(() => {
 
@@ -58,7 +58,6 @@ const Lobby = () => {
                 let pos = 0;
                 let pos_x = 0;
                 let pos_y = 0;
-                // console.log(parseJson.match.player_position.player_position);
                 for (let i = 0; i < parseJson.match.player_position.player_position.length; i++) {
 
                     if (dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
@@ -83,13 +82,7 @@ const Lobby = () => {
         };
     });
 
-    console.log(`turno inicial: ${dictStates.turn}`);
-    console.log(`color del jugador: ${dictStates.tokenColor}`);
-    console.log(`posicion X inicial: ${dictStates.posX}`);
-    console.log(`posicion Y inicial: ${dictStates.posY}`);
-
     return (
-
         <div>
             <h2>Lobby</h2>
             <ul>
@@ -99,13 +92,8 @@ const Lobby = () => {
                     ))
                 }
             </ul>
-
             {
-                host &&
-                <ButtonStartGame
-                    action={'lobby_start_match'}
-                    player_name={host}
-                />
+                host && <ButtonStartGame />
             }
             <ButtonExitLobby />
             <Alert style={{ display: 'none' }} ref={alertRef} onClose={() => { alertRef.current.style.display = "none" }} variant="filled" severity="info">

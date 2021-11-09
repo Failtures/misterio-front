@@ -1,19 +1,25 @@
+// imports
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
-import { useModal } from '../../hooks/useModal'
 import { ThemeContext } from '../../context/ContextGeneral';
+import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
-import './Lobby.css'
-import ButtonAccuse from "../buttons/ButtonAccuse";
-import ButtonThrowDice from "../buttons/ButtonThrowDice";
-import ButtonEndTurn from "../buttons/ButtonEndTurn";
+// Components
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
-import ButtonSuspect from "../buttons/ButtonSuspect";
-import Board from "../boardComponents/Board";
 import ModalSalem from "../modals/ModalSalem";
+
+import ButtonAccuse from "../buttons/ButtonAccuse";
+import ButtonThrowDice from "../buttons/ButtonThrowDice";
+import ButtonEndTurn from "../buttons/ButtonEndTurn";
+import ButtonSuspect from "../buttons/ButtonSuspect";
+
+import Board from "../boardComponents/Board";
+
 import Bloc from "./Bloc";
+// CSS style
+import './Lobby.css'
+
 
 const Game = () => {
 
@@ -25,34 +31,17 @@ const Game = () => {
 
     const dictStates = useContext(ThemeContext)
 
-    const params = useParams();
-    const match_name = params.game;
-
     const [dice, setDice] = useState(0);
     const [diceRolled, setDiceRolled] = useState(false);
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
 
-
-    const [buttonSuspect, setButtonSuspect] = useState(true);
-
-    const buttonSuspFalse = () => setButtonSuspect(false)
-    const buttonSuspTrue = () => setButtonSuspect(false)
-
-
-
-
     useEffect(() => {
-        // buttonSuspFalse();
-        // console.log(buttonSuspect);
-        // buttonSuspTrue();
-        // console.log(buttonSuspect);
 
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
-            console.log(parsedJson.action);
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -61,7 +50,6 @@ const Game = () => {
                 };
             }
             else if (parsedJson.action === 'turn_passed') {
-                console.log(parsedJson);
                 dictStates.setTurn(parsedJson.current_turn)
                 if (diceRolled === true) {
                     setDiceRolled(false);
@@ -71,61 +59,60 @@ const Game = () => {
                 console.log(parsedJson);
             }
             else if (parsedJson.action === 'game_over') {
-                // setWinner(parsedJson.winner);
-                // openModalWinOrLost();
+                setWinner(parsedJson.winner);
+                openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_deleted') {
-                // setLoser(parsedJson.loser);
-                // openModalWinOrLost();
+                setLoser(parsedJson.loser);
+                openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_position') {
-                console.log(parsedJson);
+
                 if (dictStates.nickname === dictStates.turn) {
                     dictStates.setPosY(parsedJson.pos_y)
                     dictStates.setPosX(parsedJson.pos_x)
                     dictStates.setSquare(parsedJson.square)
                 }
-                console.log(parsedJson.pos_x);
-                console.log(parsedJson.pos_y);
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
-                console.log(parsedJson);
                 const obj = parsedJson.hand.find(element => element.name === "Salem Witch")
                 if (obj) {
                     openModalSalem();
                 };
             }
             else if (parsedJson.action === 'mystery_card') {
-                console.log(parsedJson.card);
             };
         };
     });
 
     return (
-
         <div>
             <h2>Game</h2>
-            <p>{dictStates.turn}</p>
-            <Board matchName={match_name}/>
-            <ButtonThrowDice diceRolled={diceRolled} />
+            <p>turn: {dictStates.turn}</p>
+            <p>Players:
+                {
+                    dictStates.players.map(item => (
+                        <li>{(item === dictStates.nickname) ? item : <b>{item}</b>}</li>
+                    ))
+                }
+            </p>
+            <Board />
+            <ButtonThrowDice />
             <ButtonEndTurn />
             <ButtonAccuse openModal={openModalAccuse} />
             <ButtonSuspect openModal={openModalSuspect} />
-            <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
+            <ModalWichCardAccuse isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
-            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} />
             <ModalWinOrLost
                 isOpenWinOrLost={isOpenWinOrLost}
                 closeModalWinOrLost={closeModalWinOrLost}
                 loser={loser}
                 winner={winner}
             />
-
             <p>{dice}</p>
-
-            <Bloc></Bloc>
-
+            <Bloc />
             {hand.map(item => `${item.name}- `)}
         </div>
     );

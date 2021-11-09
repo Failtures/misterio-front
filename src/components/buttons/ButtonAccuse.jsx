@@ -1,3 +1,4 @@
+// imports
 import React, { useContext } from 'react'
 import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
@@ -19,5 +20,4 @@ const ButtonAccuse = ({ openModal }) => {
         </div>
     )
 }
-
 export default ButtonAccuse;

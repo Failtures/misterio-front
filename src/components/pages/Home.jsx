@@ -1,16 +1,19 @@
+// imports
 import React, { useContext } from 'react';
-import './Home.css';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
+import { ThemeContext } from '../../context/ContextGeneral';
+// components
 import ModalCreateGame from '../modals/ModalCreateGame';
 import ButtonCreateGame from '../buttons/ButtonCreateGame';
 import ListGames from '../ListGames';
-
-import { ThemeContext } from '../../context/ContextGeneral';
+// CSS styles
+import './Home.css';
 
 const Home = () => {
 
     const dictStates = useContext(ThemeContext)
+
     const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false);
 
     return (
@@ -33,7 +36,6 @@ const Home = () => {
             <div className="footer">
                 <p>FAILTURES</p>
             </div>
-
         </div>
     )
 }

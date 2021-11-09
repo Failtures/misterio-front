@@ -1,10 +1,12 @@
-import './App.css';
-import Home from './components/pages/Home';
+// imports
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import ThemeContext from './context/ContextGeneral';
+//components
+import Home from './components/pages/Home';
 import Lobby from './components/pages/Lobby';
 import Game from './components/pages/Game';
-
-import ThemeContext from './context/ContextGeneral';
+// Css styles
+import './App.css';
 
 function App() {
   return (

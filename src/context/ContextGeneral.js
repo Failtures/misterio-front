@@ -1,5 +1,6 @@
+// import
 import React, { useState, createContext } from "react";
-
+// export
 export const ThemeContext = createContext();
 
 const ContextGeneral = (props) => {
@@ -15,6 +16,7 @@ const ContextGeneral = (props) => {
     const [buttonSuspect, setButtonSuspect] = useState(true)
 
     const dictStates = {
+
         nickname: nickname,
         players: players,
         lobbyName: lobbyName,
@@ -45,5 +47,3 @@ const ContextGeneral = (props) => {
 };
 
 export default ContextGeneral;
-
-// nickname, setNickname, players, setPlayers, posX, setPosX, posY, setPosY, turn, setTurn
