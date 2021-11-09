@@ -10,6 +10,7 @@ import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
 const Lobby = () => {
 
+    let arrayAuxiliar = [];
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
     
     const dictStates = useContext(ThemeContext)
@@ -47,7 +48,12 @@ const Lobby = () => {
             }
             else if (parseJson.action === 'new_player') {
                 setPlayers2((players2) => [...players2, parseJson.player_name]);
+                arrayAuxiliar = dictStates.players.slice();
+                arrayAuxiliar.push(parseJson.player_name);
+                dictStates.setPlayers(arrayAuxiliar);
+                setNewPlayer(parseJson.player_name);
                 alertRef.current.style.display = 'block';
+                dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
                 ws.send(JSON.stringify(takesGetHand));

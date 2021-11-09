@@ -97,7 +97,7 @@ const Game = () => {
             <p>Players:
                 {
                     dictStates.players.map(item => (
-                        <li>{(item === dictStates.nickname) ? item : <b>{item}</b>}</li>
+                        <li>{(item === dictStates.nickname) ? <b>{item}</b> : item}</li>
                     ))
                 }
             </p>
