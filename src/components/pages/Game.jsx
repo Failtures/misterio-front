@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
 import { useModal } from '../../hooks/useModal'
-import { ws } from '../WebSocket'
+import { send_, ws } from '../WebSocket'
 // Components
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
@@ -66,8 +66,14 @@ const Game = () => {
                 openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_deleted') {
+                const takes = {
+                    'action': 'match_end_turn',
+                    'match_name': dictStates.lobbyName
+                };
+            
                 setLoser(parsedJson.loser);
                 openModalWinOrLost();
+                ws.send(JSON.stringify(takes))
             }
             else if (parsedJson.action === 'player_position') {
 
