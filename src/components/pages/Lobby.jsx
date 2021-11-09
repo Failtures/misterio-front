@@ -1,28 +1,26 @@
+// imports
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
+import { ThemeContext } from '../../context/ContextGeneral';
+import { Alert } from "@material-ui/core";
+// Components
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
-import { ThemeContext } from '../../context/ContextGeneral';
-
-import { Alert } from "@material-ui/core";
-
 const Lobby = () => {
 
-    const [newplayer, setNewPlayer] = useState('')
-
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
-
-    const dictStates = useContext(ThemeContext);
+    
+    const dictStates = useContext(ThemeContext)
 
     const history = useHistory();
 
     const alertRef = useRef(null);
 
-    const [host, setHost] = useState('')
-
     const [players2, setPlayers2] = useState([]);
+    const [host, setHost] = useState('');
+    const [newplayer, setNewPlayer] = useState('')
 
     const takesGetHand = {
         'action': 'match_get_hand',
@@ -56,7 +54,6 @@ const Lobby = () => {
                 let pos = 0;
                 let pos_x = 0;
                 let pos_y = 0;
-                // console.log(parseJson.match.player_position.player_position);
                 for (let i = 0; i < parseJson.match.player_position.player_position.length; i++) {
 
                     if (dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
@@ -82,7 +79,6 @@ const Lobby = () => {
     });
 
     return (
-
         <div>
             <h2>Lobby</h2>
             <ul>
@@ -92,13 +88,8 @@ const Lobby = () => {
 
                 }
             </ul>
-
             {
-                host &&
-                <ButtonStartGame
-                    action={'lobby_start_match'}
-                    player_name={host}
-                />
+                host && <ButtonStartGame />
             }
             <ButtonExitLobby />
             <Alert style={{ display: 'none' }} ref={alertRef} onClose={() => { alertRef.current.style.display = "none" }} variant="filled" severity="info">

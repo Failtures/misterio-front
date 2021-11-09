@@ -1,27 +1,29 @@
+// import
 import React, { useState, useContext } from 'react'
 import { Button } from '@material-ui/core'
 import { ws } from '../WebSocket'
 import { ThemeContext } from '../../context/ContextGeneral';
+// CSS styles
 import "./MchooseCardsSuspect.css";
 
-const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
+const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
 
     const dictStates = useContext(ThemeContext);
+
     const [victim, setVictim] = useState('')
     const [monster, setMonster] = useState('')
-    const [room, setRoom] = useState('')
 
     const takes = {
         'action': 'match_suspect',
         'player_name': dictStates.nickname,
-        'match_name': match_name,
+        'match_name': dictStates.lobbyName,
         'monster': monster,
         'victim': victim,
         'room': dictStates.square
     }
 
-
     const handleModalContainer = (e) => e.stopPropagation();
+
     return (
         <div className={`modal-suspect ${isOpen && "is-open"}`} onClick={closeModal}>
             <div className="modal-container-suspect bcolor aside" onClick={handleModalContainer}>
@@ -65,23 +67,6 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
                 <div>
                     <p>Rooms: {dictStates.square}</p>
                 </div>
-                {/* <form>
-                    <input type="radio" value="Bedroom" name="gender" onClick={(e) => setRoom(e.target.value)} /> Bedroom
-                    <br></br>
-                    <input type="radio" value="Library" name="gender" onClick={(e) => setRoom(e.target.value)} /> Library
-                    <br></br>
-                    <input type="radio" value="Cellar" name="gender" onClick={(e) => setRoom(e.target.value)} /> Cellar
-                    <br></br>
-                    <input type="radio" value="Garage" name="gender" onClick={(e) => setRoom(e.target.value)} /> Garage
-                    <br></br>
-                    <input type="radio" value="Laboratory" name="gender" onClick={(e) => setRoom(e.target.value)} /> Laboratory
-                    <br></br>
-                    <input type="radio" value="Pantheon" name="gender" onClick={(e) => setRoom(e.target.value)} /> Pantheon
-                    <br></br>
-                    <input type="radio" value="Dining" name="gender" onClick={(e) => setRoom(e.target.value)} /> Dining
-                    <br></br>
-                    <input type="radio" value="Living" name="gender" onClick={(e) => setRoom(e.target.value)} /> Living
-                </form> */}
                 <br></br>
                 <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
                 <Button
@@ -96,7 +81,6 @@ const MchooseCardsSuspect = ({ isOpen, closeModal, match_name }) => {
                 </Button>
             </div>
         </div>
-
     )
 }
 

@@ -1,3 +1,4 @@
+// imports
 import React, {useContext} from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
@@ -7,10 +8,10 @@ import { ThemeContext } from "../../context/ContextGeneral";
 const ButtonJoinGame = (props) => {
   
   const dictStates = useContext(ThemeContext)
+
   const history = useHistory()
 
   const handleJoinGame = () => {
-    console.log(`dictStates de buttonJoinGame: ${dictStates.nickname}`);
     if(dictStates.nickname === ''){
       alert('introduce nickname')
     }else{
@@ -26,12 +27,11 @@ const ButtonJoinGame = (props) => {
         color="secondary"
         onClick={() => {
           handleJoinGame()
-        }
-        }> Join Game
+        }}>
+           Join Game
       </Button>
     </div >
   );
-  
 };
 
 export default ButtonJoinGame;

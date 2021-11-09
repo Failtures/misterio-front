@@ -1,3 +1,4 @@
+// imports
 import React from "react";
 import { Checkbox } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
@@ -8,7 +9,6 @@ const Bloc = () => {
 
     return (
         <FormGroup style={{ width: '160px', display: 'flex', flexDirection: 'column' }}>
-
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <p>Victims:</p>
                 <FormControlLabel control={<Checkbox />} label="Gardener" />
@@ -18,7 +18,6 @@ const Bloc = () => {
                 <FormControlLabel control={<Checkbox />} label="Countess" />
                 <FormControlLabel control={<Checkbox />} label="Housekeeper" />
             </div>
-
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <p>Monsters:</p>
                 <FormControlLabel control={<Checkbox />} label="Dracula" />
@@ -28,7 +27,6 @@ const Bloc = () => {
                 <FormControlLabel control={<Checkbox />} label="Mummy" />
                 <FormControlLabel control={<Checkbox />} label="Dr. Jekyll and Mr Hyde" />
             </div >
-
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <p>Rooms:</p>
                 <FormControlLabel control={<Checkbox />} label="Bedroom" />
@@ -40,9 +38,7 @@ const Bloc = () => {
                 <FormControlLabel control={<Checkbox />} label="Dining" />
                 <FormControlLabel control={<Checkbox />} label="Living" />
             </div>
-
         </FormGroup>
-
     );
 };
 

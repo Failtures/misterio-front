@@ -1,42 +1,41 @@
+// imports
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { useParams } from "react-router-dom";
-import { useModal } from '../../hooks/useModal'
+import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
+import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
-import './Lobby.css'
-import ButtonAccuse from "../buttons/ButtonAccuse";
-import ButtonThrowDice from "../buttons/ButtonThrowDice";
-import ButtonEndTurn from "../buttons/ButtonEndTurn";
+// Components
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
 import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
-import ButtonSuspect from "../buttons/ButtonSuspect";
-import Board from "../boardComponents/Board";
 import ModalSalem from "../modals/ModalSalem";
-import { Button } from "@material-ui/core";
+
+import ButtonAccuse from "../buttons/ButtonAccuse";
+import ButtonThrowDice from "../buttons/ButtonThrowDice";
+import ButtonEndTurn from "../buttons/ButtonEndTurn";
+import ButtonSuspect from "../buttons/ButtonSuspect";
+
+import Board from "../boardComponents/Board";
 import Bloc from "./Bloc";
+// CSS style
+import './Lobby.css'
+
 
 const Game = () => {
+    
+    const dictStates = useContext(ThemeContext);
 
     const [isOpenAccuse, openModalAccuse, closeModalAccuse] = useModal(false);
     const [isOpenSuspect, openModalSuspect, closeModalSuspect] = useModal(false);
     const [isOpenWinOrLost, openModalWinOrLost, closeModalWinOrLost] = useModal(false);
     const [isOpenSalem, openModalSalem, closeModalSalem] = useModal(false);
 
-
-    const dictStates = useContext(ThemeContext)
-
-    const params = useParams();
-    const match_name = params.game;
-
     const [dice, setDice] = useState(0);
     const [diceRolled, setDiceRolled] = useState(false);
     const [winner, setWinner] = useState('');
     const [loser, setLoser] = useState('');
     const [hand, setHand] = useState([]);
-
     const [salem, setSalem] = useState({});
-
     const [mistery, setMistery] = useState('');
 
     const refButtonMistery = useRef(null);
@@ -46,7 +45,6 @@ const Game = () => {
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
-            console.log(parsedJson.action);
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -55,7 +53,6 @@ const Game = () => {
                 };
             }
             else if (parsedJson.action === 'turn_passed') {
-                console.log(parsedJson);
                 dictStates.setTurn(parsedJson.current_turn)
                 if (diceRolled === true) {
                     setDiceRolled(false);
@@ -73,14 +70,12 @@ const Game = () => {
                 openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_position') {
-                console.log(parsedJson);
+
                 if (dictStates.nickname === dictStates.turn) {
                     dictStates.setPosY(parsedJson.pos_y)
                     dictStates.setPosX(parsedJson.pos_x)
                     dictStates.setSquare(parsedJson.square)
                 }
-                console.log(parsedJson.pos_x);
-                console.log(parsedJson.pos_y);
             }
             else if (parsedJson.action === 'get_hand') {
                 setHand(parsedJson.hand);
@@ -96,33 +91,37 @@ const Game = () => {
     });
 
     return (
-
         <div>
             <h2>Game</h2>
-            <p>{dictStates.turn}</p>
-            <Board matchName={match_name} />
-            <ButtonThrowDice diceRolled={diceRolled} />
+            <p>turn: {dictStates.turn}</p>
+            <p>Players:
+                {
+                    dictStates.players.map(item => (
+                        <li>{(item === dictStates.nickname) ? item : <b>{item}</b>}</li>
+                    ))
+                }
+            </p>
+            <Board />
+            <ButtonThrowDice />
             <ButtonEndTurn />
             <ButtonAccuse openModal={openModalAccuse} />
             <ButtonSuspect openModal={openModalSuspect} />
-            <ModalWichCardAccuse matchName={match_name} isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
+            <ModalWichCardAccuse isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
-            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} match_name={match_name} />
+            <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} />
             <ModalWinOrLost
                 isOpenWinOrLost={isOpenWinOrLost}
                 closeModalWinOrLost={closeModalWinOrLost}
                 loser={loser}
                 winner={winner}
             />
-
+            
             {salem && <Button ref={refButtonMistery} variant="contained"
                 color="secondary" onClick={openModalSalem}>Use Salem</Button>}
             {mistery && <p>{`Mistery card: ${mistery}`}</p>}
 
             <p>{dice}</p>
-
-            <Bloc></Bloc>
-
+            <Bloc />
             {hand.map(item => `${item.name}- `)}
 
         </div>
