@@ -1,3 +1,4 @@
+// imports 
 import React, { useContext, useRef } from "react";
 import { ws } from '../WebSocket';
 import { Button } from "@material-ui/core";
@@ -27,7 +28,7 @@ const ButtonUseSalem = ({ selection }) => {
           if (selection) { buttonRef.current.disabled = true }
         }}
       >
-        Confirm
+        Use Salem
       </Button>
     </div>
   );

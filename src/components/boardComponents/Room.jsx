@@ -1,6 +1,5 @@
+// imports
 import { makeStyles } from '@material-ui/styles'
-
-
 
 const Room = ({room}) => {
 
@@ -89,7 +88,9 @@ const Room = ({room}) => {
             gridRowEnd: dictRoom.grPosY,
         }
     });
+    
     const classes = useStyle()
+
     return (
         <div className={classes.backagroundSquare}>
             {room}

@@ -1,3 +1,4 @@
+// imports
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 
@@ -16,7 +17,7 @@ const PlayerToken = ({ players }) => {
     })
 
     const classes = useStyles();
-    console.log(players);
+
     return (
         <>
             <div className={classes.token} />
@@ -33,5 +34,3 @@ const PlayerToken = ({ players }) => {
 }
 
 export default PlayerToken
-
-// {width:'50px', height:'50px', backgroundColor:'yellow', borderRadius:'100%', border: '1px solid black'}

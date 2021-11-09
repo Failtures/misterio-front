@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+// import
+import React, { useState, useContext } from 'react'
 import { useHistory } from "react-router";
 import { TextField, Button } from '@material-ui/core'
 import { ws, send_ } from '../WebSocket'
 import { makeStyles } from '@material-ui/styles'
 import { ThemeContext } from '../../context/ContextGeneral';
+// CSS styles
 import "./ModalCreateGame.css";
 
 const useStyle = makeStyles({
@@ -21,22 +23,24 @@ const useStyle = makeStyles({
 const ModalCreateGame = ({ isOpen, closeModal }) => {
 
     const dictStates = useContext(ThemeContext)
+        
     const [gameName, setGameName] = useState('');
+
+    const classes = useStyle();
+    
     const history = useHistory();
 
     const handleCreateGame = () => {
         if (gameName === '') {
             alert('introduce game name')
-        } else {
-            console.log(`gameName de ModalCreateGame: ${gameName}`);
+        }else{
             send_(ws, 'lobby_create', dictStates.nickname, gameName);
             history.push(`/lobby/${gameName}`);
         }
     }
 
-
     const handleModalContainer = (e) => e.stopPropagation();
-    const classes = useStyle();
+
     return (
         <div className={`modal ${isOpen && "is-open"}`} onClick={closeModal}>
             <div className="modal-container" onClick={handleModalContainer}>

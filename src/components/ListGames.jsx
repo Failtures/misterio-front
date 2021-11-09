@@ -1,8 +1,10 @@
+// imports
 import React, { useEffect, useState } from "react";
 import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
 import axios from 'axios'
-import ButtonJoinGame from "./buttons/ButtonJoinGame";
 import { Button } from "@material-ui/core";
+// components
+import ButtonJoinGame from "./buttons/ButtonJoinGame";
 
 const ListGames = () => {
 
@@ -23,12 +25,12 @@ const ListGames = () => {
         catch (error) {
             console.log(error, "ERROR");
         }
+        
     };
 
     useEffect(() => {
 
         const getLobbies = async () => {
-
             try {
                 const response = await axios({
                     method: 'get',
@@ -43,14 +45,12 @@ const ListGames = () => {
                 console.log(error, "ERROR");
             }
         };
-
         getLobbies();
 
     }, []);
 
     return (
         <div>
-
             {
                 games &&
                 <Table>
@@ -69,7 +69,6 @@ const ListGames = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-
                         {
                             games.map(item => (
                                 <TableRow key={item.name}>
@@ -83,13 +82,10 @@ const ListGames = () => {
                                     </TableCell>
                                 </TableRow>
                             ))
-
                         }
-
                     </TableBody>
                 </Table>
             }
-
         </div>
     );
 };

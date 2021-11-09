@@ -1,23 +1,31 @@
-import React, { useState } from 'react'
+// import
+import React, { useContext, useState } from 'react'
 import { ws } from '../WebSocket';
 import { Button } from "@material-ui/core";
+import { ThemeContext } from '../../context/ContextGeneral';
+// CSS styles
 import "./ModalWichCardAccuse.css";
 
-const ModalWichCardAccuse = ({ isOpen, closeModal, matchName}) => {
+const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const dictStates = useContext(ThemeContext)
+
     const [victim, setVictim] = useState('');
     const [monster, setMonster] = useState('');
     const [room, setRoom] = useState('');
+
     const takes = {
         'action': 'match_accuse',
-        'match_name': matchName,
+        'match_name': dictStates.lobbyName,
         'monster': monster,
         'victim': victim,
         'room': room
     }
+    
+    const handleModalContainer = (e) => e.stopPropagation();
 
     return (
+        
         <div className={`modal-accuse ${isOpen && "is-open"}`} onClick={closeModal}>
             <div className="modal-container-accuse aside" onClick={handleModalContainer}>
                 <button className="modal-close-accuse" onClick={closeModal}>
