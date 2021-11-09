@@ -5,6 +5,7 @@ import { TextField, Button } from '@material-ui/core'
 import { ws, send_ } from '../WebSocket'
 import { makeStyles } from '@material-ui/styles'
 import { ThemeContext } from '../../context/ContextGeneral';
+
 // CSS styles
 import "./ModalCreateGame.css";
 
@@ -53,7 +54,16 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
                 <h2>Create Game</h2>
                 <form>
                     <div className="tfield-group">
-                        <TextField id="outlined-basic" label="Game Name" variant="outlined" onChange={(e) => { setGameName(e.target.value) }} />
+                        <TextField 
+                            required id="outlined-required" 
+                            label="Game Name" 
+                            variant="filled"
+                            size="small"
+                            autoFocus={true}
+                            helperText="introduce Game Name"
+                            inputProps={{maxLength: 10}} 
+                            onChange={(e) => { setGameName(e.target.value) }} 
+                        />
                     </div>
                     <div className="button-group">
                         <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {

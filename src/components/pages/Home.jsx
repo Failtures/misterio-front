@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
 import { ThemeContext } from '../../context/ContextGeneral';
+
 // components
 import ModalCreateGame from '../modals/ModalCreateGame';
 import ButtonCreateGame from '../buttons/ButtonCreateGame';
@@ -27,7 +28,18 @@ const Home = () => {
                 </div>
                 <div className="create-conteiner">
                     <div className="create-loggin">
-                        <TextField className="nick" id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { dictStates.setNickname(e.target.value) }} />
+                        <TextField 
+                            className="nick" 
+                            required id="outlined-required" 
+                            label="Nickname" 
+                            variant="filled"
+                            size="small"
+                            autoFocus={true}
+                            helperText="introduce Nickname"
+                            autocomplete="false"
+                            inputProps={{maxLength: 10}} 
+                            onChange={(e) => { dictStates.setNickname(e.target.value) }} 
+                        />
                         <ButtonCreateGame className="create" openModal={openModalCreateGame} />
                     </div>
                 </div>
