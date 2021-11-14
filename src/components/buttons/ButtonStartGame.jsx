@@ -10,6 +10,7 @@ const ButtonStartGame = (props) => {
 
     return (
         <Button
+            variant="contained"
             color="secondary"
             onClick={() => {
                 ws.send(JSON.stringify({

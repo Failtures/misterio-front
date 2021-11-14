@@ -12,7 +12,7 @@ const Lobby = () => {
 
     let arrayAuxiliar = [];
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
-    
+
     const dictStates = useContext(ThemeContext)
 
     const history = useHistory();
@@ -52,7 +52,7 @@ const Lobby = () => {
                 arrayAuxiliar.push(parseJson.player_name);
                 dictStates.setPlayers(arrayAuxiliar);
                 setNewPlayer(parseJson.player_name);
-                alertRef.current.style.display = 'block';
+                //alertRef.current.style.display = 'block';
                 dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
@@ -85,27 +85,34 @@ const Lobby = () => {
     });
 
     return (
-        <div>
-            <h2>Lobby</h2>
-            <ul>
-                {
-
-                    players2.map(player => <li>{player}</li>)
-
-                }
-            </ul>
-            {
-                host && <ButtonStartGame />
-            }
-            <ButtonExitLobby />
-            <Alert style={{ display: 'none' }} ref={alertRef} onClose={() => { alertRef.current.style.display = "none" }} variant="filled" severity="info">
-                A new player has joined:{newplayer}
-            </Alert>
 
 
+        <div className="lobby-container">
+            <div className="lobby">
+                <div className="lobby-players">
+                    {
+                        players2.map(player => <li>{player}</li>)
+                    }
+                </div>
+
+                <div className="lobby-chat-start">
+                    <div className="lobby-chat">
+                        <h2>CHAT</h2>
+                    </div>
+                    <div className="lobby-controls">
+                        <div className="controls">
+                            {
+                                host && <ButtonStartGame />
+                            }
+                            <ButtonExitLobby />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
+
     );
 };
 
