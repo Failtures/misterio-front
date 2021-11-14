@@ -26,6 +26,9 @@ const Lobby = () => {
     const [host, setHost] = useState('');
     const [newplayer, setNewPlayer] = useState('')
 
+
+    const [buffer, setBuffer] = useState([]);
+
     const takesGetHand = {
         'action': 'match_get_hand',
         'player_name': dictStates.nickname,
@@ -37,6 +40,7 @@ const Lobby = () => {
         ws.onmessage = (e) => {
 
             const parseJson = JSON.parse(e.data);
+            console.log(parseJson.action)
 
             if (parseJson.action === 'new_lobby') {
                 setHost(parseJson.lobby.host);
@@ -85,7 +89,8 @@ const Lobby = () => {
                 history.push('/');
             }
             else if (parseJson.action === 'new_message') {
-                
+                //setBuffer((buffer) => [...buffer, parseJson.message]);
+                console.log(parseJson.message)
             }
         };
     });
@@ -97,7 +102,7 @@ const Lobby = () => {
             <div className="lobby">
                 <div className="lobby-players">
                     {
-                        
+
                         players2.map(player => <Cards className="end" player={player}></Cards>)
                     }
                 </div>
@@ -109,7 +114,7 @@ const Lobby = () => {
                     <div className="lobby-controls">
                         <div className="controls">
                             {
-                    
+
                                 host && <ButtonStartGame />
                             }
                             <ButtonExitLobby />
@@ -118,7 +123,7 @@ const Lobby = () => {
                 </div>
             </div>
 
-            <Chat></Chat>
+            <Chat buffer={buffer}></Chat>
 
 
         </div>
