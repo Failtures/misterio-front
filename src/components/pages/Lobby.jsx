@@ -9,6 +9,7 @@ import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
 import Cards from "./Card";
+import Chat from "./Chat";
 
 const Lobby = () => {
 
@@ -83,6 +84,9 @@ const Lobby = () => {
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
             }
+            else if (parseJson.action === 'new_message') {
+                
+            }
         };
     });
 
@@ -113,6 +117,8 @@ const Lobby = () => {
                     </div>
                 </div>
             </div>
+
+            <Chat></Chat>
 
 
         </div>
