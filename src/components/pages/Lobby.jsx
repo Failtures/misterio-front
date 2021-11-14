@@ -8,6 +8,8 @@ import { Alert } from "@material-ui/core";
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
+import Cards from "./Card";
+
 const Lobby = () => {
 
     let arrayAuxiliar = [];
@@ -91,7 +93,8 @@ const Lobby = () => {
             <div className="lobby">
                 <div className="lobby-players">
                     {
-                        players2.map(player => <li>{player}</li>)
+                        
+                        players2.map(player => <Cards className="end" player={player}></Cards>)
                     }
                 </div>
 
@@ -102,6 +105,7 @@ const Lobby = () => {
                     <div className="lobby-controls">
                         <div className="controls">
                             {
+                    
                                 host && <ButtonStartGame />
                             }
                             <ButtonExitLobby />

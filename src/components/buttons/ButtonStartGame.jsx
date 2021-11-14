@@ -9,19 +9,23 @@ const ButtonStartGame = (props) => {
     const dictStates = useContext(ThemeContext)
 
     return (
-        <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-                ws.send(JSON.stringify({
-                    'action': 'lobby_start_match',
-                    'player_name': dictStates.nickname,
-                    'lobby_name': dictStates.lobbyName
-                }));
-            }}
-        >
-            Start
-        </Button>
+        <div>
+            <Button
+                variant="contained"
+                size="large"
+                color="secondary"
+                onClick={() => {
+                    ws.send(JSON.stringify({
+                        'action': 'lobby_start_match',
+                        'player_name': dictStates.nickname,
+                        'lobby_name': dictStates.lobbyName
+                    }));
+                }}
+            >
+                Start
+            </Button>
+        </div>
+
     );
 };
 
