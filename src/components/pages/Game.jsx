@@ -49,6 +49,7 @@ const Game = () => {
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
+            console.log(parsedJson.action)
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -64,8 +65,6 @@ const Game = () => {
             }
             else if (parsedJson.action === 'question') {
 
-                console.log(`Jugador que sospecho ${parsedJson.reply_to}`);
-
                 setReplyTo(parsedJson.reply_to);
 
                 const suspectCards = hand.filter(
@@ -75,21 +74,17 @@ const Game = () => {
                         card.name === parsedJson.room
                 );
 
-                console.log(`Cartas a mostrar ${suspectCards}`);
-                console.log(`Cartas del jugador: ${hand}`);
-
                 if (suspectCards.length > 0) {
                     console.log('dentro del if')
                     setSuspect(suspectCards);
                     openModalQuestion();
                 }
                 else {
-                    console.log('dentro del else')
                     const takesQuestionNegative = {
                         'action': 'match_question_res',
                         'response': 'negative',
                         'player_name': dictStates.nickname,
-                        'reply_to': replyTo,
+                        'reply_to': parsedJson.reply_to,
                         'match_name': dictStates.lobbyName,
                         'reply_card': '',
                         'monster': parsedJson.monster,

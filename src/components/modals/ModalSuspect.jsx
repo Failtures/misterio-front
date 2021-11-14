@@ -49,11 +49,6 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                         color="secondary"
                         onClick={() => {
                             ws.send(JSON.stringify(takesQuestionPositive));
-                            console.log('Request:')
-                            console.log(dictStates.nickname)
-                            console.log(dictStates.lobbyName)
-                            console.log(selection)
-                            console.log(replyTo)
                             closeModalQuestion();
                         }}
                     >
