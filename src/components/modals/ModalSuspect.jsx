@@ -43,7 +43,7 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
 
                             <label>{card.name} <input type="radio" value={card.name} name="gender" onClick={(e) => setSelection(e.target.value)} /></label>
                         ))
-                    }
+                    } 
                     <Button
                         variant="contained"
                         color="secondary"

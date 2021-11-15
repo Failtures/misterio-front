@@ -3,7 +3,9 @@ import { ws } from '../WebSocket'
 import { TextField } from '@material-ui/core';
 import { ThemeContext } from '../../context/ContextGeneral';
 
-const Chat = ({ buffer }) => {
+import './Chat.css';
+
+const Chat = ({ buffer, newPlayer, leftPlayer }) => {
 
     const [msg, setMsg] = useState('');
 
@@ -16,22 +18,31 @@ const Chat = ({ buffer }) => {
         'message': msg
     };
 
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', width: '22%', height: '20%', backgroundColor: 'white', padding: '0.1%', borderRadius: '1%' }}>
 
-            <div style={{ width: '100%', height: '80%', border: '1px solid #ccc' }}>
-               
+
+    return (
+        <div className="chat-container">
+
+            <div className="chat-content">
+                {buffer.map(buff => <p style={{ color: 'white' }}>{buff}</p>)}
+
+                {newPlayer && <p style={{ color: '#99DD29' }}> {newPlayer} entry to the lobby</p>}
+                {leftPlayer && <p style={{ color: '#BD1E2A' }}> {leftPlayer} left the lobby</p>}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', width: '100%', height: '20%' }}>
-                <TextField ariant="filled"
+
+            <div className="chat-container-input">
+                <TextField
+                    className="chat-input"
+                    ariant="filled"
                     size="small"
                     autoFocus={true}
-                    style={{ width: '100%' }}
+                    value={msg}
                     onChange={(e) => { setMsg(e.target.value) }}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            ws.send(JSON.stringify(takesLobbySend))
+                            ws.send(JSON.stringify(takesLobbySend));
+                            setMsg('')
                         }
                     }}
                 >

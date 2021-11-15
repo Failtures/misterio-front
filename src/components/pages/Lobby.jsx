@@ -3,7 +3,6 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import { ThemeContext } from '../../context/ContextGeneral';
-import { Alert } from "@material-ui/core";
 // Components
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
@@ -24,8 +23,10 @@ const Lobby = () => {
 
     const [players2, setPlayers2] = useState([]);
     const [host, setHost] = useState('');
-    const [newplayer, setNewPlayer] = useState('')
 
+
+    const [newPlayer, setNewPlayer] = useState('');
+    const [leftPlayer, setLeftPlayer] = useState('');
 
     const [buffer, setBuffer] = useState([]);
 
@@ -83,14 +84,15 @@ const Lobby = () => {
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
+                setLeftPlayer(parseJson.player_name);
                 dictStates.setPlayers()
             }
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
             }
             else if (parseJson.action === 'new_message') {
-                //setBuffer((buffer) => [...buffer, parseJson.message]);
-                console.log(parseJson.message)
+                setBuffer((buffer) => [...buffer, parseJson.message]);
+                console.log(parseJson.message);
             }
         };
     });
@@ -102,28 +104,27 @@ const Lobby = () => {
             <div className="lobby">
                 <div className="lobby-players">
                     {
-
-                        players2.map(player => <Cards className="end" player={player}></Cards>)
+                        players2.map(player => <Cards player={player}></Cards>)
                     }
+
+                    <div className="start-start">
+                        {host && <ButtonStartGame />}
+                    </div>
                 </div>
 
                 <div className="lobby-chat-start">
-                    <div className="lobby-chat">
-                        <h2>CHAT</h2>
-                    </div>
+                    <Chat buffer={buffer} newPlayer={newPlayer} leftPlayer={leftPlayer}></Chat>
                     <div className="lobby-controls">
                         <div className="controls">
-                            {
 
-                                host && <ButtonStartGame />
-                            }
                             <ButtonExitLobby />
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <Chat buffer={buffer}></Chat>
+
 
 
         </div>
