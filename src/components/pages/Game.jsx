@@ -51,7 +51,6 @@ const Game = () => {
         ws.onmessage = (e) => {
 
             const parsedJson = JSON.parse(e.data);
-            console.log(parsedJson.action)
 
             if (parsedJson.action === 'roll_dice') {
                 setDice(parsedJson.dice);
@@ -109,6 +108,19 @@ const Game = () => {
                 openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_position') {
+
+                const updatePlayer = dictStates.playerPosition.map( player => {
+                    if(player.player_name === dictStates.turn) {
+                        return {
+                            ...player,
+                            pos_x: parsedJson.pos_x,
+                            pos_y: parsedJson.pos_y
+                        }
+                    }
+                    return player
+                });
+
+                dictStates.setPlayerPosition(updatePlayer)
 
                 if (dictStates.nickname === dictStates.turn) {
                     dictStates.setPosY(parsedJson.pos_y)

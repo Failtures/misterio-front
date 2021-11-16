@@ -41,7 +41,6 @@ const Lobby = () => {
         ws.onmessage = (e) => {
 
             const parseJson = JSON.parse(e.data);
-            console.log(parseJson.action)
 
             if (parseJson.action === 'new_lobby') {
                 setHost(parseJson.lobby.host);
@@ -64,22 +63,18 @@ const Lobby = () => {
                 dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
+                dictStates.setPlayerPosition(parseJson.match.player_position.player_position)
                 ws.send(JSON.stringify(takesGetHand));
-                let pos = 0;
-                let pos_x = 0;
-                let pos_y = 0;
+
                 for (let i = 0; i < parseJson.match.player_position.player_position.length; i++) {
 
-                    if (dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
-                        dictStates.setTokenColor(colors_token[i])
-                        pos = i
+                    const tokenPlayer = {
+                        player: parseJson.match.player_position.player_position[i].player_name,
+                        color: colors_token[i]
                     }
-
+                    dictStates.setTokenColor((tokenColor) => [...tokenColor, tokenPlayer])
                 }
-                pos_x = parseJson.match.player_position.player_position[pos].pos_x;
-                pos_y = parseJson.match.player_position.player_position[pos].pos_y;
-                dictStates.setPosX(pos_x);
-                dictStates.setPosY(pos_y);
+
                 dictStates.setTurn(parseJson.match.turn);
                 history.push(`/game/${parseJson.match.name}`);
             }
@@ -98,7 +93,6 @@ const Lobby = () => {
     });
 
     return (
-
 
         <div className="lobby-container">
             <div className="lobby">

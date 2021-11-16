@@ -14,10 +14,14 @@ const Square = ({color, id, posX, posY }) => {
         'pos_x': posX,
         'pos_y': posY
     }
-
-    if(posX === dictStates.posX && posY === dictStates.posY) {
-        color = dictStates.tokenColor
-    }
+    dictStates.playerPosition.forEach(element => {
+        if(posX === element.pos_x && posY === element.pos_y) {
+            const filtered = dictStates.tokenColor.filter((item) => {
+                return item.player === element.player_name 
+            })
+            color = filtered[0].color;
+        }
+    });
 
     const useStyle = makeStyles({
         backagroundSquare: {
