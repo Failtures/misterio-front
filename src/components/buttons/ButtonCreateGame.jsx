@@ -17,7 +17,7 @@ const ButtonCreateGame = ({ openModal }) => {
   
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={handleModal}> Create Game </Button>
+      <Button variant="contained" color="secondary" onClick={handleModal} disabled={dictStates.nickname === ''} > Create Game </Button>
     </div>
   );
 }

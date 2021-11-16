@@ -1,5 +1,5 @@
 // imports
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
 import { ThemeContext } from '../../context/ContextGeneral';
@@ -16,6 +16,17 @@ const Home = () => {
 
     const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false);
 
+    const [touched, setTouched] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(['gdfjkhdfjdf']);
+
+    const handleTouchTrue = () => setTouched(true);
+    const handleTouchFalse = () => setTouched(false);
+
+
+    const handleTouch = () => {
+        setTouched(!touched);
+    };
+
     return (
         <div className="container">
             <div className="header">
@@ -27,7 +38,22 @@ const Home = () => {
                 </div>
                 <div className="create-conteiner">
                     <div className="create-loggin">
-                        <TextField className="nick" id="outlined-basic" label="Nickname" variant="outlined" onChange={(e) => { dictStates.setNickname(e.target.value) }} />
+
+                        <TextField 
+                            className="nick" 
+                            id="outlined-basic" 
+                            label="Nickname" 
+                            variant="filled" 
+                            onChange={(e) => { dictStates.setNickname(e.target.value)
+                                                
+                            }} 
+                            inputProps={{maxLength: 10}}
+                            onFocus={handleTouchTrue}
+                            onBlur={handleTouchFalse}
+                            helperText={touched && errorMessage[0]}
+                            required="true"
+                        />
+
                         <ButtonCreateGame className="create" openModal={openModalCreateGame} />
                     </div>
                 </div>

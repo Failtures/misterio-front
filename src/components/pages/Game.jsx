@@ -65,15 +65,9 @@ const Game = () => {
                 setWinner(parsedJson.winner);
                 openModalWinOrLost();
             }
-            else if (parsedJson.action === 'player_deleted') {
-                const takes = {
-                    'action': 'match_end_turn',
-                    'match_name': dictStates.lobbyName
-                };
-            
+            else if (parsedJson.action === 'player_deleted') {   
                 setLoser(parsedJson.loser);
                 openModalWinOrLost();
-                ws.send(JSON.stringify(takes))
             }
             else if (parsedJson.action === 'player_position') {
 
