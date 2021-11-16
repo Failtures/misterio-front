@@ -10,7 +10,7 @@ function ButtonExitLobby() {
     const dictStates = useContext(ThemeContext);
 
     const history = useHistory()
-    
+
     const takes = {
         'action': 'lobby_leave',
         'player_name': dictStates.nickname,
@@ -18,16 +18,19 @@ function ButtonExitLobby() {
     };
 
     return (
-        <Button 
-            variant="contained"
-            color="error"
-            onClick={() => {
-                ws.send(JSON.stringify(takes));
-                history.push('/');
-            }}
-        >
-            Exit
-        </Button>
+        <div>
+            <Button
+                variant="contained"
+                color="error"
+                onClick={() => {
+                    ws.send(JSON.stringify(takes));
+                    history.push('/');
+                }}
+            >
+                Exit
+            </Button>
+        </div>
+
     );
 };
 

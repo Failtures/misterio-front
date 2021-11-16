@@ -27,3 +27,66 @@
     background-color: #fff;
     padding: 40px;
 }
+
+.lobby-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.lobby {
+    display: flex;
+    flex-direction: column;
+    justify-content: s;
+    height: 80vh;
+    width: 70%;
+    background-color: black;
+
+    border-radius: 0.4%;
+    
+}
+
+.lobby-players {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
+}
+
+.lobby-chat-start {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.lobby-controls {
+    flex-basis: 20%;
+    height: 100%;
+    width: 20%;  
+}
+
+.controls {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+
+}
+
+.start-start {
+    position: absolute;
+    top: 550px;
+}
+
+
+
+

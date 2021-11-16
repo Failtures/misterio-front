@@ -3,16 +3,18 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import { ThemeContext } from '../../context/ContextGeneral';
-import { Alert } from "@material-ui/core";
 // Components
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
+
+import Cards from "./Card";
+import Chat from "./Chat";
 
 const Lobby = () => {
 
     let arrayAuxiliar = [];
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
-    
+
     const dictStates = useContext(ThemeContext)
 
     const history = useHistory();
@@ -21,7 +23,12 @@ const Lobby = () => {
 
     const [players2, setPlayers2] = useState([]);
     const [host, setHost] = useState('');
-    const [newplayer, setNewPlayer] = useState('')
+
+
+    const [newPlayer, setNewPlayer] = useState('');
+    const [leftPlayer, setLeftPlayer] = useState('');
+
+    const [buffer, setBuffer] = useState([]);
 
     const takesGetHand = {
         'action': 'match_get_hand',
@@ -34,6 +41,7 @@ const Lobby = () => {
         ws.onmessage = (e) => {
 
             const parseJson = JSON.parse(e.data);
+            console.log(parseJson.action)
 
             if (parseJson.action === 'new_lobby') {
                 setHost(parseJson.lobby.host);
@@ -52,7 +60,7 @@ const Lobby = () => {
                 arrayAuxiliar.push(parseJson.player_name);
                 dictStates.setPlayers(arrayAuxiliar);
                 setNewPlayer(parseJson.player_name);
-                alertRef.current.style.display = 'block';
+                //alertRef.current.style.display = 'block';
                 dictStates.setPlayers(arrayAuxiliar);
             }
             else if (parseJson.action === 'match_started') {
@@ -76,36 +84,51 @@ const Lobby = () => {
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
+                setLeftPlayer(parseJson.player_name);
                 dictStates.setPlayers()
             }
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
             }
+            else if (parseJson.action === 'new_message') {
+                setBuffer((buffer) => [...buffer, parseJson.message]);
+                console.log(parseJson.message);
+            }
         };
     });
 
     return (
-        <div>
-            <h2>Lobby</h2>
-            <ul>
-                {
 
-                    players2.map(player => <li>{player}</li>)
 
-                }
-            </ul>
-            {
-                host && <ButtonStartGame />
-            }
-            <ButtonExitLobby />
-            <Alert style={{ display: 'none' }} ref={alertRef} onClose={() => { alertRef.current.style.display = "none" }} variant="filled" severity="info">
-                A new player has joined:{newplayer}
-            </Alert>
+        <div className="lobby-container">
+            <div className="lobby">
+                <div className="lobby-players">
+                    {
+                        players2.map(player => <Cards player={player}></Cards>)
+                    }
+
+                    <div className="start-start">
+                        {host && <ButtonStartGame />}
+                    </div>
+                </div>
+
+                <div className="lobby-chat-start">
+                    <Chat buffer={buffer} newPlayer={newPlayer} leftPlayer={leftPlayer}></Chat>
+                    <div className="lobby-controls">
+                        <div className="controls">
+
+                            <ButtonExitLobby />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
 
         </div>
+
     );
 };
 

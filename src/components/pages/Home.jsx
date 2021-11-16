@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
 import { ThemeContext } from '../../context/ContextGeneral';
+
 // components
 import ModalCreateGame from '../modals/ModalCreateGame';
 import ButtonCreateGame from '../buttons/ButtonCreateGame';
@@ -44,9 +45,7 @@ const Home = () => {
                             id="outlined-basic" 
                             label="Nickname" 
                             variant="filled" 
-                            onChange={(e) => { dictStates.setNickname(e.target.value)
-                                                
-                            }} 
+                            onChange={(e) => { dictStates.setNickname(e.target.value) }} 
                             inputProps={{maxLength: 10}}
                             onFocus={handleTouchTrue}
                             onBlur={handleTouchFalse}
