@@ -143,10 +143,7 @@ const Game = () => {
 
     return (
         <div className="game-container">
-            <p>turn: {dictStates.turn}</p>
             <Board />
-
-
             <ButtonThrowDice />
             <ButtonEndTurn />
             <ButtonAccuse openModal={openModalAccuse} />
