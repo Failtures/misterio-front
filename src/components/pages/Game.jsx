@@ -184,7 +184,7 @@ const Game = () => {
                             url = '/mummy.png'
                         }
                         else if (card.name === 'Dr. Jekyll and Mr Hyde') {
-                            url = '/dr.png'
+                            url = '/doctor.png'
                         }
                         else if (card.name === 'Gardener') {
                             url = '/gardener.png'
@@ -232,16 +232,16 @@ const Game = () => {
                             url = '/bruja_salem.png'
                         }
                         return (
-                            <div>
-                                <img style={{}} src={url} alt={hand.name} />
-                            </div>
+
+                            <img style={{}} src={url} alt={hand.name} />
+
                         )
                     }
 
                     )}
                 </div>
                 <div className="game-bot-buttons">
-                    <Button>Note</Button>
+                    <Bloc></Bloc>
                     <Button>Exit</Button>
                 </div>
 
@@ -263,6 +263,7 @@ const Game = () => {
                 suspect={suspect}
                 replyTo={replyTo}
             />
+
         </div>
     );
 };
