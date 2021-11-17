@@ -4,9 +4,10 @@ import { useContext } from 'react'
 import { ThemeContext } from '../../context/ContextGeneral'
 import {ws} from '../WebSocket'
 
-const Square = ({color, id, posX, posY }) => {
+const Square = ({img, id, posX, posY }) => {
 
     const dictStates = useContext(ThemeContext)
+    let color = ''
 
     const takes = {
         'action': 'match_move',
@@ -25,7 +26,22 @@ const Square = ({color, id, posX, posY }) => {
 
     const useStyle = makeStyles({
         backagroundSquare: {
-            backgroundColor: color
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundImage: `url(${img})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            border: '1px solid black'
+        },
+        token: {    
+            width: '35px',
+            height: '35px',
+            backgroundColor: color,
+            borderRadius: '100%',
+            border: '1px solid black',
+            
+            
         }
     });
 
@@ -37,7 +53,7 @@ const Square = ({color, id, posX, posY }) => {
 
     return (
         <div className={classes.backagroundSquare} onClick={handleClick}>
-            {id}
+            {color ? <div className={classes.token} onClick={handleClick}></div> : <div onClick={handleClick}></div>}
         </div>
     )
 }
