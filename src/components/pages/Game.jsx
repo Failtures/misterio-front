@@ -22,7 +22,7 @@ import Bloc from "./Bloc";
 import './Lobby.css'
 import './Game.css'
 import Chat from './Chat'
-
+import { cardFun } from '../CardFunction'
 
 const Game = () => {
 
@@ -103,14 +103,14 @@ const Game = () => {
                 setWinner(parsedJson.winner);
                 openModalWinOrLost();
             }
-            else if (parsedJson.action === 'player_deleted') {   
+            else if (parsedJson.action === 'player_deleted') {
                 setLoser(parsedJson.loser);
                 openModalWinOrLost();
             }
             else if (parsedJson.action === 'player_position') {
 
-                const updatePlayer = dictStates.playerPosition.map( player => {
-                    if(player.player_name === dictStates.turn) {
+                const updatePlayer = dictStates.playerPosition.map(player => {
+                    if (player.player_name === dictStates.turn) {
                         return {
                             ...player,
                             pos_x: parsedJson.pos_x,
@@ -171,84 +171,20 @@ const Game = () => {
             {mistery && <p>{`Mistery card: ${mistery}`}</p>}
 
             <p>{dice}</p>
-            
+
             <div className="cards">
                 {hand.map(card => {
-                    let url = ''
-                    if (card.name === 'Dracula') {
-                        url = '/dracula.png'
-                    }
-                    else if (card.name === 'Frankenstein') {
-                        url = '/frankenstein.png'
-                    }
-                    else if (card.name === 'Werewolf') {
-                        url = '/werewolf.png'
-                    }
-                    else if (card.name === 'Ghost') {
-                        url = '/ghost.png'
-                    }
-                    else if (card.name === 'Mummy') {
-                        url = '/mummy.png'
-                    }
-                    else if (card.name === 'Dr. Jekyll and Mr Hyde') {
-                        url = '/dr.png'
-                    }
-                    else if (card.name === 'Gardener') {
-                        url = '/gardener.png'
-                    }
-                    else if (card.name === 'Maid') {
-                        url = '/maid.png'
-                    }
-                    else if (card.name === 'Butler') {
-                        url = '/butler.png'
-                    }
-                    else if (card.name === 'Count') {
-                        url = '/count.png'
-                    }
-                    else if (card.name === 'Countess') {
-                        url = '/countess.png'
-                    }
-                    else if (card.name === 'Housekeeper') {
-                        url = '/housekeeper.png'
-                    }
-                    else if (card.name === 'Bedroom') {
-                        url = '/bedroom.png'
-                    }
-                    else if (card.name === 'Library') {
-                        url = '/library.png'
-                    }
-                    else if (card.name === 'Cellar') {
-                        url = '/cellar.png'
-                    }
-                    else if (card.name === 'Garage') {
-                        url = '/garage.png'
-                    }
-                    else if (card.name === 'Laboratory') {
-                        url = '/laboratory.png'
-                    }
-                    else if (card.name === 'Pantheon') {
-                        url = '/pantheon.png'
-                    }
-                    else if (card.name === 'Dining') {
-                        url = '/dining.png'
-                    }
-                    else if (card.name === 'Living') {
-                        url = '/living.png'
-                    }
-                    else if (card.name === 'Salem Witch') {
-                        url = '/bruja_salem.png'
-                    }
+                    let url = cardFun(card)
                     return (
                         <div style={{ width: '8%' }}>
                             <img style={{ width: '100%' }} src={url} alt={hand.name} />
                         </div>
                     )
-                }
-
-                )}
+                })}
             </div>
         </div>
     );
 };
+
 
 export default Game;

@@ -33,52 +33,45 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
-                <h2>Select to Suspect</h2>
-                <form>
-                    <p>Victims:</p>
-                    <input type="radio" value="Gardener" name="gender" onClick={(e) => setVictim(e.target.value)} /> Gardener
-                    <br></br>
-                    <input type="radio" value="Maid" name="gender" onClick={(e) => setVictim(e.target.value)} /> Maid
-                    <br></br>
-                    <input type="radio" value="Butler" name="gender" onClick={(e) => setVictim(e.target.value)} /> Butler
-                    <br></br>
-                    <input type="radio" value="Count" name="gender" onClick={(e) => setVictim(e.target.value)} /> Count
-                    <br></br>
-                    <input type="radio" value="Countess" name="gender" onClick={(e) => setVictim(e.target.value)} /> Countess
-                    <br></br>
-                    <input type="radio" value="Housekeeper" name="gender" onClick={(e) => setVictim(e.target.value)} /> Housekeeper
-                </form>
-                <br></br>
-                <form>
-                    <p>Monsters:</p>
-                    <input type="radio" value="Dracula" name="gender" onClick={(e) => setMonster(e.target.value)} /> Dracula
-                    <br></br>
-                    <input type="radio" value="Frankenstein" name="gender" onClick={(e) => setMonster(e.target.value)} /> Frankenstein
-                    <br></br>
-                    <input type="radio" value="Werewolf" name="gender" onClick={(e) => setMonster(e.target.value)} /> Werewolf
-                    <br></br>
-                    <input type="radio" value="Ghost" name="gender" onClick={(e) => setMonster(e.target.value)} /> Ghost
-                    <br></br>
-                    <input type="radio" value="Mummy" name="gender" onClick={(e) => setMonster(e.target.value)} /> Mummy
-                    <br></br>
-                    <input type="radio" value="Dr. Jekyll and Mr Hyde" name="gender" onClick={(e) => setMonster(e.target.value)} /> Dr. Jekyll and Mr Hyde
-                </form>
-                <br></br>
-                <div>
-                    <p>Rooms: {dictStates.square}</p>
+                <div className= "card-suspect-container">
+                    <h2>Select to Suspect</h2>
+                    
+                    <div className= "victims-suspect">
+                        <p>Victims:</p>
+                        <img src="/gardener.png" alt="Gardener" onClick={(e) => setVictim(e.target.alt)} />
+                        <img src="/maid.png" alt="Maid" onClick={(e) => setVictim(e.target.alt)} />
+                        <img src="/butler.png" alt="Butler" onClick={(e) => setVictim(e.target.alt)} />
+                        <img src="/count.png" alt="Count" onClick={(e) => setVictim(e.target.alt)} />
+                        <img src="/countess.png" alt="Countess" onClick={(e) => setVictim(e.target.alt)} />
+                        <img src="/housekeeper.png" alt="Housekeeper" onClick={(e) => setVictim(e.target.alt)} />
+                    </div>
+
+                    <div className= "monsters-suspect">
+                        <p>Monsters:</p>
+                        <img src="/dracula.png" alt="Dracula" onClick={(e) => setMonster(e.target.alt)} />
+                        <img src="/frankenstein.png" alt="Frankenstein" onClick={(e) => setMonster(e.target.alt)} />
+                        <img src="/werewolf.png" alt="Werewolf" onClick={(e) => setMonster(e.target.alt)} />
+                        <img src="/ghost.png" alt="Ghost" onClick={(e) => setMonster(e.target.alt)} />
+                        <img src="/mummy.png" alt="Mummy" onClick={(e) => setMonster(e.target.alt)} />
+                        <img src="/dr.png" alt="Dr. Jekyll and Mr Hyde" onClick={(e) => setMonster(e.target.alt)} />
+                    </div>
+
+                    <div>
+                        <p>Rooms: {dictStates.square}</p>
+                    </div>
+
+                    <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            ws.send(JSON.stringify(takes));
+                            closeModal();
+                            dictStates.setButtonSuspect(false)
+                        }
+                        }> COMNFIRM SUSPECT
+                    </Button>
                 </div>
-                <br></br>
-                <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => {
-                        ws.send(JSON.stringify(takes));
-                        closeModal();
-                        dictStates.setButtonSuspect(false)
-                    }
-                    }> COMNFIRM SUSPECT
-                </Button>
             </div>
         </div>
     )
