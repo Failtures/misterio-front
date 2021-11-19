@@ -109,6 +109,7 @@ const Game = () => {
             else if (parsedJson.action === 'player_deleted') {   
                 setLoser(parsedJson.loser);
                 openModalWinOrLost();
+                dictStates.setTurn(parsedJson.next_turn);
             }
             else if (parsedJson.action === 'player_position') {
 
