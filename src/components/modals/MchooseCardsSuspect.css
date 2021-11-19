@@ -19,10 +19,8 @@
 .modal-container-suspect {
     position: relative;
     padding: 1rem;
-    min-width: 500px;
-    max-width: 600px;
-    min-height: 300px;
-    max-height: 800px;
+    width: 45%;
+    height: 580px;
     border-radius: 10px;
     overflow-y: auto;
     background-color: #fff;

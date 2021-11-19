@@ -37,27 +37,23 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                     <h2>Select to Suspect</h2>
                     
                     <div className= "victims-suspect">
-                        <p>Victims:</p>
-                        <img src="/gardener.png" alt="Gardener" onClick={(e) => setVictim(e.target.alt)} />
-                        <img src="/maid.png" alt="Maid" onClick={(e) => setVictim(e.target.alt)} />
-                        <img src="/butler.png" alt="Butler" onClick={(e) => setVictim(e.target.alt)} />
-                        <img src="/count.png" alt="Count" onClick={(e) => setVictim(e.target.alt)} />
-                        <img src="/countess.png" alt="Countess" onClick={(e) => setVictim(e.target.alt)} />
-                        <img src="/housekeeper.png" alt="Housekeeper" onClick={(e) => setVictim(e.target.alt)} />
+                        <h3>Victims:</h3>
+                        <img width="150px" height="200px" src="/gardener.png" alt="Gardener" onClick={(e) => setVictim(e.target.alt)} />
+                        <img width="150px" height="200px" src="/maid.png" alt="Maid" onClick={(e) => setVictim(e.target.alt)} />
+                        <img width="150px" height="200px" src="/butler.png" alt="Butler" onClick={(e) => setVictim(e.target.alt)} />
+                        <img width="150px" height="200px" src="/count.png" alt="Count" onClick={(e) => setVictim(e.target.alt)} />
+                        <img width="150px" height="200px" src="/countess.png" alt="Countess" onClick={(e) => setVictim(e.target.alt)} />
+                        <img width="150px" height="200px" src="/housekeeper.png" alt="Housekeeper" onClick={(e) => setVictim(e.target.alt)} />
                     </div>
 
                     <div className= "monsters-suspect">
-                        <p>Monsters:</p>
-                        <img src="/dracula.png" alt="Dracula" onClick={(e) => setMonster(e.target.alt)} />
-                        <img src="/frankenstein.png" alt="Frankenstein" onClick={(e) => setMonster(e.target.alt)} />
-                        <img src="/werewolf.png" alt="Werewolf" onClick={(e) => setMonster(e.target.alt)} />
-                        <img src="/ghost.png" alt="Ghost" onClick={(e) => setMonster(e.target.alt)} />
-                        <img src="/mummy.png" alt="Mummy" onClick={(e) => setMonster(e.target.alt)} />
-                        <img src="/dr.png" alt="Dr. Jekyll and Mr Hyde" onClick={(e) => setMonster(e.target.alt)} />
-                    </div>
-
-                    <div>
-                        <p>Rooms: {dictStates.square}</p>
+                        <h3>Monsters:</h3>
+                        <img width="150px" height="200px" src="/dracula.png" alt="Dracula" onClick={(e) => setMonster(e.target.alt)} />
+                        <img width="150px" height="200px" src="/frankenstein.png" alt="Frankenstein" onClick={(e) => setMonster(e.target.alt)} />
+                        <img width="150px" height="200px" src="/werewolf.png" alt="Werewolf" onClick={(e) => setMonster(e.target.alt)} />
+                        <img width="150px" height="200px" src="/ghost.png" alt="Ghost" onClick={(e) => setMonster(e.target.alt)} />
+                        <img width="150px" height="200px" src="/mummy.png" alt="Mummy" onClick={(e) => setMonster(e.target.alt)} />
+                        <img width="150px" height="200px" src="/dr.png" alt="Dr. Jekyll and Mr Hyde" onClick={(e) => setMonster(e.target.alt)} />
                     </div>
 
                     <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
