@@ -1,13 +1,14 @@
 // import
 import React, { useState, useContext } from 'react'
 
-import { Button } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 
 import { ThemeContext } from '../../context/ContextGeneral';
 
 // CSS styles
 import "./ModalSuspect.css"
 import { ws } from '../WebSocket';
+import { cardFun } from '../CardFunction';
 
 const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) => {
 
@@ -40,8 +41,7 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                     <h2>Take card</h2>
                     {
                         suspect.map((card) => (
-
-                            <label>{card.name} <input type="radio" value={card.name} name="gender" onClick={(e) => setSelection(e.target.value)} /></label>
+                            <img width="150px" height="200px" src={cardFun(card)} alt= {card.name} onClick={(e) => setSelection(e.target.alt)} />
                         ))
                     } 
                     <Button

@@ -18,6 +18,7 @@ import ButtonSuspect from "../buttons/ButtonSuspect";
 
 import Board from "../boardComponents/Board";
 import Bloc from "./Bloc";
+import { Toaster, toast } from "react-hot-toast";
 // CSS style
 import './Lobby.css'
 import './Game.css'
@@ -101,6 +102,7 @@ const Game = () => {
             }
             else if (parsedJson.action === 'suspect_response') {
                 console.log(parsedJson.card);
+                toast(parsedJson.card);
             }
             else if (parsedJson.action === 'game_over') {
                 setWinner(parsedJson.winner);
@@ -138,6 +140,7 @@ const Game = () => {
             }
             else if (parsedJson.action === 'mystery_card') {
                 setMistery(parsedJson.card.name);
+                toast(parsedJson.card.name);
                 setHand(hand.filter(card => card.name !== "Salem Witch"));
                 refButtonMistery.current.style.display = "none";
                 closeModalSalem();
@@ -151,7 +154,19 @@ const Game = () => {
 
     return (
         <div className="game-container">
-
+            <Toaster
+                position="bottom-center"
+                reverseOrder={true}
+                toastOptions={{
+                    // Define default options
+                    className: '',
+                    duration: 5000,
+                    style: {
+                      background: '#ffffff',
+                      color: '#e43621',
+                    }}
+                }
+            />
             <div className="game-top">
                 <h2 className="timer">60</h2>
                 <h2 className="turn">Turn:{dictStates.turn}</h2>
