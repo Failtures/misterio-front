@@ -1,35 +1,33 @@
-.modal-question-suspect {
+.modal-question-suspect-container {
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
     display: none;
     justify-content: center;
     align-items: center;
 }
 
-.modal-question-suspect.is-open {
+.is-open-question-suspect {
     display: flex;
 }
 
 
-.modal-container-question-suspect {
-    position: relative;
-    padding: 1rem;
-    min-width: 500px;
-    max-width: 600px;
-    min-height: 300px;
-    max-height: 800px;
-    border-radius: 10px;
+.modal-question-suspect {
+    display: flex;
+    width: 80%;
+    height: 85%;
+    justify-content: center;
+    align-items: center;
     overflow-y: auto;
-    background-color: #fff;
-}
-
-.modal-container-question-suspect.bcolor {
-    background-color: #bc9889;
+    background-color: rgb(85, 33, 33);
+    background-color: transparent;
+   
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .modal-close-question-suspect {
@@ -44,10 +42,11 @@
     transition: .3s ease all;
     color: 0;
     cursor: pointer;
+    background-color: white;
 }
 
 .modal-close-question-suspect:hover {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(134, 4, 4, 0.15);
 }
 
 svg {
@@ -56,12 +55,29 @@ svg {
 }
 
 
-.modal-container-question-suspect.bcolor.aside::-webkit-scrollbar {
+.modal-question-suspect::-webkit-scrollbar {
     display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.modal-container-question-suspect.bcolor.aside {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.cards-to-show{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.cards-to-show h2{
+    color: white;
+    font-size: 40px;
+}
+
+.cards-to-show img{
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.cards-to-show img:hover{
+    transform: scale(1.2,1.1);
 }
