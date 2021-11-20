@@ -1,4 +1,4 @@
-.modal-salem {
+.modal-salem-container {
     position: fixed;
     z-index: 999;
     top: 0;
@@ -11,25 +11,22 @@
     align-items: center;
 }
 
-.modal-salem.is-open {
+.is-open-salem {
     display: flex;
 }
 
-
-.modal-container-salem {
-    position: relative;
-    padding: 1rem;
-    min-width: 500px;
-    max-width: 600px;
-    min-height: 300px;
-    max-height: 800px;
-    border-radius: 10px;
+.modal-salem {
+    display: flex;
+    width: 80%;
+    height: 85%;
+    justify-content: center;
+    align-items: center;
     overflow-y: auto;
-    background-color: #fff;
-}
-
-.modal-container-salem.bcolor {
-    background-color: #bc9889;
+    background-color: rgb(85, 33, 33);
+    background-color: transparent;
+   
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .modal-close-salem {
@@ -44,10 +41,11 @@
     transition: .3s ease all;
     color: 0;
     cursor: pointer;
+    background-color: white;
 }
 
 .modal-close-salem:hover {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(134, 4, 4, 0.15);
 }
 
 svg {
@@ -56,12 +54,33 @@ svg {
 }
 
 
-.modal-container-salem.bcolor.aside::-webkit-scrollbar {
+.modal-salem::-webkit-scrollbar {
     display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.modal-container-salem.bcolor.aside {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.salem-cards-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.salem-cards-container h3 {
+    color: white;
+}
+
+.salem-cards-container h2 {
+    color: white;
+    font-size: 40px;
+}
+
+.salem-cards-container img {
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.salem-cards-container img:hover {
+    transform: scale(1.2,1.1);
 }
