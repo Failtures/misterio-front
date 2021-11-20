@@ -86,11 +86,9 @@ import setentaycuatro from '../../img/74.jpg'
 import setentaycinco from '../../img/75.jpg'
 
 
-
 const Board = () => {
 
     return (
-
 
         <div class="tablero">
             <Room room="Garage" />

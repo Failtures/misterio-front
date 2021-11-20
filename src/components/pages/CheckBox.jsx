@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { FormControlLabel } from '@mui/material';
 import { Checkbox } from '@mui/material';
-const CheckBox = ({ inp, setInp, label }) => {
+const CheckBox = ({ inp, setInp, label, hand }) => {
 
     return (
 
         <FormControlLabel
-            checked={inp}
+            checked={hand.filter(card => card.name === label).length > 0 ? true : inp}
             onClick={() => {
                 setInp(!inp)
             }}
@@ -18,5 +18,4 @@ const CheckBox = ({ inp, setInp, label }) => {
             control={<Checkbox size="small" />} label={label} />
     );
 };
-
 export default CheckBox;

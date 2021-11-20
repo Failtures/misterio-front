@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
 import { useModal } from '../../hooks/useModal'
-import { send_, ws } from '../WebSocket'
+import { ws } from '../WebSocket'
 // Components
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
@@ -24,8 +24,6 @@ import './Lobby.css'
 import './Game.css'
 import './Chat.css'
 import ChatGame from "./ChatGame";
-
-//{mistery && <p>{`Mistery card: ${mistery}`}</p>}
 
 const Game = () => {
 
@@ -201,7 +199,7 @@ const Game = () => {
                     </div>
                     <div className="cards">
                         {hand.map(card => {
-                            let url = ''
+                            let url = null
                             if (card.name === 'Dracula') {
                                 url = '/dracula.png'
                             }
@@ -262,22 +260,19 @@ const Game = () => {
                             else if (card.name === 'Salem Witch') {
                                 url = '/bruja_salem.png'
                             }
-                            else if (card.name === 'Dr. Jekyll and Mr Hyde') {
+                            else if (card.name === 'Dr. Jekyll And Mr Hyde') {
                                 url = '/drr.png'
                             }
                             return (
-
                                 <img src={url} alt={hand.name} />
-
                             )
                         }
 
                         )}
                     </div>
 
-
-                </div>
-
+                </div>  
+                <Bloc hand={hand}></Bloc>
             </div>
 
             <ModalWichCardAccuse isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
@@ -292,7 +287,7 @@ const Game = () => {
                 suspect={suspect}
                 replyTo={replyTo}
             />
-
+            
         </div>
     );
 };
