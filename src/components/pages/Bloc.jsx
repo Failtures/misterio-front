@@ -4,9 +4,9 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import CheckBox from './CheckBox';
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({ hand }) {
     const [state, setState] = React.useState({
-        right: false,
+        left: false,
     });
 
     const [butler, setButler] = React.useState(false);
@@ -42,46 +42,51 @@ export default function TemporaryDrawer() {
 
     const list = (anchor) => (
         <Box
-    
+
             role="presentation"
             onKeyDown={toggleDrawer(anchor, false)}
-            style={{width: 260, height:'100%' , display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: 260, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <p> <b>Victims:</b> </p>
-                <CheckBox inp={butler} setInp={setButler} label={'Butler'}></CheckBox>
-                <CheckBox inp={count} setInp={setCount} label={'Count'}></CheckBox>
-                <CheckBox inp={countess} setInp={setCountess} label={'Countess'}></CheckBox>
-                <CheckBox inp={housekeeper} setInp={setHouseKeeper} label={'Housekeeper'}></CheckBox>
-                <CheckBox inp={gardener} setInp={setGardener} label={'Gardener'}></CheckBox>
-                <CheckBox inp={maid} setInp={setMaid} label={'Maid'}></CheckBox>
+                <CheckBox hand={hand} inp={butler} setInp={setButler} label={'Butler'}></CheckBox>
+                <CheckBox hand={hand} inp={count} setInp={setCount} label={'Count'}></CheckBox>
+                <CheckBox hand={hand} inp={countess} setInp={setCountess} label={'Countess'}></CheckBox>
+                <CheckBox hand={hand} inp={housekeeper} setInp={setHouseKeeper} label={'Housekeeper'}></CheckBox>
+                <CheckBox hand={hand} inp={gardener} setInp={setGardener} label={'Gardener'}></CheckBox>
+                <CheckBox hand={hand} inp={maid} setInp={setMaid} label={'Maid'}></CheckBox>
                 <p> <b>Monsters:</b> </p>
-                <CheckBox inp={dracula} setInp={setDracula} label={'Dracula'}></CheckBox>
-                <CheckBox inp={dr} setInp={setDr} label={'Dr. Jekyll and Mr Hyde'}></CheckBox>
-                <CheckBox inp={frankenstein} setInp={setFrankenstein} label={'Frankenstein'}></CheckBox>
-                <CheckBox inp={ghost} setInp={setGhost} label={'Ghost'}></CheckBox>
-                <CheckBox inp={mummy} setInp={setMummy} label={'Mummy'}></CheckBox>
-                <CheckBox inp={werewolf} setInp={setWereWolf} label={'Werewolf'}></CheckBox>
+                <CheckBox hand={hand} inp={dracula} setInp={setDracula} label={'Dracula'}></CheckBox>
+                <CheckBox hand={hand} inp={dr} setInp={setDr} label={'Dr. Jekyll And Mr Hyde'}></CheckBox>
+                <CheckBox hand={hand} inp={frankenstein} setInp={setFrankenstein} label={'Frankenstein'}></CheckBox>
+                <CheckBox hand={hand} inp={ghost} setInp={setGhost} label={'Ghost'}></CheckBox>
+                <CheckBox hand={hand} inp={mummy} setInp={setMummy} label={'Mummy'}></CheckBox>
+                <CheckBox hand={hand} inp={werewolf} setInp={setWereWolf} label={'Werewolf'}></CheckBox>
                 <p> <b>Rooms:</b> </p>
-                <CheckBox inp={bedroom} setInp={setBedroom} label={'Bedroom'}></CheckBox>
-                <CheckBox inp={cellar} setInp={setCellar} label={'Cellar'}></CheckBox>
-                <CheckBox inp={dining} setInp={setDining} label={'Dining'}></CheckBox>
-                <CheckBox inp={garage} setInp={setGarage} label={'Garage'}></CheckBox>
-                <CheckBox inp={laboratory} setInp={setLaboratory} label={'Laboratory'}></CheckBox>
-                <CheckBox inp={library} setInp={setLibrary} label={'Library'}></CheckBox>
-                <CheckBox inp={living} setInp={setLiving} label={'Living'}></CheckBox>
-                <CheckBox inp={pantheon} setInp={setPantheon} label={'Pantheon'}></CheckBox>
-            </div>
+                <CheckBox hand={hand} inp={bedroom} setInp={setBedroom} label={'Bedroom'}></CheckBox>
+                <CheckBox hand={hand} inp={cellar} setInp={setCellar} label={'Cellar'} ></CheckBox >
+                <CheckBox hand={hand} inp={dining} setInp={setDining} label={'Dining'}></CheckBox>
+                <CheckBox hand={hand} inp={garage} setInp={setGarage} label={'Garage'}></CheckBox>
+                <CheckBox hand={hand} inp={laboratory} setInp={setLaboratory} label={'Laboratory'}></CheckBox>
+                <CheckBox hand={hand} inp={library} setInp={setLibrary} label={'Library'}></CheckBox>
+                <CheckBox hand={hand} inp={living} setInp={setLiving} label={'Living'}></CheckBox>
+                <CheckBox hand={hand} inp={pantheon} setInp={setPantheon} label={'Pantheon'}></CheckBox>
+            </div >
 
 
-        </Box>
+        </Box >
     );
 
     return (
         <div>
-            {['right'].map((anchor) => (
+            {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>NOTE</Button>
+                    <Button
+
+                        onClick={toggleDrawer(anchor, true)}
+                        variant="contained"
+                        color="secondary"
+                    >NOTE</Button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}

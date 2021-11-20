@@ -3,12 +3,15 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Toaster, toast } from "react-hot-toast";
 // Components
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
 
 import Cards from "./Card";
 import Chat from "./Chat";
+
+import './Lobby.css'
 
 const Lobby = () => {
 
@@ -61,6 +64,14 @@ const Lobby = () => {
                 setNewPlayer(parseJson.player_name);
                 //alertRef.current.style.display = 'block';
                 dictStates.setPlayers(arrayAuxiliar);
+                toast(`${parseJson.player_name} joined the lobby`, {
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    style: {
+                        background: '#ffffff',
+                        color: "#116406"
+                    }
+                })
             }
             else if (parseJson.action === 'match_started') {
                 dictStates.setPlayerPosition(parseJson.match.player_position.player_position)
@@ -79,8 +90,17 @@ const Lobby = () => {
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
+                setPlayers2(players2.filter(player => player !== parseJson.player_name));
                 setLeftPlayer(parseJson.player_name);
                 dictStates.setPlayers()
+                toast(`${parseJson.player_name} left the lobby`, {
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    style: {
+                        background: '#ffffff',
+                        color: "#e50404"
+                    }
+                })
             }
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
@@ -101,26 +121,23 @@ const Lobby = () => {
                         players2.map(player => <Cards player={player}></Cards>)
                     }
 
-                    <div className="start-start">
-                        {host && <ButtonStartGame />}
-                    </div>
+
                 </div>
 
                 <div className="lobby-chat-start">
                     <Chat buffer={buffer} newPlayer={newPlayer} leftPlayer={leftPlayer}></Chat>
                     <div className="lobby-controls">
                         <div className="controls">
-
                             <ButtonExitLobby />
-
+                            {host && <ButtonStartGame />}
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
+            <Toaster
+                position="bottom-left"
+                reverseOrder={false}
+            />
         </div>
 
     );

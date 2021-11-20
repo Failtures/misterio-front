@@ -25,9 +25,6 @@ const Chat = ({ buffer, newPlayer, leftPlayer }) => {
 
             <div className="chat-content">
                 {buffer.map(buff => <p style={{ color: 'white' }}>{buff}</p>)}
-
-                {newPlayer && <p style={{ color: '#99DD29' }}> {newPlayer} entry to the lobby</p>}
-                {leftPlayer && <p style={{ color: '#BD1E2A' }}> {leftPlayer} left the lobby</p>}
             </div>
 
 

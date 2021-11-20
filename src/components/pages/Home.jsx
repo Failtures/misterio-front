@@ -18,7 +18,7 @@ const Home = () => {
     const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false);
 
     const [touched, setTouched] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(['gdfjkhdfjdf']);
+    const [errorMessage, setErrorMessage] = useState(['']);
 
     const handleTouchTrue = () => setTouched(true);
     const handleTouchFalse = () => setTouched(false);

@@ -25,60 +25,56 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
     const handleModalContainer = (e) => e.stopPropagation();
 
     return (
-        <div className={`modal-suspect ${isOpen && "is-open"}`} onClick={closeModal}>
-            <div className="modal-container-suspect bcolor aside" onClick={handleModalContainer}>
+        <div className={`modal-suspect-container ${isOpen && "is-open-suspect"}`}
+            onClick={closeModal}>
+
+            <div className="modal-suspect" onClick={handleModalContainer}>
                 <button className="modal-close-suspect" onClick={closeModal}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" fill="#000" />
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
-                <h2>Select to Suspect</h2>
-                <form>
-                    <p>Victims:</p>
-                    <input type="radio" value="Gardener" name="gender" onClick={(e) => setVictim(e.target.value)} /> Gardener
-                    <br></br>
-                    <input type="radio" value="Maid" name="gender" onClick={(e) => setVictim(e.target.value)} /> Maid
-                    <br></br>
-                    <input type="radio" value="Butler" name="gender" onClick={(e) => setVictim(e.target.value)} /> Butler
-                    <br></br>
-                    <input type="radio" value="Count" name="gender" onClick={(e) => setVictim(e.target.value)} /> Count
-                    <br></br>
-                    <input type="radio" value="Countess" name="gender" onClick={(e) => setVictim(e.target.value)} /> Countess
-                    <br></br>
-                    <input type="radio" value="Housekeeper" name="gender" onClick={(e) => setVictim(e.target.value)} /> Housekeeper
-                </form>
-                <br></br>
-                <form>
-                    <p>Monsters:</p>
-                    <input type="radio" value="Dracula" name="gender" onClick={(e) => setMonster(e.target.value)} /> Dracula
-                    <br></br>
-                    <input type="radio" value="Frankenstein" name="gender" onClick={(e) => setMonster(e.target.value)} /> Frankenstein
-                    <br></br>
-                    <input type="radio" value="Werewolf" name="gender" onClick={(e) => setMonster(e.target.value)} /> Werewolf
-                    <br></br>
-                    <input type="radio" value="Ghost" name="gender" onClick={(e) => setMonster(e.target.value)} /> Ghost
-                    <br></br>
-                    <input type="radio" value="Mummy" name="gender" onClick={(e) => setMonster(e.target.value)} /> Mummy
-                    <br></br>
-                    <input type="radio" value="Dr. Jekyll and Mr Hyde" name="gender" onClick={(e) => setMonster(e.target.value)} /> Dr. Jekyll and Mr Hyde
-                </form>
-                <br></br>
-                <div>
-                    <p>Rooms: {dictStates.square}</p>
+
+                <div className="cards-suspect-container">
+                    <h2>Select to Suspect</h2>
+
+                    <div className="victims-suspect-container">
+                        <h3>Victims:</h3>
+                        <div className="Victims">
+                            <img width="150px" height="200px" src="/gardener.png" alt="Gardener" onClick={(e) => setVictim(e.target.alt)} />
+                            <img width="150px" height="200px" src="/maid.png" alt="Maid" onClick={(e) => setVictim(e.target.alt)} />
+                            <img width="150px" height="200px" src="/butler.png" alt="Butler" onClick={(e) => setVictim(e.target.alt)} />
+                            <img width="150px" height="200px" src="/count.png" alt="Count" onClick={(e) => setVictim(e.target.alt)} />
+                            <img width="150px" height="200px" src="/countess.png" alt="Countess" onClick={(e) => setVictim(e.target.alt)} />
+                            <img width="150px" height="200px" src="/housekeeper.png" alt="Housekeeper" onClick={(e) => setVictim(e.target.alt)} />
+                        </div>
+                    </div>
+
+                    <div className="monsters-suspect-container">
+                        <h3>Monsters:</h3>
+                        <div className="Monsters">
+                            <img width="150px" height="200px" src="/dracula.png" alt="Dracula" onClick={(e) => setMonster(e.target.alt)} />
+                            <img width="150px" height="200px" src="/frankenstein.png" alt="Frankenstein" onClick={(e) => setMonster(e.target.alt)} />
+                            <img width="150px" height="200px" src="/werewolf.png" alt="Werewolf" onClick={(e) => setMonster(e.target.alt)} />
+                            <img width="150px" height="200px" src="/ghost.png" alt="Ghost" onClick={(e) => setMonster(e.target.alt)} />
+                            <img width="150px" height="200px" src="/mummy.png" alt="Mummy" onClick={(e) => setMonster(e.target.alt)} />
+                            <img width="150px" height="200px" src="/drr.png" alt="Dr. Jekyll and Mr Hyde" onClick={(e) => setMonster(e.target.alt)} />
+                        </div>
+                    </div>
+
+                    <p style={{ color: 'white' }}>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            ws.send(JSON.stringify(takes));
+                            closeModal();
+                            dictStates.setButtonSuspect(false)
+                        }
+                        }> COMNFIRM SUSPECT
+                    </Button>
                 </div>
-                <br></br>
-                <p>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => {
-                        ws.send(JSON.stringify(takes));
-                        closeModal();
-                        dictStates.setButtonSuspect(false)
-                    }
-                    }> COMNFIRM SUSPECT
-                </Button>
             </div>
         </div>
     )

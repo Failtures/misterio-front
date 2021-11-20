@@ -2,42 +2,64 @@
 .game-container {
     width: 100%;
     height: 100vh;
-    background-color: black;
+    background-color: #0C0D0E;
     overflow: hidden;
 }
 
-/* Game Top */
-.game-top {
-    display: flex;
-    justify-content:space-evenly;
-    align-items: center;
-    width: 100%;
-    height: 10%;
-  
-}
-.timer {
-
-    color: white;
-}
-
-.turn {
-
-    color: white;
-}
-
-.dice {
-
-    color: white;
-}
-
+/*0C0D0E
+15181c
+0B0C0D
+#2a2f32
+*/
 
 /*Game mid */
 .game-mid {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+ 
+
+}
+.game-list-chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 25%;
+    height: 100%;    
+}
+.game-list {
     width: 100%;
     height: 70%;
+}
+
+
+
+.game-mid-buttons-dice-turn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 25%;
+    height: 100%;
+
+
+}
+
+.game-mid-dice-turn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    height: 10%;
+}
+.dice {
+    color: white;
+}
+.turn {
+    color: white;
 }
 
 .game-mid-buttons {
@@ -45,37 +67,47 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 40%;
-    margin-left: 10%;
-    border: 1px solid white;
-}
-
-
-/*Game bot */
-.game-bot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     height: 20%;
+
 }
 
 .cards {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
+    width: 90%;
+    height: 70%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
 }
 
 .cards img {
-    width: 10%;
-    height: 90%;
+    width: 30%;
+    height: 30%;
 }
 
-.game-bot-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 10%;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
