@@ -280,15 +280,6 @@ const Game = () => {
 
             </div>
 
-            <div className="game-bot">
-
-
-                <div className="game-bot-buttons">
-                    <Bloc></Bloc>
-                </div>
-
-            </div>
-
             <ModalWichCardAccuse isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} />

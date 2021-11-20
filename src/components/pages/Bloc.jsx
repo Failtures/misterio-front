@@ -6,7 +6,7 @@ import CheckBox from './CheckBox';
 
 export default function TemporaryDrawer() {
     const [state, setState] = React.useState({
-        right: false,
+        left: false,
     });
 
     const [butler, setButler] = React.useState(false);
@@ -42,12 +42,12 @@ export default function TemporaryDrawer() {
 
     const list = (anchor) => (
         <Box
-    
+
             role="presentation"
             onKeyDown={toggleDrawer(anchor, false)}
-            style={{width: 260, height:'100%' , display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: 260, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <p> <b>Victims:</b> </p>
                 <CheckBox inp={butler} setInp={setButler} label={'Butler'}></CheckBox>
                 <CheckBox inp={count} setInp={setCount} label={'Count'}></CheckBox>
@@ -79,9 +79,14 @@ export default function TemporaryDrawer() {
 
     return (
         <div>
-            {['right'].map((anchor) => (
+            {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>NOTE</Button>
+                    <Button
+                        
+                        onClick={toggleDrawer(anchor, true)}
+                        variant="contained"
+                        color="secondary"
+                    >NOTE</Button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}
