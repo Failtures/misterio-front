@@ -26,23 +26,23 @@ const ChatGame = ({ buffer }) => {
             </div>
 
 
-            <div className="game-chat-container-input">
-                <TextField
-                    className="game-chat-input"
-                    ariant="filled"
-                    size="small"
-                    autoFocus={true}
-                    value={msg}
-                    onChange={(e) => { setMsg(e.target.value) }}
-                    onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                            ws.send(JSON.stringify(takesMatchSend));
-                            setMsg('')
-                        }
-                    }}
-                >
-                </TextField>
-            </div>
+
+            <TextField
+                className="game-chat-input"
+                ariant="filled"
+                size="small"
+                autoFocus={true}
+                value={msg}
+                onChange={(e) => { setMsg(e.target.value) }}
+                onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                        ws.send(JSON.stringify(takesMatchSend));
+                        setMsg('')
+                    }
+                }}
+            >
+            </TextField>
+
         </div>
     );
 };

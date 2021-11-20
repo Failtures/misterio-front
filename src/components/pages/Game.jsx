@@ -162,115 +162,129 @@ const Game = () => {
                     className: '',
                     duration: 5000,
                     style: {
-                      background: '#ffffff',
-                      color: '#e43621',
-                    }}
+                        background: '#ffffff',
+                        color: '#e43621',
+                    }
+                }
                 }
             />
-            <div className="game-top">
-                <h2 className="timer">60</h2>
-                <h2 className="turn">Turn:{dictStates.turn}</h2>
-                <h2 className="dice">Dice:{dice}</h2>
-            </div>
 
             <div className="game-mid">
-                <div className="game-mid-buttons">
-                    <ButtonThrowDice />
-                    <ButtonEndTurn />
-                    <ButtonAccuse openModal={openModalAccuse} />
-                    <ButtonSuspect openModal={openModalSuspect} />
-                    {salem &&
-                        <Button ref={refButtonMistery}
-                            variant="contained"
-                            color="secondary"
-                            onClick={openModalSalem}
-                        >
-                            Use Salem
-                        </Button>}
+
+                <div className="game-list-chat">
+                    <div className="game-list"></div>
+                    <ChatGame className="game-chat" buffer={buffer}></ChatGame>
                 </div>
-                <Board className="game-board" />
+
+                <Board />
+
+                <div className="game-mid-buttons-dice-turn">
+
+                    <div className="game-mid-dice-turn">
+                        <h2 className="turn">Turn:{dictStates.turn}</h2>
+                        <h2 className="dice">Dice:{dice}</h2>
+                    </div>
+
+                    <div className="game-mid-buttons">
+                        <ButtonThrowDice />
+                        <ButtonEndTurn />
+                        <ButtonAccuse openModal={openModalAccuse} />
+                        <ButtonSuspect openModal={openModalSuspect} />
+                        {salem &&
+                            <Button ref={refButtonMistery}
+                                variant="contained"
+                                color="secondary"
+                                onClick={openModalSalem}
+                            >
+                                Use Salem
+                            </Button>}
+                    </div>
+                    <div className="cards">
+                        {hand.map(card => {
+                            let url = ''
+                            if (card.name === 'Dracula') {
+                                url = '/dracula.png'
+                            }
+                            else if (card.name === 'Frankenstein') {
+                                url = '/frankenstein.png'
+                            }
+                            else if (card.name === 'Werewolf') {
+                                url = '/werewolf.png'
+                            }
+                            else if (card.name === 'Ghost') {
+                                url = '/ghost.png'
+                            }
+                            else if (card.name === 'Mummy') {
+                                url = '/mummy.png'
+                            }
+                            else if (card.name === 'Gardener') {
+                                url = '/gardener.png'
+                            }
+                            else if (card.name === 'Maid') {
+                                url = '/maid.png'
+                            }
+                            else if (card.name === 'Butler') {
+                                url = '/butler.png'
+                            }
+                            else if (card.name === 'Count') {
+                                url = '/count.png'
+                            }
+                            else if (card.name === 'Countess') {
+                                url = '/countess.png'
+                            }
+                            else if (card.name === 'Housekeeper') {
+                                url = '/housekeeper.png'
+                            }
+                            else if (card.name === 'Bedroom') {
+                                url = '/bedroom.png'
+                            }
+                            else if (card.name === 'Library') {
+                                url = '/library.png'
+                            }
+                            else if (card.name === 'Cellar') {
+                                url = '/cellar.png'
+                            }
+                            else if (card.name === 'Garage') {
+                                url = '/garage.png'
+                            }
+                            else if (card.name === 'Laboratory') {
+                                url = '/laboratory.png'
+                            }
+                            else if (card.name === 'Pantheon') {
+                                url = '/pantheon.png'
+                            }
+                            else if (card.name === 'Dining') {
+                                url = '/dining.png'
+                            }
+                            else if (card.name === 'Living') {
+                                url = '/living.png'
+                            }
+                            else if (card.name === 'Salem Witch') {
+                                url = '/bruja_salem.png'
+                            }
+                            else if (card.name === 'Dr. Jekyll and Mr Hyde') {
+                                url = '/drr.png'
+                            }
+                            return (
+
+                                <img src={url} alt={hand.name} />
+
+                            )
+                        }
+
+                        )}
+                    </div>
+
+
+                </div>
+
             </div>
 
             <div className="game-bot">
-                <ChatGame className="game-chat" buffer={buffer}></ChatGame>
-                <div className="cards">
-                    {hand.map(card => {
-                        let url = ''
-                        if (card.name === 'Dracula') {
-                            url = '/dracula.png'
-                        }
-                        else if (card.name === 'Frankenstein') {
-                            url = '/frankenstein.png'
-                        }
-                        else if (card.name === 'Werewolf') {
-                            url = '/werewolf.png'
-                        }
-                        else if (card.name === 'Ghost') {
-                            url = '/ghost.png'
-                        }
-                        else if (card.name === 'Mummy') {
-                            url = '/mummy.png'
-                        }
-                        else if (card.name === 'Dr. Jekyll and Mr Hyde') {
-                            url = '/doctor.png'
-                        }
-                        else if (card.name === 'Gardener') {
-                            url = '/gardener.png'
-                        }
-                        else if (card.name === 'Maid') {
-                            url = '/maid.png'
-                        }
-                        else if (card.name === 'Butler') {
-                            url = '/butler.png'
-                        }
-                        else if (card.name === 'Count') {
-                            url = '/count.png'
-                        }
-                        else if (card.name === 'Countess') {
-                            url = '/countess.png'
-                        }
-                        else if (card.name === 'Housekeeper') {
-                            url = '/housekeeper.png'
-                        }
-                        else if (card.name === 'Bedroom') {
-                            url = '/bedroom.png'
-                        }
-                        else if (card.name === 'Library') {
-                            url = '/library.png'
-                        }
-                        else if (card.name === 'Cellar') {
-                            url = '/cellar.png'
-                        }
-                        else if (card.name === 'Garage') {
-                            url = '/garage.png'
-                        }
-                        else if (card.name === 'Laboratory') {
-                            url = '/laboratory.png'
-                        }
-                        else if (card.name === 'Pantheon') {
-                            url = '/pantheon.png'
-                        }
-                        else if (card.name === 'Dining') {
-                            url = '/dining.png'
-                        }
-                        else if (card.name === 'Living') {
-                            url = '/living.png'
-                        }
-                        else if (card.name === 'Salem Witch') {
-                            url = '/bruja_salem.png'
-                        }
-                        return (
 
-                            <img style={{}} src={url} alt={hand.name} />
 
-                        )
-                    }
-
-                    )}
-                </div>
                 <div className="game-bot-buttons">
                     <Bloc></Bloc>
-                    <Button>Exit</Button>
                 </div>
 
             </div>
@@ -278,12 +292,8 @@ const Game = () => {
             <ModalWichCardAccuse isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
             <ModalSalem isOpenSalem={isOpenSalem} closeModalSalem={closeModalSalem} />
             <MchooseCardsSuspect isOpen={isOpenSuspect} closeModal={closeModalSuspect} />
-            <ModalWinOrLost
-                isOpenWinOrLost={isOpenWinOrLost}
-                closeModalWinOrLost={closeModalWinOrLost}
-                loser={loser}
-                winner={winner}
-            />
+
+            <ModalWinOrLost isOpenWinOrLost={isOpenWinOrLost} closeModalWinOrLost={closeModalWinOrLost} loser={loser} winner={winner} />
 
             <ModalSuspect
                 isOpenQuestion={isOpenQuestion}
