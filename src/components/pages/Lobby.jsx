@@ -10,6 +10,8 @@ import ButtonExitLobby from "../buttons/ButtonExitLobby";
 import Cards from "./Card";
 import Chat from "./Chat";
 
+import './Lobby.css'
+
 const Lobby = () => {
 
     let arrayAuxiliar = [];
@@ -79,6 +81,7 @@ const Lobby = () => {
                 history.push(`/game/${parseJson.match.name}`);
             }
             else if (parseJson.action === 'player_left') {
+                setPlayers2(players2.filter(player => player !== parseJson.player_name));
                 setLeftPlayer(parseJson.player_name);
                 dictStates.setPlayers()
             }
@@ -101,18 +104,15 @@ const Lobby = () => {
                         players2.map(player => <Cards player={player}></Cards>)
                     }
 
-                    <div className="start-start">
-                        {host && <ButtonStartGame />}
-                    </div>
+
                 </div>
 
                 <div className="lobby-chat-start">
                     <Chat buffer={buffer} newPlayer={newPlayer} leftPlayer={leftPlayer}></Chat>
                     <div className="lobby-controls">
                         <div className="controls">
-
                             <ButtonExitLobby />
-
+                            {host && <ButtonStartGame />}
                         </div>
                     </div>
                 </div>
