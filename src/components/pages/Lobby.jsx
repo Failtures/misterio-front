@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { ws } from "../WebSocket";
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Toaster, toast } from "react-hot-toast";
 // Components
 import ButtonStartGame from "../buttons/ButtonStartGame";
 import ButtonExitLobby from "../buttons/ButtonExitLobby";
@@ -61,6 +62,14 @@ const Lobby = () => {
                 setNewPlayer(parseJson.player_name);
                 //alertRef.current.style.display = 'block';
                 dictStates.setPlayers(arrayAuxiliar);
+                toast(`${parseJson.player_name} entry to the lobby`, {
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    style: {
+                        background: '#ffffff',
+                        color: "#45cf15"
+                    }
+                })
             }
             else if (parseJson.action === 'match_started') {
                 dictStates.setPlayerPosition(parseJson.match.player_position.player_position)
@@ -81,6 +90,14 @@ const Lobby = () => {
             else if (parseJson.action === 'player_left') {
                 setLeftPlayer(parseJson.player_name);
                 dictStates.setPlayers()
+                toast(`${parseJson.player_name} left the lobby`, {
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    style: {
+                        background: '#ffffff',
+                        color: "#e50404"
+                    }
+                })
             }
             else if (parseJson.action === 'lobby_removed') {
                 history.push('/');
@@ -117,10 +134,10 @@ const Lobby = () => {
                     </div>
                 </div>
             </div>
-
-
-
-
+            <Toaster
+                position="bottom-left"
+                reverseOrder={false}
+            />
         </div>
 
     );

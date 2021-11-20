@@ -140,7 +140,7 @@ const Game = () => {
             }
             else if (parsedJson.action === 'mystery_card') {
                 setMistery(parsedJson.card.name);
-                toast(parsedJson.card.name);
+                toast(`The mistery card is ${parsedJson.card.name}`);
                 setHand(hand.filter(card => card.name !== "Salem Witch"));
                 refButtonMistery.current.style.display = "none";
                 closeModalSalem();
