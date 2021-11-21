@@ -5,6 +5,7 @@ import { TextField, Button } from '@material-ui/core'
 import { ws, send_ } from '../WebSocket'
 import { makeStyles } from '@material-ui/styles'
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Typography } from '@material-ui/core';
 
 // CSS styles
 import "./ModalCreateGame.css";
@@ -24,17 +25,17 @@ const useStyle = makeStyles({
 const ModalCreateGame = ({ isOpen, closeModal }) => {
 
     const dictStates = useContext(ThemeContext)
-        
+
     const [gameName, setGameName] = useState('');
 
     const classes = useStyle();
-    
+
     const history = useHistory();
 
     const handleCreateGame = () => {
         if (gameName === '') {
             alert('introduce game name')
-        }else{
+        } else {
             send_(ws, 'lobby_create', dictStates.nickname, gameName);
             history.push(`/lobby/${gameName}`);
         }
@@ -51,18 +52,18 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000" />
                     </svg>
                 </button>
-                <h2>Create Game</h2>
+                <Typography style={{ marginTop: '5%' }} variant="h4" color="#423C3C">Create game</Typography>
+
                 <form>
                     <div className="tfield-group">
-                        <TextField 
-                            required id="outlined-required" 
-                            label="Game Name" 
+                        <TextField
+                            required id="outlined-required"
+                            label="Game Name"
                             variant="filled"
                             size="small"
                             autoFocus={true}
-                            helperText="introduce Game Name"
-                            inputProps={{maxLength: 10}} 
-                            onChange={(e) => { setGameName(e.target.value) }} 
+                            inputProps={{ maxLength: 10 }}
+                            onChange={(e) => { setGameName(e.target.value) }}
                         />
                     </div>
                     <div className="button-group">
@@ -70,9 +71,9 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
                             handleCreateGame()
                         }}
                         >
-                            Create Game
+                            <Typography variant="button" color="#fff">Create</Typography>
                         </Button>
-                        <Button variant="contained" onClick={closeModal} className={classes.botonPersonalizado}>Exit</Button>
+
                     </div>
                 </form>
             </div>

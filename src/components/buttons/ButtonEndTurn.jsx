@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { ws } from '../WebSocket'
 import { ThemeContext } from "../../context/ContextGeneral";
+import { Typography } from '@material-ui/core';
 
 const ButtonEndTurn = () => {
 
@@ -24,7 +25,7 @@ const ButtonEndTurn = () => {
                     dictStates.setButtonSuspect(true)
                 }}
             >
-                End Turn
+                <Typography variant="button" color="#fff">End Turn</Typography>
             </Button>
         </div>
     );

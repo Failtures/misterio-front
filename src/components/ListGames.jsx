@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Button } from "@material-ui/core";
 // components
 import ButtonJoinGame from "./buttons/ButtonJoinGame";
+import { Typography } from '@material-ui/core';
 
 const ListGames = () => {
 
@@ -25,7 +26,7 @@ const ListGames = () => {
         catch (error) {
             console.log(error, "ERROR");
         }
-        
+
     };
 
     useEffect(() => {
@@ -56,14 +57,14 @@ const ListGames = () => {
                 <Table>
                     <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
                         <TableRow>
-                            <TableCell>Game name</TableCell>
-                            <TableCell>Players</TableCell>
+                            <TableCell><Typography variant="body1" color="black">Game name</Typography></TableCell>
+                            <TableCell><Typography variant="body1" color="black">Players</Typography></TableCell>
                             <TableCell>
                                 <Button variant="contained"
                                     color="secondary"
                                     onClick={getLobbies}
                                 >
-                                    Refresh
+                                    <Typography variant="button" color="white">REFRESH</Typography>
                                 </Button>
                             </TableCell>
                         </TableRow>
@@ -72,8 +73,8 @@ const ListGames = () => {
                         {
                             games.map(item => (
                                 <TableRow key={item.name}>
-                                    <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
-                                    <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
+                                    <TableCell><Typography variant="body1" color="white">{item.name}</Typography></TableCell>
+                                    <TableCell> <Typography variant="body1" color="white">{item.current_players}</Typography></TableCell>
                                     <TableCell>
                                         <ButtonJoinGame
                                             nameGame={item.name}

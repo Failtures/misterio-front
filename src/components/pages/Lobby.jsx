@@ -11,6 +11,7 @@ import ButtonExitLobby from "../buttons/ButtonExitLobby";
 import Cards from "./Card";
 import Chat from "./Chat";
 
+import { Typography } from '@material-ui/core';
 import './Lobby.css'
 
 const Lobby = () => {

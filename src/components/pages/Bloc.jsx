@@ -4,6 +4,8 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import CheckBox from './CheckBox';
 
+import { Typography } from '@material-ui/core';
+
 export default function TemporaryDrawer({ hand }) {
     const [state, setState] = React.useState({
         left: false,
@@ -81,12 +83,12 @@ export default function TemporaryDrawer({ hand }) {
         <div>
             {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button
-
-                        onClick={toggleDrawer(anchor, true)}
+                    <Button onClick={toggleDrawer(anchor, true)}
                         variant="contained"
                         color="secondary"
-                    >NOTE</Button>
+                    >
+                        <Typography variant="button" color="#fff">Note</Typography>
+                    </Button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}

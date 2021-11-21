@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { ws, send_ } from "../WebSocket"
 import { ThemeContext } from "../../context/ContextGeneral";
+import { Typography } from '@material-ui/core';
 
 const ButtonJoinGame = (props) => {
 
@@ -28,7 +29,7 @@ const ButtonJoinGame = (props) => {
         onClick={() => {
           handleJoinGame()
         }}>
-        Join Game
+         <Typography color="#fff" variant="button">Join Game</Typography>
       </Button>
     </div >
   );
