@@ -64,12 +64,12 @@ const Lobby = () => {
                 setNewPlayer(parseJson.player_name);
                 //alertRef.current.style.display = 'block';
                 dictStates.setPlayers(arrayAuxiliar);
-                toast(`${parseJson.player_name} entry to the lobby`, {
+                toast(`${parseJson.player_name} joined the lobby`, {
                     position: "bottom-left",
                     autoClose: 4000,
                     style: {
                         background: '#ffffff',
-                        color: "#45cf15"
+                        color: "#116406"
                     }
                 })
             }

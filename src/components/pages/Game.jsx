@@ -149,7 +149,7 @@ const Game = () => {
             }
         };
     });
-
+    console.log(dictStates.players);
     return (
         <div className="game-container">
             <Toaster
@@ -170,7 +170,15 @@ const Game = () => {
             <div className="game-mid">
 
                 <div className="game-list-chat">
-                    <div className="game-list"></div>
+                    <div className="game-list">
+                        <ul>
+                            {
+                                dictStates.players.map((player) => (
+                                    dictStates.turn === player ? <li> <b>{player}</b> </li> : <li> {player} </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                     <ChatGame className="game-chat" buffer={buffer}></ChatGame>
                 </div>
 
