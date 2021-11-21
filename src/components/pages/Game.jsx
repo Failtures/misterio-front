@@ -16,6 +16,8 @@ import ButtonThrowDice from "../buttons/ButtonThrowDice";
 import ButtonEndTurn from "../buttons/ButtonEndTurn";
 import ButtonSuspect from "../buttons/ButtonSuspect";
 
+import { Typography } from '@material-ui/core';
+
 import Board from "../boardComponents/Board";
 import Bloc from "./Bloc";
 import { Toaster, toast } from "react-hot-toast";
@@ -174,7 +176,7 @@ const Game = () => {
                         <ul>
                             {
                                 dictStates.players.map((player) => (
-                                    dictStates.turn === player ? <li> <b style={{color:'white'}}>{player}</b> </li > : <li> {player} </li>
+                                    dictStates.turn === player ? <li> <b style={{ color: 'white' }}>{player}</b> </li > : <li> {player} </li>
                                 ))
                             }
                         </ul>
@@ -187,8 +189,8 @@ const Game = () => {
                 <div className="game-mid-buttons-dice-turn">
 
                     <div className="game-mid-dice-turn">
-                        <h2 className="turn">Turn:{dictStates.turn}</h2>
-                        <h2 className="dice">Dice:{dice}</h2>
+                        <Typography variant="h4" color="#fff">Turn: {dictStates.turn}</Typography>
+                        <Typography variant="h4" color="#fff">Dice: {dice}</Typography>
                     </div>
 
                     <div className="game-mid-buttons">
@@ -208,7 +210,7 @@ const Game = () => {
                                 color="secondary"
                                 onClick={openModalSalem}
                             >
-                                Use Salem
+                                <Typography variant="button" color="#fff">Salem</Typography>
                             </Button>
                         }
                         <Bloc hand={hand}></Bloc>

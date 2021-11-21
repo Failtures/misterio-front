@@ -4,6 +4,7 @@ import { ws } from '../WebSocket'
 import { ThemeContext } from '../../context/ContextGeneral';
 import { useHistory } from "react-router";
 import { Button } from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 
 function ButtonExitLobby() {
 
@@ -27,7 +28,7 @@ function ButtonExitLobby() {
                     history.push('/');
                 }}
             >
-                Exit
+                <Typography variant="button" color="#fff">Exit</Typography>
             </Button>
         </div>
 

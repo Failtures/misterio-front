@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import { ws } from '../WebSocket'
 import { TextField } from '@material-ui/core';
 import { ThemeContext } from '../../context/ContextGeneral';
-
+import { Typography } from '@material-ui/core';
 import './Chat.css';
 
-const Chat = ({ buffer, newPlayer, leftPlayer }) => {
+const Chat = ({ buffer }) => {
 
     const [msg, setMsg] = useState('');
 
@@ -24,7 +24,7 @@ const Chat = ({ buffer, newPlayer, leftPlayer }) => {
         <div className="chat-container">
 
             <div className="chat-content">
-                {buffer.map(buff => <p style={{ color: 'white' }}>{buff}</p>)}
+                {buffer.map(buff => <Typography variant="body1" color="#fff">{buff}</Typography>)}
             </div>
 
 

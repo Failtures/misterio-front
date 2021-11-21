@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ws } from '../WebSocket'
 import { TextField } from '@material-ui/core';
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Typography } from '@material-ui/core';
 
 import './Chat.css';
 
@@ -22,10 +23,8 @@ const ChatGame = ({ buffer }) => {
         <div className="game-chat-container">
 
             <div className="game-chat-content">
-                {buffer.map(buff => <p style={{ color: 'white' }}>{buff}</p>)}
+                {buffer.map(buff => <Typography variant="body1" color="#fff">{buff}</Typography>)}
             </div>
-
-
 
             <TextField
                 className="game-chat-input"

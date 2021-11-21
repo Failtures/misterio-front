@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Typography } from '@material-ui/core';
 
 // components
 import ModalCreateGame from '../modals/ModalCreateGame';
@@ -31,7 +32,7 @@ const Home = () => {
     return (
         <div className="container">
             <div className="header">
-                <h1>MISTERY</h1>
+            <Typography style={{fontSize:'5rem'}} color="#fff" variant="h1">MISTERY</Typography>
             </div>
             <div className="section">
                 <div className="aside">
@@ -59,7 +60,7 @@ const Home = () => {
             </div>
             <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} />
             <div className="footer">
-                <p> &copy;FAILTURES</p>
+                <Typography style={{color:'white', fontSize:'1rem'}} variant="body1">&copy;FAILTURES </Typography>
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { ws } from "../WebSocket";
 import { ThemeContext } from "../../context/ContextGeneral";
+import { Typography } from '@material-ui/core';
 
 const ButtonStartGame = (props) => {
 
@@ -22,7 +23,7 @@ const ButtonStartGame = (props) => {
                     }));
                 }}
             >
-                Start
+                <Typography variant="button" color="#fff">Start</Typography>
             </Button>
         </div>
 

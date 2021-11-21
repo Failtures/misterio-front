@@ -2,6 +2,7 @@
 import React, { useContext } from 'react'
 import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Typography } from '@material-ui/core';
 
 const ButtonAccuse = ({ openModal }) => {
 
@@ -15,7 +16,7 @@ const ButtonAccuse = ({ openModal }) => {
                 disabled={dictStates.nickname === dictStates.turn ? false : true}
                 onClick={openModal}
             >
-                Accuse
+                <Typography variant="button" color="#fff">Accuse</Typography>
             </Button>
         </div>
     )

@@ -38,20 +38,22 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                     </svg>
                 </button>
 
-                <div className= "cards-to-show">
+                <div className="cards-to-show">
                     <h2>Choose a card to show</h2>
                     {
                         suspect.map((card) => (
-                            <img width="150px" height="200px" src={cardFun(card)} alt= {card.name} onClick={(e) => setSelection(e.target.alt)} />
+                            <img width="150px" height="200px" src={cardFun(card)} alt={card.name} onClick={(e) => setSelection(e.target.alt)} />
                         ))
-                    } 
+                    }
                     <p style={{ color: 'white' }}>{`Selection: ${selection}`} </p>
                     <Button
                         variant="contained"
                         color="secondary"
                         onClick={() => {
-                            ws.send(JSON.stringify(takesQuestionPositive));
-                            closeModalQuestion();
+                            if (selection) {
+                                ws.send(JSON.stringify(takesQuestionPositive));
+                                closeModalQuestion();
+                            }
                         }}
                     >
                         Confirm
