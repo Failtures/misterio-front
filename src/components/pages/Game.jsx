@@ -191,7 +191,6 @@ const Game = () => {
                     <div className="game-list">
                         <ul>
                             {
-<<<<<<< HEAD
                                 dictStates.tokenColor.map((player) => (
                                     dictStates.turn === player.player 
                                     ? 
@@ -215,10 +214,6 @@ const Game = () => {
                                         </div>
                                     </li>
                                     
-=======
-                                dictStates.players.map((player) => (
-                                    dictStates.turn === player ? <li> <b style={{ color: 'white' }}>{player}</b> </li > : <li> {player} </li>
->>>>>>> a5b98cc35dc44538c5a80892e44b5d0fa7065074
                                 ))
                             }
                         </ul>
