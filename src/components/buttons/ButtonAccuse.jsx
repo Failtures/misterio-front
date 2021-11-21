@@ -7,13 +7,13 @@ import { Typography } from '@material-ui/core'
 const ButtonAccuse = ({ openModal }) => {
 
     const dictStates = useContext(ThemeContext)
-
+    // {display: { dictStates.nickname === dictStates.turn ? '' : 'none' }}
     return (
-        <div>
+        <div style={dictStates.nickname === dictStates.turn ? {display: ''} : {display: 'none'}}>
             <Button
                 variant="contained"
                 color="secondary"
-                disabled={dictStates.nickname === dictStates.turn ? false : true}
+                // disabled={dictStates.nickname === dictStates.turn ? false : true}
                 onClick={openModal}
             >
                 <Typography variant="button" color="#fff">Accuse</Typography>

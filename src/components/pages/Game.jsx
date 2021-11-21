@@ -1,34 +1,33 @@
 // imports
-import React, { useEffect, useState, useContext, useRef } from "react"
-import { Button } from "@material-ui/core"
-import { ThemeContext } from '../../context/ContextGeneral'
+import React, { useEffect, useState, useContext, useRef } from "react";
+import { makeStyles } from '@material-ui/styles'
+import { Button } from "@material-ui/core";
+import { ThemeContext } from '../../context/ContextGeneral';
+import { Toaster, toast } from "react-hot-toast";
 import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
 import { cardFun } from "../CardFunction"
 // Components
-import ModalWichCardAccuse from "../modals/ModalWichCardAccuse"
-import ModalWinOrLost from "../modals/ModalWinOrLost"
-import MchooseCardsSuspect from "../modals/MchooseCardsSuspect"
-import ModalSalem from "../modals/ModalSalem"
-import ModalSuspect from "../modals/ModalSuspect"
+import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
+import ModalWinOrLost from "../modals/ModalWinOrLost";
+import MchooseCardsSuspect from "../modals/MchooseCardsSuspect";
+import ModalSalem from "../modals/ModalSalem";
+import ModalSuspect from "../modals/ModalSuspect";
 
-import ButtonAccuse from "../buttons/ButtonAccuse"
-import ButtonThrowDice from "../buttons/ButtonThrowDice"
-import ButtonEndTurn from "../buttons/ButtonEndTurn"
-import ButtonSuspect from "../buttons/ButtonSuspect"
+import ButtonAccuse from "../buttons/ButtonAccuse";
+import ButtonThrowDice from "../buttons/ButtonThrowDice";
+import ButtonEndTurn from "../buttons/ButtonEndTurn";
+import ButtonSuspect from "../buttons/ButtonSuspect";
 
-import Bloc from "./Bloc"
-import ChatGame from "./ChatGame"
-import Board from "../boardComponents/Board"
+import { Typography } from '@material-ui/core';
 
-import { Typography } from '@material-ui/core'
-import { Toaster, toast } from "react-hot-toast"
-
+import Board from "../boardComponents/Board";
+import Bloc from "./Bloc";
+import ChatGame from "./ChatGame";
 // CSS style
 import './Lobby.css'
 import './Game.css'
 import './Chat.css'
-
 
 const Game = () => {
 
@@ -51,6 +50,21 @@ const Game = () => {
     const [buffer, setBuffer] = useState([])
 
     const refButtonMistery = useRef(null)
+
+    const useStyle = makeStyles({
+        token: {    
+            width: '35px',
+            height: '35px',
+            opacity: '0.6',
+            backgroundColor: "white",
+            borderRadius: '100%',
+            border: '1px solid black',
+            
+            
+        }
+    });
+
+    const classes = useStyle()
 
     useEffect(() => {
 
@@ -152,7 +166,6 @@ const Game = () => {
             }
         }
     })
-    console.log(dictStates.players)
     return (
         <div className="game-container">
             <Toaster
@@ -176,8 +189,29 @@ const Game = () => {
                     <div className="game-list">
                         <ul>
                             {
-                                dictStates.players.map((player) => (
-                                    dictStates.turn === player ? <li> <b style={{ color: 'white' }}>{player}</b> </li > : <li> {player} </li>
+                                dictStates.tokenColor.map((player) => (
+                                    dictStates.turn === player.player 
+                                    ? 
+                                    <li>
+                                        <div className="list-player-container">
+                                            <b style={{color:'white'}}
+                                            >
+                                                {player.player}
+                                            </b> 
+                                            <div className={classes.token} style={{backgroundColor:`${player.color}`}}
+                                            >
+                                            </div> 
+                                        </div> 
+                                    </li > 
+                                    : 
+                                    <li> 
+                                        <div className="list-player-container">
+                                            {player.player} 
+                                            <div className={classes.token} style={{backgroundColor:`${player.color}`}}>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
                                 ))
                             }
                         </ul>
