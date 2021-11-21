@@ -6,7 +6,7 @@
     background-color: black;
     padding: 0.1%;
     border-radius: 1%;
-    background-color: #0C0D0E;
+    background-color: black;
 }
 /**/
 .chat-content {
@@ -46,7 +46,7 @@
     justify-content: space-between;
     width: 80%;
     height: 30%;
-    background-color: #0C0D0E;
+    background-color: black;
     margin-bottom: 2%;
     margin-left: 2%;
 }

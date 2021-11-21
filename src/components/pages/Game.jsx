@@ -143,9 +143,9 @@ const Game = () => {
                 refButtonMistery.current.style.display = "none";
                 closeModalSalem();
             }
-            //{'action': 'new_message', 'message': <str>}
             else if (parsedJson.action === 'new_message') {
-                setBuffer((buffer) => [...buffer, parsedJson.message]);
+                const date = new Date(parsedJson.timestamp)
+                setBuffer((buffer) => [...buffer, `${date.getHours()}:${date.getMinutes()} ${parsedJson.author}: ${parsedJson.message}`]);
             }
         };
     });
@@ -174,7 +174,7 @@ const Game = () => {
                         <ul>
                             {
                                 dictStates.players.map((player) => (
-                                    dictStates.turn === player ? <li> <b>{player}</b> </li> : <li> {player} </li>
+                                    dictStates.turn === player ? <li> <b style={{color:'white'}}>{player}</b> </li > : <li> {player} </li>
                                 ))
                             }
                         </ul>
@@ -192,10 +192,16 @@ const Game = () => {
                     </div>
 
                     <div className="game-mid-buttons">
-                        <ButtonThrowDice />
-                        <ButtonEndTurn />
-                        <ButtonAccuse openModal={openModalAccuse} />
-                        <ButtonSuspect openModal={openModalSuspect} />
+
+                        <div className="dice-end">
+                            <ButtonThrowDice />
+                            <ButtonEndTurn />
+                        </div>
+                        <div className="accuse-suspect">
+                            <ButtonAccuse openModal={openModalAccuse} />
+                            <ButtonSuspect openModal={openModalSuspect} />
+                        </div>
+
                         {salem &&
                             <Button ref={refButtonMistery}
                                 variant="contained"
@@ -203,7 +209,9 @@ const Game = () => {
                                 onClick={openModalSalem}
                             >
                                 Use Salem
-                            </Button>}
+                            </Button>
+                        }
+                        <Bloc hand={hand}></Bloc>
                     </div>
                     <div className="cards">
                         {hand.map(card => {
@@ -279,8 +287,7 @@ const Game = () => {
                         )}
                     </div>
 
-                </div>  
-                <Bloc hand={hand}></Bloc>
+                </div>
             </div>
 
             <ModalWichCardAccuse isOpen={isOpenAccuse} closeModal={closeModalAccuse} />
@@ -295,7 +302,7 @@ const Game = () => {
                 suspect={suspect}
                 replyTo={replyTo}
             />
-            
+
         </div>
     );
 };
