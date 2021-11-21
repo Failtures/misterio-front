@@ -1,7 +1,9 @@
 // imports
 import React, { useEffect, useState, useContext, useRef } from "react";
+import { makeStyles } from '@material-ui/styles'
 import { Button } from "@material-ui/core";
 import { ThemeContext } from '../../context/ContextGeneral';
+import { Toaster, toast } from "react-hot-toast";
 import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
 // Components
@@ -18,12 +20,11 @@ import ButtonSuspect from "../buttons/ButtonSuspect";
 
 import Board from "../boardComponents/Board";
 import Bloc from "./Bloc";
-import { Toaster, toast } from "react-hot-toast";
+import ChatGame from "./ChatGame";
 // CSS style
 import './Lobby.css'
 import './Game.css'
 import './Chat.css'
-import ChatGame from "./ChatGame";
 
 const Game = () => {
 
@@ -47,6 +48,21 @@ const Game = () => {
     const [buffer, setBuffer] = useState([]);
 
     const refButtonMistery = useRef(null);
+
+    const useStyle = makeStyles({
+        token: {    
+            width: '35px',
+            height: '35px',
+            opacity: '0.6',
+            backgroundColor: "white",
+            borderRadius: '100%',
+            border: '1px solid black',
+            
+            
+        }
+    });
+
+    const classes = useStyle()
 
     useEffect(() => {
 
@@ -173,8 +189,29 @@ const Game = () => {
                     <div className="game-list">
                         <ul>
                             {
-                                dictStates.players.map((player) => (
-                                    dictStates.turn === player ? <li> <b style={{color:'white'}}>{player}</b> </li > : <li> {player} </li>
+                                dictStates.tokenColor.map((player) => (
+                                    dictStates.turn === player.player 
+                                    ? 
+                                    <li>
+                                        <div className="list-player-container">
+                                            <b style={{color:'white'}}
+                                            >
+                                                {player.player}
+                                            </b> 
+                                            <div className={classes.token} style={{backgroundColor:`${player.color}`}}
+                                            >
+                                            </div> 
+                                        </div> 
+                                    </li > 
+                                    : 
+                                    <li> 
+                                        <div className="list-player-container">
+                                            {player.player} 
+                                            <div className={classes.token} style={{backgroundColor:`${player.color}`}}>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
                                 ))
                             }
                         </ul>
