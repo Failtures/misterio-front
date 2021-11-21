@@ -6,7 +6,6 @@ export const ThemeContext = createContext();
 const ContextGeneral = (props) => {
 
     const [nickname, setNickname] = useState('');
-    const [players, setPlayers] = useState([]);
     const [lobbyName, setLobbyName] = useState('')
     const [posX, setPosX] = useState(0)
     const [posY, setPosY] = useState(0)
@@ -19,7 +18,6 @@ const ContextGeneral = (props) => {
     const dictStates = {
 
         nickname: nickname,
-        players: players,
         lobbyName: lobbyName,
         posX: posX,
         posY: posY,
@@ -30,7 +28,6 @@ const ContextGeneral = (props) => {
         playerPosition: playerPosition,
 
         setNickname: nickname => setNickname(nickname),
-        setPlayers: players => setPlayers(players),
         setLobbyName: lobbyName => setLobbyName(lobbyName),
         setPosX: posX => setPosX(posX),
         setPosY: posY => setPosY(posY),

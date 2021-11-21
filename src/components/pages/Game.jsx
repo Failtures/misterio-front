@@ -167,7 +167,6 @@ const Game = () => {
             }
         };
     });
-    console.log(dictStates.players);
     return (
         <div className="game-container">
             <Toaster

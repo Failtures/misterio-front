@@ -8,18 +8,27 @@ const ButtonSuspect = ({ openModal }) => {
     const dictStates = useContext(ThemeContext)
 
     return (
-        <div>
+        <div style={((dictStates.square === 'Bedroom' ||
+                        dictStates.square === 'Library' ||
+                        dictStates.square === 'Cellar' ||
+                        dictStates.square === 'Garage' ||
+                        dictStates.square === 'Laboratory' ||
+                        dictStates.square === 'Pantheon' ||
+                        dictStates.square === 'Dining' ||
+                        dictStates.square === 'Living') && 
+                        dictStates.buttonSuspect && 
+                        (dictStates.turn === dictStates.nickname)) ? {display: ''} : {display: 'none'}}>
             <Button
                 variant="contained"
                 color="secondary"
-                disabled={((dictStates.square === 'Bedroom' ||
-                    dictStates.square === 'Library' ||
-                    dictStates.square === 'Cellar' ||
-                    dictStates.square === 'Garage' ||
-                    dictStates.square === 'Laboratory' ||
-                    dictStates.square === 'Pantheon' ||
-                    dictStates.square === 'Dining' ||
-                    dictStates.square === 'Living') && dictStates.buttonSuspect && (dictStates.turn === dictStates.nickname)) ? false : true}
+                // disabled={((dictStates.square === 'Bedroom' ||
+                //     dictStates.square === 'Library' ||
+                //     dictStates.square === 'Cellar' ||
+                //     dictStates.square === 'Garage' ||
+                //     dictStates.square === 'Laboratory' ||
+                //     dictStates.square === 'Pantheon' ||
+                //     dictStates.square === 'Dining' ||
+                //     dictStates.square === 'Living') && dictStates.buttonSuspect && (dictStates.turn === dictStates.nickname)) ? false : true}
                 onClick={openModal}
             >
                 <Typography variant="button" color="#fff">Suspect</Typography>

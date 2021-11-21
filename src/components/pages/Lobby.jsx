@@ -49,22 +49,15 @@ const Lobby = () => {
             if (parsedJson.action === 'new_lobby') {
                 setHost(parsedJson.lobby.host);
                 setPlayers2([parsedJson.lobby.host]);
-                dictStates.setPlayers(parsedJson.lobby.players);
                 dictStates.setLobbyName(parsedJson.lobby.name);
             }
             else if (parsedJson.action === 'joined_lobby') {
                 setPlayers2(parsedJson.lobby.players);
-                dictStates.setPlayers(parsedJson.lobby.players);
                 dictStates.setLobbyName(parsedJson.lobby.name);
             }
             else if (parsedJson.action === 'new_player') {
                 setPlayers2((players2) => [...players2, parsedJson.player_name]);
-                arrayAuxiliar = dictStates.players.slice();
-                arrayAuxiliar.push(parsedJson.player_name);
-                dictStates.setPlayers(arrayAuxiliar);
                 setNewPlayer(parsedJson.player_name);
-                //alertRef.current.style.display = 'block';
-                dictStates.setPlayers(arrayAuxiliar);
                 toast(`${parsedJson.player_name} joined the lobby`, {
                     position: "bottom-left",
                     autoClose: 4000,
@@ -93,7 +86,6 @@ const Lobby = () => {
             else if (parsedJson.action === 'player_left') {
                 setPlayers2(players2.filter(player => player !== parsedJson.player_name));
                 setLeftPlayer(parsedJson.player_name);
-                dictStates.setPlayers()
                 toast(`${parsedJson.player_name} left the lobby`, {
                     position: "bottom-left",
                     autoClose: 4000,

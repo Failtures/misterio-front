@@ -15,11 +15,11 @@ const ButtonEndTurn = () => {
     };
 
     return (
-        <div>
+        <div style={dictStates.nickname === dictStates.turn ? {display: ''} : {display: 'none'}}>
             <Button
                 variant="contained"
                 color="secondary"
-                disabled={dictStates.nickname === dictStates.turn ? false : true}
+                // disabled={dictStates.nickname === dictStates.turn ? false : true}
                 onClick={() => {
                     ws.send(JSON.stringify(takes));
                     dictStates.setButtonSuspect(true)
