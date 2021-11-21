@@ -1,70 +1,56 @@
 // imports
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { useHistory } from "react-router";
-import { ws } from "../WebSocket";
-import { ThemeContext } from '../../context/ContextGeneral';
-import { Toaster, toast } from "react-hot-toast";
+import React, { useEffect, useState, useContext } from "react"
+import { useHistory } from "react-router"
+import { ws } from "../WebSocket"
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Toaster, toast } from "react-hot-toast"
 // Components
-import ButtonStartGame from "../buttons/ButtonStartGame";
-import ButtonExitLobby from "../buttons/ButtonExitLobby";
+import ButtonStartGame from "../buttons/ButtonStartGame"
+import ButtonExitLobby from "../buttons/ButtonExitLobby"
 
-import Cards from "./Card";
-import Chat from "./Chat";
-
-import { Typography } from '@material-ui/core';
+import Cards from "./Card"
+import Chat from "./Chat"
 import './Lobby.css'
 
 const Lobby = () => {
 
-    let arrayAuxiliar = [];
+    let arrayAuxiliar = []
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
 
     const dictStates = useContext(ThemeContext)
 
-    const history = useHistory();
+    const history = useHistory()
 
-    const alertRef = useRef(null);
-
-    const [players2, setPlayers2] = useState([]);
-    const [host, setHost] = useState('');
-
-
-    const [newPlayer, setNewPlayer] = useState('');
-    const [leftPlayer, setLeftPlayer] = useState('');
-
-    const [buffer, setBuffer] = useState([]);
+    const [players2, setPlayers2] = useState([])
+    const [host, setHost] = useState('')
+    const [buffer, setBuffer] = useState([])
 
     const takesGetHand = {
         'action': 'match_get_hand',
         'player_name': dictStates.nickname,
         'match_name': dictStates.lobbyName
-    };
+    }
 
     useEffect(() => {
 
         ws.onmessage = (e) => {
 
-            const parsedJson = JSON.parse(e.data);
+            const parsedJson = JSON.parse(e.data)
 
             if (parsedJson.action === 'new_lobby') {
-                setHost(parsedJson.lobby.host);
-                setPlayers2([parsedJson.lobby.host]);
-                dictStates.setPlayers(parsedJson.lobby.players);
-                dictStates.setLobbyName(parsedJson.lobby.name);
+                setHost(parsedJson.lobby.host)
+                setPlayers2([parsedJson.lobby.host])
+                dictStates.setPlayers(parsedJson.lobby.players)
+                dictStates.setLobbyName(parsedJson.lobby.name)
             }
             else if (parsedJson.action === 'joined_lobby') {
-                setPlayers2(parsedJson.lobby.players);
-                dictStates.setPlayers(parsedJson.lobby.players);
-                dictStates.setLobbyName(parsedJson.lobby.name);
+                setPlayers2(parsedJson.lobby.players)
+                dictStates.setPlayers(parsedJson.lobby.players)
+                dictStates.setLobbyName(parsedJson.lobby.name)
             }
             else if (parsedJson.action === 'new_player') {
-                setPlayers2((players2) => [...players2, parsedJson.player_name]);
-                arrayAuxiliar = dictStates.players.slice();
-                arrayAuxiliar.push(parsedJson.player_name);
-                dictStates.setPlayers(arrayAuxiliar);
-                setNewPlayer(parsedJson.player_name);
-                //alertRef.current.style.display = 'block';
-                dictStates.setPlayers(arrayAuxiliar);
+                setPlayers2((players2) => [...players2, parsedJson.player_name])
+                dictStates.setPlayers(arrayAuxiliar)
                 toast(`${parsedJson.player_name} joined the lobby`, {
                     position: "bottom-left",
                     autoClose: 4000,
@@ -76,7 +62,7 @@ const Lobby = () => {
             }
             else if (parsedJson.action === 'match_started') {
                 dictStates.setPlayerPosition(parsedJson.match.player_position.player_position)
-                ws.send(JSON.stringify(takesGetHand));
+                ws.send(JSON.stringify(takesGetHand))
 
                 for (let i = 0; i < parsedJson.match.player_position.player_position.length; i++) {
 
@@ -87,12 +73,11 @@ const Lobby = () => {
                     dictStates.setTokenColor((tokenColor) => [...tokenColor, tokenPlayer])
                 }
 
-                dictStates.setTurn(parsedJson.match.turn);
-                history.push(`/game/${parsedJson.match.name}`);
+                dictStates.setTurn(parsedJson.match.turn)
+                history.push(`/game/${parsedJson.match.name}`)
             }
             else if (parsedJson.action === 'player_left') {
-                setPlayers2(players2.filter(player => player !== parsedJson.player_name));
-                setLeftPlayer(parsedJson.player_name);
+                setPlayers2(players2.filter(player => player !== parsedJson.player_name))
                 dictStates.setPlayers()
                 toast(`${parsedJson.player_name} left the lobby`, {
                     position: "bottom-left",
@@ -104,15 +89,15 @@ const Lobby = () => {
                 })
             }
             else if (parsedJson.action === 'lobby_removed') {
-                history.push('/');
+                history.push('/')
             }
             else if (parsedJson.action === 'new_message') {
                 const date = new Date(parsedJson.timestamp)
-                setBuffer((buffer) => [...buffer, `${date.getHours()}:${date.getMinutes()} ${parsedJson.author}: ${parsedJson.message}`]);
+                setBuffer((buffer) => [...buffer, `${date.getHours()}:${date.getMinutes()} ${parsedJson.author}: ${parsedJson.message}`])
 
             }
-        };
-    });
+        }
+    })
 
     return (
 
@@ -125,7 +110,7 @@ const Lobby = () => {
                 </div>
 
                 <div className="lobby-chat-start">
-                    <Chat buffer={buffer} newPlayer={newPlayer} leftPlayer={leftPlayer}></Chat>
+                    <Chat buffer={buffer}></Chat>
                     <div className="lobby-controls">
                         <div className="controls">
                             <ButtonExitLobby />
@@ -140,7 +125,7 @@ const Lobby = () => {
             />
         </div>
 
-    );
-};
+    )
+}
 
-export default Lobby;
+export default Lobby

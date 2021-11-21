@@ -1,9 +1,9 @@
 // imports
-import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
-import { ws } from "../WebSocket";
-import { ThemeContext } from "../../context/ContextGeneral";
-import { Typography } from '@material-ui/core';
+import React, { useContext } from "react"
+import { Button } from "@material-ui/core"
+import { ws } from "../WebSocket"
+import { ThemeContext } from "../../context/ContextGeneral"
+import { Typography } from '@material-ui/core'
 
 const ButtonStartGame = (props) => {
 
@@ -20,15 +20,15 @@ const ButtonStartGame = (props) => {
                         'action': 'lobby_start_match',
                         'player_name': dictStates.nickname,
                         'lobby_name': dictStates.lobbyName
-                    }));
+                    }))
                 }}
             >
                 <Typography variant="button" color="#fff">Start</Typography>
             </Button>
         </div>
 
-    );
-};
+    )
+}
 
-export default ButtonStartGame;
+export default ButtonStartGame
 

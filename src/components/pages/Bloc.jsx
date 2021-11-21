@@ -1,46 +1,46 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import CheckBox from './CheckBox';
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import Button from '@mui/material/Button'
+import CheckBox from './CheckBox'
 
-import { Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core'
 
 export default function TemporaryDrawer({ hand }) {
     const [state, setState] = React.useState({
         left: false,
-    });
+    })
 
-    const [butler, setButler] = React.useState(false);
-    const [count, setCount] = React.useState(false);
-    const [countess, setCountess] = React.useState(false);
-    const [housekeeper, setHouseKeeper] = React.useState(false);
+    const [butler, setButler] = React.useState(false)
+    const [count, setCount] = React.useState(false)
+    const [countess, setCountess] = React.useState(false)
+    const [housekeeper, setHouseKeeper] = React.useState(false)
     const [gardener, setGardener] = React.useState(false)
-    const [maid, setMaid] = React.useState(false);
+    const [maid, setMaid] = React.useState(false)
 
-    const [dracula, setDracula] = React.useState(false);
-    const [dr, setDr] = React.useState(false);
-    const [frankenstein, setFrankenstein] = React.useState(false);
-    const [ghost, setGhost] = React.useState(false);
+    const [dracula, setDracula] = React.useState(false)
+    const [dr, setDr] = React.useState(false)
+    const [frankenstein, setFrankenstein] = React.useState(false)
+    const [ghost, setGhost] = React.useState(false)
     const [mummy, setMummy] = React.useState(false)
-    const [werewolf, setWereWolf] = React.useState(false);
+    const [werewolf, setWereWolf] = React.useState(false)
 
-    const [bedroom, setBedroom] = React.useState(false);
-    const [cellar, setCellar] = React.useState(false);
-    const [dining, setDining] = React.useState(false);
-    const [garage, setGarage] = React.useState(false);
+    const [bedroom, setBedroom] = React.useState(false)
+    const [cellar, setCellar] = React.useState(false)
+    const [dining, setDining] = React.useState(false)
+    const [garage, setGarage] = React.useState(false)
     const [laboratory, setLaboratory] = React.useState(false)
-    const [library, setLibrary] = React.useState(false);
+    const [library, setLibrary] = React.useState(false)
     const [living, setLiving] = React.useState(false)
-    const [pantheon, setPantheon] = React.useState(false);
+    const [pantheon, setPantheon] = React.useState(false)
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.key === 'Tab' || event.key === 'Enter' || event.key === 'Shift') {
-            return;
+            return
         }
 
-        setState({ ...state, [anchor]: open });
-    };
+        setState({ ...state, [anchor]: open })
+    }
 
     const list = (anchor) => (
         <Box
@@ -77,7 +77,7 @@ export default function TemporaryDrawer({ hand }) {
 
 
         </Box >
-    );
+    )
 
     return (
         <div>
@@ -99,5 +99,5 @@ export default function TemporaryDrawer({ hand }) {
                 </React.Fragment>
             ))}
         </div>
-    );
-};
+    )
+}

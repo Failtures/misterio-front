@@ -1,9 +1,9 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import { deepOrange } from '@mui/material/colors';
+import React from 'react'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import Avatar from '@mui/material/Avatar'
+import { deepOrange } from '@mui/material/colors'
 
 const Cards = ({ player }) => {
     return (
@@ -15,7 +15,7 @@ const Cards = ({ player }) => {
                 </Typography>
             </CardContent>
         </Card>
-    );
-};
+    )
+}
 
-export default Cards;
+export default Cards

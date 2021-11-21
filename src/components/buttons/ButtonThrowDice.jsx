@@ -1,9 +1,9 @@
 // imports
-import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
+import React, { useContext } from "react"
+import { Button } from "@material-ui/core"
 import { ws } from '../WebSocket'
-import { ThemeContext } from "../../context/ContextGeneral";
-import { Typography } from '@material-ui/core';
+import { ThemeContext } from "../../context/ContextGeneral"
+import { Typography } from '@material-ui/core'
 
 const ButtonThrowDice = (props) => {
 
@@ -12,7 +12,7 @@ const ButtonThrowDice = (props) => {
   const takes = {
     'action': 'match_roll_dice',
     'match_name': dictStates.lobbyName
-  };
+  }
 
   return (
     <div>
@@ -28,7 +28,7 @@ const ButtonThrowDice = (props) => {
         <Typography variant="button" color="#fff">Throw Dice</Typography>
       </Button>
     </div>
-  );
+  )
 }
 
-export default ButtonThrowDice;
+export default ButtonThrowDice

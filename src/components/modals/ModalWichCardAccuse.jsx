@@ -1,18 +1,18 @@
 // import
 import React, { useContext, useState } from 'react'
-import { ws } from '../WebSocket';
-import { Button } from "@material-ui/core";
-import { ThemeContext } from '../../context/ContextGeneral';
+import { ws } from '../WebSocket'
+import { Button } from "@material-ui/core"
+import { ThemeContext } from '../../context/ContextGeneral'
 // CSS styles
-import "../modals/ModalWichCardAccuse.css";
+import "../modals/ModalWichCardAccuse.css"
 
 const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
 
     const dictStates = useContext(ThemeContext)
 
-    const [victim, setVictim] = useState('');
-    const [monster, setMonster] = useState('');
-    const [room, setRoom] = useState('');
+    const [victim, setVictim] = useState('')
+    const [monster, setMonster] = useState('')
+    const [room, setRoom] = useState('')
 
     const takes = {
         'action': 'match_accuse',
@@ -22,7 +22,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
         'room': room
     }
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const handleModalContainer = (e) => e.stopPropagation()
 
     return (
 
@@ -97,7 +97,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
             </div>
         </div>
     )
-};
+}
 
 
-export default ModalWichCardAccuse;
+export default ModalWichCardAccuse

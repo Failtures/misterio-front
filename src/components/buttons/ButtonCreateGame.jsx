@@ -1,8 +1,8 @@
 // imports
 import React, { useContext } from "react"
-import { Button } from "@material-ui/core";
-import { ThemeContext } from "../../context/ContextGeneral";
-import { Typography } from '@material-ui/core';
+import { Button } from "@material-ui/core"
+import { ThemeContext } from "../../context/ContextGeneral"
+import { Typography } from '@material-ui/core'
 
 const ButtonCreateGame = ({ openModal }) => {
 
@@ -12,7 +12,7 @@ const ButtonCreateGame = ({ openModal }) => {
     if (dictStates.nickname === '') {
       alert('introduce nickname')
     } else {
-      openModal();
+      openModal()
     }
   }
 
@@ -27,7 +27,7 @@ const ButtonCreateGame = ({ openModal }) => {
         <Typography color="#fff" variant="button">Create Game</Typography>
       </Button>
     </div>
-  );
+  )
 }
 
-export default ButtonCreateGame;
+export default ButtonCreateGame

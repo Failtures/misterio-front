@@ -1,33 +1,33 @@
 // imports
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
 import { useModal } from '../../hooks/useModal'
 import { TextField } from '@material-ui/core'
-import { ThemeContext } from '../../context/ContextGeneral';
-import { Typography } from '@material-ui/core';
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
 
 // components
-import ModalCreateGame from '../modals/ModalCreateGame';
-import ButtonCreateGame from '../buttons/ButtonCreateGame';
-import ListGames from '../ListGames';
+import ModalCreateGame from '../modals/ModalCreateGame'
+import ButtonCreateGame from '../buttons/ButtonCreateGame'
+import ListGames from '../ListGames'
 // CSS styles
-import './Home.css';
+import './Home.css'
 
 const Home = () => {
 
     const dictStates = useContext(ThemeContext)
 
-    const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false);
+    const [isOpenModalCreateGame, openModalCreateGame, closeModalCreateGame] = useModal(false)
 
-    const [touched, setTouched] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(['']);
+    const [touched, setTouched] = useState(false)
+    const [errorMessage, setErrorMessage] = useState([''])
 
-    const handleTouchTrue = () => setTouched(true);
-    const handleTouchFalse = () => setTouched(false);
+    const handleTouchTrue = () => setTouched(true)
+    const handleTouchFalse = () => setTouched(false)
 
 
     const handleTouch = () => {
-        setTouched(!touched);
-    };
+        setTouched(!touched)
+    }
 
     return (
         <div className="container">
@@ -60,10 +60,10 @@ const Home = () => {
             </div>
             <ModalCreateGame isOpen={isOpenModalCreateGame} closeModal={closeModalCreateGame} />
             <div className="footer">
-                <Typography style={{color:'white', fontSize:'1rem'}} variant="body1">&copy;FAILTURES </Typography>
+                <Typography style={{color:'white', fontSize:'1rem'}} variant="body1"> &copy;FAILTURES </Typography>
             </div>
         </div>
     )
 }
 
-export default Home;
+export default Home

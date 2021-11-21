@@ -2,13 +2,13 @@
 import React, { useState, useContext } from 'react'
 import { Button } from '@material-ui/core'
 import { ws } from '../WebSocket'
-import { ThemeContext } from '../../context/ContextGeneral';
+import { ThemeContext } from '../../context/ContextGeneral'
 // CSS styles
-import "./MchooseCardsSuspect.css";
+import "./MchooseCardsSuspect.css"
 
 const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
 
-    const dictStates = useContext(ThemeContext);
+    const dictStates = useContext(ThemeContext)
 
     const [victim, setVictim] = useState('')
     const [monster, setMonster] = useState('')
@@ -22,7 +22,7 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
         'room': dictStates.square
     }
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const handleModalContainer = (e) => e.stopPropagation()
 
     return (
         <div className={`modal-suspect-container ${isOpen && "is-open-suspect"}`}
@@ -68,8 +68,8 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                         variant="contained"
                         color="secondary"
                         onClick={() => {
-                            ws.send(JSON.stringify(takes));
-                            closeModal();
+                            ws.send(JSON.stringify(takes))
+                            closeModal()
                             dictStates.setButtonSuspect(false)
                         }
                         }> COMNFIRM SUSPECT

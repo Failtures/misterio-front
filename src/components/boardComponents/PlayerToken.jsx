@@ -16,7 +16,7 @@ const PlayerToken = ({ players }) => {
         }
     })
 
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
         <>
