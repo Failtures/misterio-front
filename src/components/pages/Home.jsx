@@ -32,7 +32,7 @@ const Home = () => {
     return (
         <div className="container">
             <div className="header">
-            <Typography style={{fontSize:'5rem'}} color="#fff" variant="h1">MISTERY</Typography>
+            <Typography style={{fontSize:'5rem'}} color="#fff" variant="h1">MYSTERY</Typography>
             </div>
             <div className="section">
                 <div className="aside">

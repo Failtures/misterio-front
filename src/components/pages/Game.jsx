@@ -96,7 +96,6 @@ const Game = () => {
                 )
 
                 if (suspectCards.length > 0) {
-                    console.log('dentro del if')
                     setSuspect(suspectCards)
                     openModalQuestion()
                 }
@@ -117,7 +116,6 @@ const Game = () => {
                 }
             }
             else if (parsedJson.action === 'suspect_response') {
-                console.log(parsedJson.card)
                 toast(parsedJson.card)
             }
             else if (parsedJson.action === 'game_over') {

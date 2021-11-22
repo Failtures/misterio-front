@@ -59,10 +59,10 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
                         <TextField
                             required id="outlined-required"
                             label="Game Name"
-                            variant="filled"
-                            size="small"
+                            variant="outlined"
+                            size="large"
                             autoFocus={true}
-                            inputProps={{ maxLength: 10 }}
+                            inputProps={{ maxLength: 15 }}
                             onChange={(e) => { setGameName(e.target.value) }}
                         />
                     </div>

@@ -53,6 +53,7 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                             if (selection) {
                                 ws.send(JSON.stringify(takesQuestionPositive))
                                 closeModalQuestion()
+                                setSelection('')
                             }
                         }}
                     >
