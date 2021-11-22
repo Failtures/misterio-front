@@ -107,7 +107,7 @@ const Board = () => {
             <Square img={squareGarage5} type="Garage" id={"5 Gar"} posX={6} posY={17} />
             <Square img={seis} type="normal" id={"6"} posX={13} posY={17} />
             <Square img={siete} type="normal" id={"7"} posX={6} posY={16} />
-            <Square img={scorpion8} type="scorpion" id={"8 scorp"} posX={13} />
+            <Square img={scorpion8} type="scorpion" id={"8 scorp"} posX={13} posY={16}/>
             <Square img={bat9} type="bat" id={"9 bat"} posX={6} posY={15} />
             <Square img={squareLib10} type="Library" id={"10 Lib"} posX={13} posY={15} />
             <Square img={once} type="normal" id={"11"} posX={6} posY={14} />
