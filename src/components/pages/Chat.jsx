@@ -1,25 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
 import { ws } from '../WebSocket'
-import { TextField } from '@material-ui/core';
-import { ThemeContext } from '../../context/ContextGeneral';
-import { Typography } from '@material-ui/core';
-import './Chat.css';
+import { TextField } from '@material-ui/core'
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
+import './Chat.css'
 
 const Chat = ({ buffer }) => {
 
-    const [msg, setMsg] = useState('');
+    const [msg, setMsg] = useState('')
 
-    const dictStates = useContext(ThemeContext);
+    const dictStates = useContext(ThemeContext)
 
     const takesLobbySend = {
         'action': 'chat_lobby_send',
         'player_name': dictStates.nickname,
         'chat_name': dictStates.lobbyName,
         'message': msg
-    };
-
-
-
+    }
+    
     return (
         <div className="chat-container">
 
@@ -38,7 +36,7 @@ const Chat = ({ buffer }) => {
                     onChange={(e) => { setMsg(e.target.value) }}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            ws.send(JSON.stringify(takesLobbySend));
+                            ws.send(JSON.stringify(takesLobbySend))
                             setMsg('')
                         }
                     }}
@@ -46,7 +44,7 @@ const Chat = ({ buffer }) => {
                 </TextField>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Chat;
+export default Chat

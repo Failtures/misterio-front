@@ -1,14 +1,14 @@
 // imports
 import React, { useContext } from 'react'
-import { ThemeContext } from '../../context/ContextGeneral';
+import { ThemeContext } from '../../context/ContextGeneral'
 // CSS styles
-import '../modals/WinOrLost.css';
+import '../modals/WinOrLost.css'
 
 const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser }) => {
 
-    const dictStates = useContext(ThemeContext);
+    const dictStates = useContext(ThemeContext)
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const handleModalContainer = (e) => e.stopPropagation()
 
     return (
         <div className={`modal-win-lost-container ${isOpenWinOrLost && "is-open-win-lost"}`} onClick={closeModalWinOrLost}>
@@ -48,6 +48,6 @@ const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser })
             </div>
         </div>
     )
-};
+}
 
-export default ModalWinOrLost;
+export default ModalWinOrLost

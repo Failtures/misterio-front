@@ -1,11 +1,11 @@
 // import
-import React, { useState, createContext } from "react";
+import React, { useState, createContext } from "react"
 // export
-export const ThemeContext = createContext();
+export const ThemeContext = createContext()
 
 const ContextGeneral = (props) => {
 
-    const [nickname, setNickname] = useState('');
+    const [nickname, setNickname] = useState('')
     const [lobbyName, setLobbyName] = useState('')
     const [posX, setPosX] = useState(0)
     const [posY, setPosY] = useState(0)
@@ -43,7 +43,7 @@ const ContextGeneral = (props) => {
         <ThemeContext.Provider value={dictStates}>
             {props.children}
         </ThemeContext.Provider>
-    );
-};
+    )
+}
 
-export default ContextGeneral;
+export default ContextGeneral

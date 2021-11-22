@@ -1,7 +1,7 @@
 // import
 import React, { useState } from 'react'
 // components
-import ButtonUseSalem from '../buttons/ButtonUseSalem';
+import ButtonUseSalem from '../buttons/ButtonUseSalem'
 // CSS styles
 import "./ModalSalem.css"
 
@@ -9,7 +9,7 @@ const MchooseCardsSuspect = ({ isOpenSalem, closeModalSalem }) => {
 
     const [selection, setSelection] = useState('')
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const handleModalContainer = (e) => e.stopPropagation()
 
     return (
         

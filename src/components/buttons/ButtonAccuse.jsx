@@ -1,8 +1,8 @@
 // imports
 import React, { useContext } from 'react'
-import { Button } from "@material-ui/core";
-import { ThemeContext } from '../../context/ContextGeneral';
-import { Typography } from '@material-ui/core';
+import { Button } from "@material-ui/core"
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
 
 const ButtonAccuse = ({ openModal }) => {
 
@@ -21,4 +21,4 @@ const ButtonAccuse = ({ openModal }) => {
         </div>
     )
 }
-export default ButtonAccuse;
+export default ButtonAccuse

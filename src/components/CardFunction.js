@@ -15,8 +15,8 @@ export const cardFun = card => {
     else if (card.name === 'Mummy') {
         url = '/mummy.png'
     }
-    else if (card.name === 'Dr. Jekyll and Mr Hyde') {
-        url = '/dr.png'
+    else if (card.name === 'Dr. Jekyll And Mr Hyde') {
+        url = '/drr.png'
     }
     else if (card.name === 'Gardener') {
         url = '/gardener.png'

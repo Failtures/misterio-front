@@ -24,79 +24,79 @@ const Room = ({room}) => {
 
     switch (room) {
         case 'Garage':
-            dictRoom.position = 'bottom';
-            dictRoom.img = garage;
-            dictRoom.gcPosX = 1;
-            dictRoom.gcPosY = 7;
-            dictRoom.grPosX = 1;
-            dictRoom.grPosY = 7;
-            break;
+            dictRoom.position = 'bottom'
+            dictRoom.img = garage
+            dictRoom.gcPosX = 1
+            dictRoom.gcPosY = 7
+            dictRoom.grPosX = 1
+            dictRoom.grPosY = 7
+            break
         case 'Bedroom':
-            dictRoom.position = 'bottom';
-            dictRoom.img = bedroom;
-            dictRoom.gcPosX = 8;
-            dictRoom.gcPosY = 14;
-            dictRoom.grPosX = 1;
-            dictRoom.grPosY = 7;
-            break;
+            dictRoom.position = 'bottom'
+            dictRoom.img = bedroom
+            dictRoom.gcPosX = 8
+            dictRoom.gcPosY = 14
+            dictRoom.grPosX = 1
+            dictRoom.grPosY = 7
+            break
         case 'Library':
-            dictRoom.position = 'bottom';
-            dictRoom.img = library;
-            dictRoom.gcPosX = 15;
-            dictRoom.gcPosY = 21;
-            dictRoom.grPosX = 1;
-            dictRoom.grPosY = 7;
-            break;
+            dictRoom.position = 'bottom'
+            dictRoom.img = library
+            dictRoom.gcPosX = 15
+            dictRoom.gcPosY = 21
+            dictRoom.grPosX = 1
+            dictRoom.grPosY = 7
+            break
         case 'Living':
-            dictRoom.position = ' right center';
-            dictRoom.img = living;
-            dictRoom.gcPosX = 1;
-            dictRoom.gcPosY = 7;
-            dictRoom.grPosX = 8;
-            dictRoom.grPosY = 14;
-            break;
+            dictRoom.position = ' right center'
+            dictRoom.img = living
+            dictRoom.gcPosX = 1
+            dictRoom.gcPosY = 7
+            dictRoom.grPosX = 8
+            dictRoom.grPosY = 14
+            break
         case 'Mistery':
-            dictRoom.position = 'center';
-            dictRoom.img = mistery;
-            dictRoom.gcPosX = 8;
-            dictRoom.gcPosY = 14;
-            dictRoom.grPosX = 8;
-            dictRoom.grPosY = 14;
-            break;
+            dictRoom.position = 'center'
+            dictRoom.img = mistery
+            dictRoom.gcPosX = 8
+            dictRoom.gcPosY = 14
+            dictRoom.grPosX = 8
+            dictRoom.grPosY = 14
+            break
         case 'Pantheon':
-            dictRoom.position = 'left center';
-            dictRoom.img = pantheon;
-            dictRoom.gcPosX = 15;
-            dictRoom.gcPosY = 21;
-            dictRoom.grPosX = 8;
-            dictRoom.grPosY = 14;
-            break;
+            dictRoom.position = 'left center'
+            dictRoom.img = pantheon
+            dictRoom.gcPosX = 15
+            dictRoom.gcPosY = 21
+            dictRoom.grPosX = 8
+            dictRoom.grPosY = 14
+            break
         case 'Cellar':
-            dictRoom.position = 'top center';
-            dictRoom.img = cellar;
-            dictRoom.gcPosX = 1;
-            dictRoom.gcPosY = 7;
-            dictRoom.grPosX = 15;
-            dictRoom.grPosY = 21;
-            break;
+            dictRoom.position = 'top center'
+            dictRoom.img = cellar
+            dictRoom.gcPosX = 1
+            dictRoom.gcPosY = 7
+            dictRoom.grPosX = 15
+            dictRoom.grPosY = 21
+            break
         case 'Dining':
-            dictRoom.position = 'top center';
-            dictRoom.img = dining;
-            dictRoom.gcPosX = 8;
-            dictRoom.gcPosY = 14;
-            dictRoom.grPosX = 15;
-            dictRoom.grPosY = 21;
-            break;
+            dictRoom.position = 'top center'
+            dictRoom.img = dining
+            dictRoom.gcPosX = 8
+            dictRoom.gcPosY = 14
+            dictRoom.grPosX = 15
+            dictRoom.grPosY = 21
+            break
         case 'Laboratory':
-            dictRoom.position = 'top center';
-            dictRoom.img = laboratory;
-            dictRoom.gcPosX = 15;
-            dictRoom.gcPosY = 21;
-            dictRoom.grPosX = 15;
-            dictRoom.grPosY = 21;
-            break;
+            dictRoom.position = 'top center'
+            dictRoom.img = laboratory
+            dictRoom.gcPosX = 15
+            dictRoom.gcPosY = 21
+            dictRoom.grPosX = 15
+            dictRoom.grPosY = 21
+            break
         default:
-            break;
+            break
     }
 
     const useStyle = makeStyles({
@@ -110,7 +110,7 @@ const Room = ({room}) => {
             gridRowStart: dictRoom.grPosX,
             gridRowEnd: dictRoom.grPosY,
         }
-    });
+    })
     
     const classes = useStyle()
 

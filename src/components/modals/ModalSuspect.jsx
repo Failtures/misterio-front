@@ -1,20 +1,20 @@
 // import
 import React, { useState, useContext } from 'react'
 
-import { Button, Card } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core"
 
-import { ThemeContext } from '../../context/ContextGeneral';
+import { ThemeContext } from '../../context/ContextGeneral'
 
 // CSS styles
 import "./ModalSuspect.css"
-import { ws } from '../WebSocket';
-import { cardFun } from '../CardFunction';
+import { ws } from '../WebSocket'
+import { cardFun } from '../CardFunction'
 
 const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) => {
 
-    const dictStates = useContext(ThemeContext);
+    const dictStates = useContext(ThemeContext)
 
-    const [selection, setSelection] = useState('');
+    const [selection, setSelection] = useState('')
 
     const takesQuestionPositive = {
         'action': 'match_question_res',
@@ -23,9 +23,9 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
         'reply_to': replyTo,
         'match_name': dictStates.lobbyName,
         'reply_card': selection
-    };
+    }
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const handleModalContainer = (e) => e.stopPropagation()
 
     return (
 
@@ -51,8 +51,9 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                         color="secondary"
                         onClick={() => {
                             if (selection) {
-                                ws.send(JSON.stringify(takesQuestionPositive));
-                                closeModalQuestion();
+                                ws.send(JSON.stringify(takesQuestionPositive))
+                                closeModalQuestion()
+                                setSelection('')
                             }
                         }}
                     >
@@ -64,6 +65,6 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
     )
 }
 
-export default ModalSuspect;
+export default ModalSuspect
 
 

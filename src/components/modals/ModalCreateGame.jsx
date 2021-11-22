@@ -1,14 +1,14 @@
 // import
 import React, { useState, useContext } from 'react'
-import { useHistory } from "react-router";
+import { useHistory } from "react-router"
 import { TextField, Button } from '@material-ui/core'
 import { ws, send_ } from '../WebSocket'
 import { makeStyles } from '@material-ui/styles'
-import { ThemeContext } from '../../context/ContextGeneral';
-import { Typography } from '@material-ui/core';
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
 
 // CSS styles
-import "./ModalCreateGame.css";
+import "./ModalCreateGame.css"
 
 const useStyle = makeStyles({
     botonPersonalizado: {
@@ -20,28 +20,28 @@ const useStyle = makeStyles({
         height: 48,
         padding: '0 30px',
     }
-});
+})
 
 const ModalCreateGame = ({ isOpen, closeModal }) => {
 
     const dictStates = useContext(ThemeContext)
 
-    const [gameName, setGameName] = useState('');
+    const [gameName, setGameName] = useState('')
 
-    const classes = useStyle();
+    const classes = useStyle()
 
-    const history = useHistory();
+    const history = useHistory()
 
     const handleCreateGame = () => {
         if (gameName === '') {
             alert('introduce game name')
         } else {
-            send_(ws, 'lobby_create', dictStates.nickname, gameName);
-            history.push(`/lobby/${gameName}`);
+            send_(ws, 'lobby_create', dictStates.nickname, gameName)
+            history.push(`/lobby/${gameName}`)
         }
     }
 
-    const handleModalContainer = (e) => e.stopPropagation();
+    const handleModalContainer = (e) => e.stopPropagation()
 
     return (
         <div className={`modal ${isOpen && "is-open"}`} onClick={closeModal}>
@@ -59,10 +59,10 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
                         <TextField
                             required id="outlined-required"
                             label="Game Name"
-                            variant="filled"
-                            size="small"
+                            variant="outlined"
+                            size="large"
                             autoFocus={true}
-                            inputProps={{ maxLength: 10 }}
+                            inputProps={{ maxLength: 15 }}
                             onChange={(e) => { setGameName(e.target.value) }}
                         />
                     </div>
@@ -79,6 +79,6 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
             </div>
         </div>
     )
-};
+}
 
-export default ModalCreateGame;
+export default ModalCreateGame

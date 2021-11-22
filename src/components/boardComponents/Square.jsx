@@ -7,7 +7,7 @@ import {ws} from '../WebSocket'
 const Square = ({img, type,id, posX, posY }) => {
 
     const dictStates = useContext(ThemeContext)
-    let color = '';
+    let color = ''
     const dictRoom = {
         position: ''
     }
@@ -23,38 +23,38 @@ const Square = ({img, type,id, posX, posY }) => {
             const filtered = dictStates.tokenColor.filter((item) => {
                 return item.player === element.player_name 
             })
-            color = filtered[0].color;
+            color = filtered[0].color
         }
-    });
+    })
 
     switch (type) {
         case 'Living17':
             dictRoom.position = 'bottom'
-            break;
+            break
         case 'Living49':
             dictRoom.position = 'top'
-            break;
+            break
         case 'Living40':
             dictRoom.position = 'left'
-            break;
+            break
         case 'Bedroom24':
             dictRoom.position = 'top'
-            break;
+            break
         case 'Pantheon29':
             dictRoom.position = 'bottom'
-            break;
+            break
         case 'Pantheon41':
             dictRoom.position = 'right'
-            break;
+            break
         case 'Pantheon62':
             dictRoom.position = 'top'
-            break;
+            break
         case 'Dining56':
             dictRoom.position = 'bottom'
-            break;
+            break
         default:
             dictRoom.position = 'center'
-            break;
+            break
     }
 
 
@@ -79,7 +79,7 @@ const Square = ({img, type,id, posX, posY }) => {
             
             
         }
-    });
+    })
 
     const handleClick = () => {
         ws.send(JSON.stringify(takes))

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { FormControlLabel } from '@mui/material';
-import { Checkbox } from '@mui/material';
+import * as React from 'react'
+import { FormControlLabel } from '@mui/material'
+import { Checkbox } from '@mui/material'
 const CheckBox = ({ inp, setInp, label, hand }) => {
 
     return (
@@ -16,6 +16,6 @@ const CheckBox = ({ inp, setInp, label, hand }) => {
                 }
             }}
             control={<Checkbox size="small" />} label={label} />
-    );
-};
-export default CheckBox;
+    )
+}
+export default CheckBox

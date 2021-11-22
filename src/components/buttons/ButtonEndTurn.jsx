@@ -1,9 +1,9 @@
 // imports
-import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
+import React, { useContext } from "react"
+import { Button } from "@material-ui/core"
 import { ws } from '../WebSocket'
-import { ThemeContext } from "../../context/ContextGeneral";
-import { Typography } from '@material-ui/core';
+import { ThemeContext } from "../../context/ContextGeneral"
+import { Typography } from '@material-ui/core'
 
 const ButtonEndTurn = () => {
 
@@ -12,7 +12,7 @@ const ButtonEndTurn = () => {
     const takes = {
         'action': 'match_end_turn',
         'match_name': dictStates.lobbyName
-    };
+    }
 
     return (
         <div style={dictStates.nickname === dictStates.turn ? {display: ''} : {display: 'none'}}>
@@ -21,14 +21,14 @@ const ButtonEndTurn = () => {
                 color="secondary"
                 // disabled={dictStates.nickname === dictStates.turn ? false : true}
                 onClick={() => {
-                    ws.send(JSON.stringify(takes));
+                    ws.send(JSON.stringify(takes))
                     dictStates.setButtonSuspect(true)
                 }}
             >
                 <Typography variant="button" color="#fff">End Turn</Typography>
             </Button>
         </div>
-    );
-};
+    )
+}
 
-export default ButtonEndTurn;
+export default ButtonEndTurn
