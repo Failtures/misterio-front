@@ -17,7 +17,7 @@ const ButtonCreateGame = ({ openModal }) => {
   }
 
   return (
-    <div>
+    <div style={dictStates.nickname === '' ? {display: 'none'} : {display: ''}}>
       <Button
         variant="contained"
         color="secondary"
