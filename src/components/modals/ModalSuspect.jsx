@@ -1,7 +1,7 @@
 // import
 import React, { useState, useContext } from 'react'
 
-import { Button, Card } from "@material-ui/core"
+import { Button } from "@material-ui/core"
 
 import { ThemeContext } from '../../context/ContextGeneral'
 
