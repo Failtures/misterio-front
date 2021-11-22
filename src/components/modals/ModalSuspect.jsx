@@ -1,8 +1,7 @@
 // import
 import React, { useState, useContext } from 'react'
 import { ws } from '../WebSocket'
-import { cardFun } from '../CardFunction'
-
+import { cardsUrl } from "../CardFunction"
 
 import { Button } from "@material-ui/core"
 
@@ -47,7 +46,7 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                     <div className="cards-question-container">
                         {
                             suspect.map((card) => (
-                                <img width="150px" height="200px" src={cardFun(card)} alt={card.name} onClick={(e) => setSelection(e.target.alt)} />
+                                <img width="150px" height="200px" src={cardsUrl[card.name]} alt={card.name} onClick={(e) => setSelection(e.target.alt)} />
                             ))
                         }
                     </div>

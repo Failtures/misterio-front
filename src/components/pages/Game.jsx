@@ -6,7 +6,7 @@ import { ThemeContext } from '../../context/ContextGeneral';
 import { Toaster, toast } from "react-hot-toast";
 import { useModal } from '../../hooks/useModal'
 import { ws } from '../WebSocket'
-import { cardFun } from "../CardFunction"
+import { cardsUrl } from "../CardFunction"
 // Components
 import ModalWichCardAccuse from "../modals/ModalWichCardAccuse";
 import ModalWinOrLost from "../modals/ModalWinOrLost";
@@ -48,6 +48,8 @@ const Game = () => {
     const [suspect, setSuspect] = useState([])
     const [replyTo, setReplyTo] = useState('')
     const [buffer, setBuffer] = useState([])
+
+
 
     const refButtonMistery = useRef(null)
 
@@ -193,7 +195,7 @@ const Game = () => {
                                         ?
                                         <li>
                                             <div className="list-player-container" >
-                                                <Typography style={{fontWeight:'700'}} variant="body1" color="#fff">{player.player}</Typography>
+                                                <Typography style={{ fontWeight: '700' }} variant="body1" color="#fff">{player.player}</Typography>
                                                 <div className={classes.token} style={{ backgroundColor: `${player.color}`, }}
                                                 >
                                                 </div>
@@ -202,7 +204,7 @@ const Game = () => {
                                         :
                                         <li>
                                             <div className="list-player-container">
-                                            <Typography variant="body1" color="#ccc">{player.player}</Typography>
+                                                <Typography variant="body1" color="#ccc">{player.player}</Typography>
                                                 <div className={classes.token} style={{ backgroundColor: `${player.color}` }}>
                                                 </div>
                                             </div>
@@ -247,14 +249,13 @@ const Game = () => {
                         <Bloc hand={hand}></Bloc>
                     </div>
                     <div className="cards">
-                        {hand.map(card => {
-                            let url = cardFun(card)
-                            return (
-                                <img src={url} alt={card.name} />
-                            )
+                        {
+                            hand.map(card => {
+                                return (
+                                    <img src={cardsUrl[card.name]} alt={card.name} />
+                                )
+                            })
                         }
-
-                        )}
                     </div>
 
                 </div>
