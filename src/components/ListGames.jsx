@@ -55,7 +55,7 @@ const ListGames = () => {
             {
                 games &&
                 <Table>
-                    <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
+                    <TableHead style={{ position: 'sticky', background: '#fff', zIndex: 999, top: '0%' }}>
                         <TableRow>
                             <TableCell><Typography variant="body1" color="black">Game name</Typography></TableCell>
                             <TableCell><Typography variant="body1" color="black">Players</Typography></TableCell>
@@ -78,7 +78,7 @@ const ListGames = () => {
                                     <TableCell>
                                         <ButtonJoinGame
                                             nameGame={item.name}
-                                        > Join Game
+                                        > <Typography variant="button" color="white">Join Game</Typography>
                                         </ButtonJoinGame>
                                     </TableCell>
                                 </TableRow>

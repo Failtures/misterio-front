@@ -74,6 +74,7 @@ const Home = () => {
 
                         <ButtonCreateGame className="create" openModal={openModalCreateGame} />
                         <Button
+                       
                             variant="contained"
                             color="secondary"
                             onClick={() => {

@@ -185,18 +185,16 @@ const Game = () => {
 
                 <div className="game-list-chat">
                     <div className="game-list">
-                        <ul style={{width:'80%', height:'50%' , display:'flex', flexDirection:'column', justifyContent:'space-between', listStyle:'none'}}>
+                        <Typography variant="h2" color="#fff">Players</Typography>
+                        <ul style={{ width: '80%', height: '60%', display: 'flex', flexDirection: 'column', listStyle: 'none', marginBottom: '30px' }}>
                             {
                                 dictStates.tokenColor.map((player) => (
                                     dictStates.turn === player.player
                                         ?
                                         <li>
                                             <div className="list-player-container" >
-                                                <b style={{ color: 'white' }}
-                                                >
-                                                    {player.player}
-                                                </b>
-                                                <div className={classes.token} style={{ backgroundColor: `${player.color}`,  }}
+                                                <Typography style={{fontWeight:'700'}} variant="body1" color="#fff">{player.player}</Typography>
+                                                <div className={classes.token} style={{ backgroundColor: `${player.color}`, }}
                                                 >
                                                 </div>
                                             </div>
@@ -204,7 +202,7 @@ const Game = () => {
                                         :
                                         <li>
                                             <div className="list-player-container">
-                                                {player.player}
+                                            <Typography variant="body1" color="#ccc">{player.player}</Typography>
                                                 <div className={classes.token} style={{ backgroundColor: `${player.color}` }}>
                                                 </div>
                                             </div>
