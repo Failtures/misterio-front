@@ -17,16 +17,16 @@
 
 .modal-salem {
     display: flex;
-    width: 80%;
-    height: 85%;
+    width: 60%;
+    height: 55%;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
     background-color: rgb(85, 33, 33);
     background-color: transparent;
    
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    position: relative;
 }
 
 .modal-close-salem {
@@ -65,22 +65,44 @@ svg {
     justify-content: space-between;
     width: 100%;
     height: 100%;
+
 }
 
-.salem-cards-container h3 {
-    color: white;
+
+.card-select {
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+    align-items: center;
+
 }
 
-.salem-cards-container h2 {
-    color: white;
-    font-size: 40px;
+.salem-monster {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
+.salem-victim {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.salem-room {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .salem-cards-container img {
     cursor: pointer;
     transition: all 400ms;
 }
 
 .salem-cards-container img:hover {
-    transform: scale(1.2,1.1);
+    transform: scale(1.1,1.1);
 }

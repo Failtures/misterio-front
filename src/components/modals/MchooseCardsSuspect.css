@@ -25,9 +25,9 @@
     overflow-y: auto;
     background-color: rgb(85, 33, 33);
     background-color: transparent;
-   
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    position:absolute;
 }
 
 .modal-close-suspect {

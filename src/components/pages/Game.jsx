@@ -52,15 +52,15 @@ const Game = () => {
     const refButtonMistery = useRef(null)
 
     const useStyle = makeStyles({
-        token: {    
+        token: {
             width: '35px',
             height: '35px',
             opacity: '0.6',
             backgroundColor: "white",
             borderRadius: '100%',
             border: '1px solid black',
-            
-            
+
+
         }
     });
 
@@ -185,31 +185,31 @@ const Game = () => {
 
                 <div className="game-list-chat">
                     <div className="game-list">
-                        <ul>
+                        <ul style={{width:'80%', height:'50%' , display:'flex', flexDirection:'column', justifyContent:'space-between', listStyle:'none'}}>
                             {
                                 dictStates.tokenColor.map((player) => (
-                                    dictStates.turn === player.player 
-                                    ? 
-                                    <li>
-                                        <div className="list-player-container">
-                                            <b style={{color:'white'}}
-                                            >
-                                                {player.player}
-                                            </b> 
-                                            <div className={classes.token} style={{backgroundColor:`${player.color}`}}
-                                            >
-                                            </div> 
-                                        </div> 
-                                    </li > 
-                                    : 
-                                    <li> 
-                                        <div className="list-player-container">
-                                            {player.player} 
-                                            <div className={classes.token} style={{backgroundColor:`${player.color}`}}>
+                                    dictStates.turn === player.player
+                                        ?
+                                        <li>
+                                            <div className="list-player-container" >
+                                                <b style={{ color: 'white' }}
+                                                >
+                                                    {player.player}
+                                                </b>
+                                                <div className={classes.token} style={{ backgroundColor: `${player.color}`,  }}
+                                                >
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    
+                                        </li >
+                                        :
+                                        <li>
+                                            <div className="list-player-container">
+                                                {player.player}
+                                                <div className={classes.token} style={{ backgroundColor: `${player.color}` }}>
+                                                </div>
+                                            </div>
+                                        </li>
+
                                 ))
                             }
                         </ul>

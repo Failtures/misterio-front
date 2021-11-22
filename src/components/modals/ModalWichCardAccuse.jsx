@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { ws } from '../WebSocket'
 import { Button } from "@material-ui/core"
 import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
 // CSS styles
 import "../modals/ModalWichCardAccuse.css"
 
@@ -28,7 +29,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
 
         <div className={`modal-accuse-container ${isOpen && "is-open-accuse"}`}
             onClick={closeModal}>
-                
+
             <div className="modal-accuse" onClick={handleModalContainer}>
                 <button className="modal-close-accuse" onClick={closeModal}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
@@ -38,10 +39,9 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
                 </button>
 
                 <div className="cards-accuse-container">
-                    <h2> Cards to accuse</h2>
-
+                    <Typography variant="h2" color="#fff">Cards to accuse</Typography>
                     <div ClassName="victims-container">
-                        <h3>Victims:</h3>
+                        <Typography variant="h4" color="#fff">Victims:</Typography>
                         <div className="victims">
                             <img width="150px" height="200px" classname="gardener" src="/gardener.png" alt="Gardener" onClick={(e) => setVictim(e.target.alt)} />
                             <img width="150px" height="200px" src="/maid.png" alt="Maid" onClick={(e) => setVictim(e.target.alt)} />
@@ -53,7 +53,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
                     </div>
 
                     <div className="monsters-container">
-                        <h3>Monsters:</h3>
+                        <Typography variant="h4" color="#fff">Monsters:</Typography>
                         <div className="monsters">
                             <img width="150px" height="200px" src="/dracula.png" alt="Dracula" onClick={(e) => setMonster(e.target.alt)} />
                             <img width="150px" height="200px" src="/frankenstein.png" alt="Frankenstein" onClick={(e) => setMonster(e.target.alt)} />
@@ -65,7 +65,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
                     </div>
 
                     <div className="rooms-container">
-                        <h3>Rooms:</h3>
+                        <Typography variant="h4" color="#fff">Rooms:</Typography>
                         <div className="rooms">
                             <img width="150px" height="200px" src="/bedroom.png" alt="Bedroom" onClick={(e) => setRoom(e.target.alt)} />
                             <img width="150px" height="200px" src="/library.png" alt="Library" onClick={(e) => setRoom(e.target.alt)} />
@@ -79,7 +79,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
                     </div>
 
                     <div>
-                        <p style={{ color: 'white' }}>{`Victim: ${victim} - Monster: ${monster} - Room: ${room}`}</p>
+                        <Typography variant="body1" color="#fff">{`Victim: ${victim} - Monster: ${monster} - Room: ${room}`}</Typography>
                     </div>
 
                     <Button
@@ -90,7 +90,7 @@ const ModalWichCardAccuse = ({ isOpen, closeModal }) => {
                             closeModal()
                         }}
                     >
-                        Confirm Accusation
+                        <Typography variant="button" color="#fff">Confirm Accusation</Typography>
                     </Button>
                 </div>
 

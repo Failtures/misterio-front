@@ -28,8 +28,6 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
 
     const [gameName, setGameName] = useState('')
 
-    const classes = useStyle()
-
     const history = useHistory()
 
     const handleCreateGame = () => {
@@ -67,7 +65,7 @@ const ModalCreateGame = ({ isOpen, closeModal }) => {
                         />
                     </div>
                     <div className="button-group">
-                        <Button variant="contained" className={classes.botonPersonalizado} onClick={() => {
+                        <Button variant="contained" size="large " color="secondary" onClick={() => {
                             handleCreateGame()
                         }}
                         >

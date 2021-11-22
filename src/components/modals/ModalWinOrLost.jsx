@@ -1,6 +1,7 @@
 // imports
 import React, { useContext } from 'react'
 import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
 // CSS styles
 import '../modals/WinOrLost.css'
 
@@ -26,20 +27,20 @@ const ModalWinOrLost = ({ isOpenWinOrLost, closeModalWinOrLost, winner, loser })
                         if (winner) {
 
                             if (winner === dictStates.nickname) {
-                                return <h2>{`You win ${winner}`}</h2>
+                                return <Typography variant="h2" color="#fff">{`You win ${winner}`}</Typography>
                             }
                             else {
-                                return <h2>{`You Lost ${dictStates.nickname}`}</h2>
+                                return <Typography variant="h2" color="#fff">{`You Lost ${dictStates.nickname}`}</Typography>
                             }
                         }
 
                         if (loser) {
 
                             if (loser === dictStates.nickname) {
-                                return <h2>{`You Lost ${loser}`}</h2>
+                                return <Typography variant="h2" color="#fff">{`You Lost ${loser}`}</Typography>
                             }
                             else {
-                                return <h2>{`${loser} Lost`}</h2>
+                                return <Typography variant="h2" color="#fff">{`${loser} Lost`}</Typography>
                             }
                         }
 

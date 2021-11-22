@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react'
 import { Button } from '@material-ui/core'
 import { ws } from '../WebSocket'
 import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
 // CSS styles
 import "./MchooseCardsSuspect.css"
 
@@ -37,10 +38,11 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                 </button>
 
                 <div className="cards-suspect-container">
-                    <h2>Select to Suspect</h2>
+                    <Typography variant="h2" color="#fff">Select to Suspect</Typography>
 
                     <div className="victims-suspect-container">
-                        <h3>Victims:</h3>
+                        <Typography variant="h3" color="#fff">Victims:</Typography>
+
                         <div className="Victims">
                             <img width="150px" height="200px" src="/gardener.png" alt="Gardener" onClick={(e) => setVictim(e.target.alt)} />
                             <img width="150px" height="200px" src="/maid.png" alt="Maid" onClick={(e) => setVictim(e.target.alt)} />
@@ -52,7 +54,7 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                     </div>
 
                     <div className="monsters-suspect-container">
-                        <h3>Monsters:</h3>
+                        <Typography variant="h3" color="#fff">Monsters:</Typography>
                         <div className="Monsters">
                             <img width="150px" height="200px" src="/dracula.png" alt="Dracula" onClick={(e) => setMonster(e.target.alt)} />
                             <img width="150px" height="200px" src="/frankenstein.png" alt="Frankenstein" onClick={(e) => setMonster(e.target.alt)} />
@@ -63,7 +65,8 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                         </div>
                     </div>
 
-                    <p style={{ color: 'white' }}>{`Victim: ${victim} - Monster: ${monster} - Room: ${dictStates.square}`}</p>
+            
+                    <Typography variant="body1" color="#fff">{`Victim: ${victim}  -  Monster: ${monster}  -  Room: ${dictStates.square}`}</Typography>
                     <Button
                         variant="contained"
                         color="secondary"
@@ -72,7 +75,8 @@ const MchooseCardsSuspect = ({ isOpen, closeModal }) => {
                             closeModal()
                             dictStates.setButtonSuspect(false)
                         }
-                        }> COMNFIRM SUSPECT
+                        }>
+                        <Typography variant="button" color="#fff">Confirm Suspect</Typography>
                     </Button>
                 </div>
             </div>

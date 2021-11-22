@@ -1,14 +1,18 @@
 // import
 import React, { useState, useContext } from 'react'
+import { ws } from '../WebSocket'
+import { cardFun } from '../CardFunction'
+
 
 import { Button } from "@material-ui/core"
 
 import { ThemeContext } from '../../context/ContextGeneral'
 
+import { Typography } from '@material-ui/core'
+
 // CSS styles
 import "./ModalSuspect.css"
-import { ws } from '../WebSocket'
-import { cardFun } from '../CardFunction'
+
 
 const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) => {
 
@@ -39,13 +43,15 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                 </button>
 
                 <div className="cards-to-show">
-                    <h2>Choose a card to show</h2>
-                    {
-                        suspect.map((card) => (
-                            <img width="150px" height="200px" src={cardFun(card)} alt={card.name} onClick={(e) => setSelection(e.target.alt)} />
-                        ))
-                    }
-                    <p style={{ color: 'white' }}>{`Selection: ${selection}`} </p>
+                    <Typography variant="h2" color="#fff">Choose a card to show</Typography>
+                    <div className="cards-question-container">
+                        {
+                            suspect.map((card) => (
+                                <img width="150px" height="200px" src={cardFun(card)} alt={card.name} onClick={(e) => setSelection(e.target.alt)} />
+                            ))
+                        }
+                    </div>
+                    <Typography variant="body1" color="#fff">{`Selection: ${selection}`}</Typography>
                     <Button
                         variant="contained"
                         color="secondary"
@@ -57,7 +63,7 @@ const ModalSuspect = ({ isOpenQuestion, closeModalQuestion, suspect, replyTo }) 
                             }
                         }}
                     >
-                        Confirm
+                        <Typography variant="button" color="#fff">Confirm</Typography>
                     </Button>
                 </div>
             </div>
