@@ -1,48 +1,51 @@
-.modal {
+.modal-win-lost-container {
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
     display: none;
     justify-content: center;
     align-items: center;
 }
 
-.modal.is-open {
+.is-open-win-lost {
     display: flex;
 }
 
-.modal-container {
-    position: relative;
-    padding: 1rem;
-    min-width: 600px;
-    max-width: 1500px;
-    min-height: 300px;
-    max-height: 600px;
-    border-radius: 10px;
+.modal-win-lost {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    height: 10%;
     overflow-y: auto;
     background-color: rgb(85, 33, 33);
+    background-color: transparent;
 }
 
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+.modal-win-lost h2 {
+    align-self: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 60px;
+}
+
+.modal-close-win-lost {
+    order: 2;
     width: 30px;
     height: 30px;
     border: none;
-    background: none;
+ 
     border-radius: 5px;
     transition: .3s ease all;
     color: 0;
     cursor: pointer;
 }
 
-.modal-close:hover {
-    background: rgba(134, 4, 4, 0.15);
+.modal-close-win-lost:hover {
+    background: transparent;
 }
 
 svg {

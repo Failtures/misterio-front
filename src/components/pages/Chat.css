@@ -6,6 +6,7 @@
     background-color: black;
     padding: 0.1%;
     border-radius: 1%;
+    background-color: black;
 }
 /**/
 .chat-content {
@@ -33,7 +34,42 @@
 }
 
 .chat-input {
-    background-color: white;
+    background-color: #ccc;
     width: 100%;
     height: 100%;
+}
+
+/*Game chat */
+.game-chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    height: 30%;
+    background-color: black;
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+/**/
+.game-chat-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+ 
+    padding-left: 1%;
+}
+
+.game-chat-content::-webkit-scrollbar {
+    display: none;
+}
+
+.game-chat-content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.game-chat-input {
+    background-color: #ccc;
 }

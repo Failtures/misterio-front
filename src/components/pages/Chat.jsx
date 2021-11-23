@@ -1,33 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
 import { ws } from '../WebSocket'
-import { TextField } from '@material-ui/core';
-import { ThemeContext } from '../../context/ContextGeneral';
+import { TextField } from '@material-ui/core'
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Typography } from '@material-ui/core'
+import './Chat.css'
 
-import './Chat.css';
+const Chat = ({ buffer }) => {
 
-const Chat = ({ buffer, newPlayer, leftPlayer }) => {
+    const [msg, setMsg] = useState('')
 
-    const [msg, setMsg] = useState('');
-
-    const dictStates = useContext(ThemeContext);
+    const dictStates = useContext(ThemeContext)
 
     const takesLobbySend = {
         'action': 'chat_lobby_send',
         'player_name': dictStates.nickname,
         'chat_name': dictStates.lobbyName,
         'message': msg
-    };
-
-
-
+    }
+    
     return (
         <div className="chat-container">
 
             <div className="chat-content">
-                {buffer.map(buff => <p style={{ color: 'white' }}>{buff}</p>)}
-
-                {newPlayer && <p style={{ color: '#99DD29' }}> {newPlayer} entry to the lobby</p>}
-                {leftPlayer && <p style={{ color: '#BD1E2A' }}> {leftPlayer} left the lobby</p>}
+                {buffer.map(buff => <Typography variant="body1" color="#fff">{buff}</Typography>)}
             </div>
 
 
@@ -41,7 +36,7 @@ const Chat = ({ buffer, newPlayer, leftPlayer }) => {
                     onChange={(e) => { setMsg(e.target.value) }}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            ws.send(JSON.stringify(takesLobbySend));
+                            ws.send(JSON.stringify(takesLobbySend))
                             setMsg('')
                         }
                     }}
@@ -49,7 +44,7 @@ const Chat = ({ buffer, newPlayer, leftPlayer }) => {
                 </TextField>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Chat;
+export default Chat

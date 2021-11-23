@@ -1,104 +1,100 @@
 // imports
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { useHistory } from "react-router";
-import { ws } from "../WebSocket";
-import { ThemeContext } from '../../context/ContextGeneral';
+import React, { useEffect, useState, useContext } from "react"
+import { useHistory } from "react-router"
+import { ws } from "../WebSocket"
+import { ThemeContext } from '../../context/ContextGeneral'
+import { Toaster, toast } from "react-hot-toast"
 // Components
-import ButtonStartGame from "../buttons/ButtonStartGame";
-import ButtonExitLobby from "../buttons/ButtonExitLobby";
+import ButtonStartGame from "../buttons/ButtonStartGame"
+import ButtonExitLobby from "../buttons/ButtonExitLobby"
 
-import Cards from "./Card";
-import Chat from "./Chat";
+import Cards from "./Card"
+import Chat from "./Chat"
+import './Lobby.css'
 
 const Lobby = () => {
 
-    let arrayAuxiliar = [];
     const colors_token = ['green', 'blue', 'red', 'yellow', 'pink', 'orange']
 
     const dictStates = useContext(ThemeContext)
 
-    const history = useHistory();
+    const history = useHistory()
 
-    const alertRef = useRef(null);
-
-    const [players2, setPlayers2] = useState([]);
-    const [host, setHost] = useState('');
-
-
-    const [newPlayer, setNewPlayer] = useState('');
-    const [leftPlayer, setLeftPlayer] = useState('');
-
-    const [buffer, setBuffer] = useState([]);
+    const [players2, setPlayers2] = useState([])
+    const [host, setHost] = useState('')
+    const [buffer, setBuffer] = useState([])
 
     const takesGetHand = {
         'action': 'match_get_hand',
         'player_name': dictStates.nickname,
         'match_name': dictStates.lobbyName
-    };
+    }
 
     useEffect(() => {
 
         ws.onmessage = (e) => {
 
-            const parseJson = JSON.parse(e.data);
-            console.log(parseJson.action)
+            const parsedJson = JSON.parse(e.data)
 
-            if (parseJson.action === 'new_lobby') {
-                setHost(parseJson.lobby.host);
-                setPlayers2([parseJson.lobby.host]);
-                dictStates.setPlayers(parseJson.lobby.players);
-                dictStates.setLobbyName(parseJson.lobby.name);
+            if (parsedJson.action === 'new_lobby') {
+                setHost(parsedJson.lobby.host);
+                setPlayers2([parsedJson.lobby.host]);
+                dictStates.setLobbyName(parsedJson.lobby.name);
             }
-            else if (parseJson.action === 'joined_lobby') {
-                setPlayers2(parseJson.lobby.players);
-                dictStates.setPlayers(parseJson.lobby.players);
-                dictStates.setLobbyName(parseJson.lobby.name);
+            else if (parsedJson.action === 'joined_lobby') {
+                setPlayers2(parsedJson.lobby.players);
+                dictStates.setLobbyName(parsedJson.lobby.name);
             }
-            else if (parseJson.action === 'new_player') {
-                setPlayers2((players2) => [...players2, parseJson.player_name]);
-                arrayAuxiliar = dictStates.players.slice();
-                arrayAuxiliar.push(parseJson.player_name);
-                dictStates.setPlayers(arrayAuxiliar);
-                setNewPlayer(parseJson.player_name);
-                //alertRef.current.style.display = 'block';
-                dictStates.setPlayers(arrayAuxiliar);
-            }
-            else if (parseJson.action === 'match_started') {
-                ws.send(JSON.stringify(takesGetHand));
-                let pos = 0;
-                let pos_x = 0;
-                let pos_y = 0;
-                for (let i = 0; i < parseJson.match.player_position.player_position.length; i++) {
-
-                    if (dictStates.nickname === parseJson.match.player_position.player_position[i].player_name) {
-                        dictStates.setTokenColor(colors_token[i])
-                        pos = i
+            else if (parsedJson.action === 'new_player') {
+                setPlayers2((players2) => [...players2, parsedJson.player_name]);
+                toast(`${parsedJson.player_name} joined the lobby`, {
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    style: {
+                        background: '#ffffff',
+                        color: "#116406"
                     }
+                })
+            }
+            else if (parsedJson.action === 'match_started') {
+                dictStates.setPlayerPosition(parsedJson.match.player_position.player_position)
+                ws.send(JSON.stringify(takesGetHand))
 
+                for (let i = 0; i < parsedJson.match.player_position.player_position.length; i++) {
+
+                    const tokenPlayer = {
+                        player: parsedJson.match.player_position.player_position[i].player_name,
+                        color: colors_token[i]
+                    }
+                    dictStates.setTokenColor((tokenColor) => [...tokenColor, tokenPlayer])
                 }
-                pos_x = parseJson.match.player_position.player_position[pos].pos_x;
-                pos_y = parseJson.match.player_position.player_position[pos].pos_y;
-                dictStates.setPosX(pos_x);
-                dictStates.setPosY(pos_y);
-                dictStates.setTurn(parseJson.match.turn);
-                history.push(`/game/${parseJson.match.name}`);
+
+                dictStates.setTurn(parsedJson.match.turn)
+                history.push(`/game/${parsedJson.match.name}`)
             }
-            else if (parseJson.action === 'player_left') {
-                setLeftPlayer(parseJson.player_name);
-                dictStates.setPlayers()
+            else if (parsedJson.action === 'player_left') {
+                setPlayers2(players2.filter(player => player !== parsedJson.player_name));
+                toast(`${parsedJson.player_name} left the lobby`, {
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    style: {
+                        background: '#ffffff',
+                        color: "#e50404"
+                    }
+                })
             }
-            else if (parseJson.action === 'lobby_removed') {
-                history.push('/');
+            else if (parsedJson.action === 'lobby_removed') {
+                history.push('/')
             }
-            else if (parseJson.action === 'new_message') {
-                setBuffer((buffer) => [...buffer, parseJson.message]);
-                console.log(parseJson.message);
+            else if (parsedJson.action === 'new_message') {
+                const date = new Date(parsedJson.timestamp)
+                setBuffer((buffer) => [...buffer, `${date.getHours()}:${date.getMinutes()} ${parsedJson.author}: ${parsedJson.message}`])
+
             }
-        };
-    });
+        }
+    })
 
     return (
-
 
         <div className="lobby-container">
             <div className="lobby">
@@ -106,30 +102,25 @@ const Lobby = () => {
                     {
                         players2.map(player => <Cards player={player}></Cards>)
                     }
-
-                    <div className="start-start">
-                        {host && <ButtonStartGame />}
-                    </div>
                 </div>
 
                 <div className="lobby-chat-start">
-                    <Chat buffer={buffer} newPlayer={newPlayer} leftPlayer={leftPlayer}></Chat>
+                    <Chat buffer={buffer}></Chat>
                     <div className="lobby-controls">
                         <div className="controls">
-
                             <ButtonExitLobby />
-
+                            {host && <ButtonStartGame />}
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
+            <Toaster
+                position="bottom-left"
+                reverseOrder={false}
+            />
         </div>
 
-    );
-};
+    )
+}
 
-export default Lobby;
+export default Lobby

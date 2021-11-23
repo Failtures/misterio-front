@@ -1,14 +1,15 @@
 // imports
-import React, { useEffect, useState } from "react";
-import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material';
+import React, { useEffect, useState } from "react"
+import { Table, TableCell, TableRow, TableHead, TableBody } from '@mui/material'
 import axios from 'axios'
-import { Button } from "@material-ui/core";
+import { Button } from "@material-ui/core"
 // components
-import ButtonJoinGame from "./buttons/ButtonJoinGame";
+import ButtonJoinGame from "./buttons/ButtonJoinGame"
+import { Typography } from '@material-ui/core'
 
 const ListGames = () => {
 
-    const [games, setGames] = useState([]);
+    const [games, setGames] = useState([])
 
     const getLobbies = async () => {
 
@@ -19,14 +20,14 @@ const ListGames = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            });
+            })
             setGames(response.data.lobbies.filter(item => item.current_players < 6))
         }
         catch (error) {
-            console.log(error, "ERROR");
+            console.log(error, "ERROR")
         }
-        
-    };
+
+    }
 
     useEffect(() => {
 
@@ -38,16 +39,16 @@ const ListGames = () => {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
-                });
+                })
                 setGames(response.data.lobbies.filter(item => item.current_players < 6))
             }
             catch (error) {
-                console.log(error, "ERROR");
+                console.log(error, "ERROR")
             }
-        };
-        getLobbies();
+        }
+        getLobbies()
 
-    }, []);
+    }, [])
 
     return (
         <div>
@@ -56,14 +57,14 @@ const ListGames = () => {
                 <Table>
                     <TableHead style={{ position: 'sticky', background: '#ccc', zIndex: 999, top: '0%' }}>
                         <TableRow>
-                            <TableCell>Game name</TableCell>
-                            <TableCell>Players</TableCell>
+                            <TableCell><Typography variant="body1" color="black">Game name</Typography></TableCell>
+                            <TableCell><Typography variant="body1" color="black">Players</Typography></TableCell>
                             <TableCell>
                                 <Button variant="contained"
                                     color="secondary"
                                     onClick={getLobbies}
                                 >
-                                    Refresh
+                                    <Typography variant="button" color="white">REFRESH</Typography>
                                 </Button>
                             </TableCell>
                         </TableRow>
@@ -72,8 +73,8 @@ const ListGames = () => {
                         {
                             games.map(item => (
                                 <TableRow key={item.name}>
-                                    <TableCell style={{ color: 'white' }}>{item.name}</TableCell>
-                                    <TableCell style={{ color: 'white' }}>{item.current_players}</TableCell>
+                                    <TableCell><Typography variant="body1" color="white">{item.name}</Typography></TableCell>
+                                    <TableCell> <Typography variant="body1" color="white">{item.current_players}</Typography></TableCell>
                                     <TableCell>
                                         <ButtonJoinGame
                                             nameGame={item.name}
@@ -87,7 +88,7 @@ const ListGames = () => {
                 </Table>
             }
         </div>
-    );
-};
+    )
+}
 
-export default ListGames;
+export default ListGames

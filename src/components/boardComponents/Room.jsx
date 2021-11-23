@@ -1,10 +1,21 @@
 // imports
 import { makeStyles } from '@material-ui/styles'
 
+import garage from '../../img/garage2.jpg'
+import mistery from '../../img/mistery.jpg'
+import bedroom from '../../img/bedroom.jpg'
+import library from '../../img/library2.jpg'
+import pantheon from '../../img/pantheon2.jpg'
+import laboratory from '../../img/laboratory.jpg'
+import dining from '../../img/dining.jpg'
+import cellar from '../../img/cellar.jpg'
+import living from '../../img/living.jpg'
+
 const Room = ({room}) => {
 
     const dictRoom = {
-        color: "",
+        position: '',
+        img: '',
         gcPosX: 0,
         gcPosY: 0,
         grPosX: 0,
@@ -13,87 +24,98 @@ const Room = ({room}) => {
 
     switch (room) {
         case 'Garage':
-            dictRoom.color = 'brown';
-            dictRoom.gcPosX = 1;
-            dictRoom.gcPosY = 7;
-            dictRoom.grPosX = 1;
-            dictRoom.grPosY = 7;
-            break;
+            dictRoom.position = 'bottom'
+            dictRoom.img = garage
+            dictRoom.gcPosX = 1
+            dictRoom.gcPosY = 7
+            dictRoom.grPosX = 1
+            dictRoom.grPosY = 7
+            break
         case 'Bedroom':
-            dictRoom.color = 'lightblue';
-            dictRoom.gcPosX = 8;
-            dictRoom.gcPosY = 14;
-            dictRoom.grPosX = 1;
-            dictRoom.grPosY = 7;
-            break;
+            dictRoom.position = 'bottom'
+            dictRoom.img = bedroom
+            dictRoom.gcPosX = 8
+            dictRoom.gcPosY = 14
+            dictRoom.grPosX = 1
+            dictRoom.grPosY = 7
+            break
         case 'Library':
-            dictRoom.color = 'green';
-            dictRoom.gcPosX = 15;
-            dictRoom.gcPosY = 21;
-            dictRoom.grPosX = 1;
-            dictRoom.grPosY = 7;
-            break;
+            dictRoom.position = 'bottom'
+            dictRoom.img = library
+            dictRoom.gcPosX = 15
+            dictRoom.gcPosY = 21
+            dictRoom.grPosX = 1
+            dictRoom.grPosY = 7
+            break
         case 'Living':
-            dictRoom.color = 'yellow';
-            dictRoom.gcPosX = 1;
-            dictRoom.gcPosY = 7;
-            dictRoom.grPosX = 8;
-            dictRoom.grPosY = 14;
-            break;
+            dictRoom.position = ' right center'
+            dictRoom.img = living
+            dictRoom.gcPosX = 1
+            dictRoom.gcPosY = 7
+            dictRoom.grPosX = 8
+            dictRoom.grPosY = 14
+            break
         case 'Mistery':
-            dictRoom.color = 'goldenrod';
-            dictRoom.gcPosX = 8;
-            dictRoom.gcPosY = 14;
-            dictRoom.grPosX = 8;
-            dictRoom.grPosY = 14;
-            break;
+            dictRoom.position = 'center'
+            dictRoom.img = mistery
+            dictRoom.gcPosX = 8
+            dictRoom.gcPosY = 14
+            dictRoom.grPosX = 8
+            dictRoom.grPosY = 14
+            break
         case 'Pantheon':
-            dictRoom.color = 'blue';
-            dictRoom.gcPosX = 15;
-            dictRoom.gcPosY = 21;
-            dictRoom.grPosX = 8;
-            dictRoom.grPosY = 14;
-            break;
+            dictRoom.position = 'left center'
+            dictRoom.img = pantheon
+            dictRoom.gcPosX = 15
+            dictRoom.gcPosY = 21
+            dictRoom.grPosX = 8
+            dictRoom.grPosY = 14
+            break
         case 'Cellar':
-            dictRoom.color = 'red';
-            dictRoom.gcPosX = 1;
-            dictRoom.gcPosY = 7;
-            dictRoom.grPosX = 15;
-            dictRoom.grPosY = 21;
-            break;
+            dictRoom.position = 'top center'
+            dictRoom.img = cellar
+            dictRoom.gcPosX = 1
+            dictRoom.gcPosY = 7
+            dictRoom.grPosX = 15
+            dictRoom.grPosY = 21
+            break
         case 'Dining':
-            dictRoom.color = 'purple';
-            dictRoom.gcPosX = 8;
-            dictRoom.gcPosY = 14;
-            dictRoom.grPosX = 15;
-            dictRoom.grPosY = 21;
-            break;
+            dictRoom.position = 'top center'
+            dictRoom.img = dining
+            dictRoom.gcPosX = 8
+            dictRoom.gcPosY = 14
+            dictRoom.grPosX = 15
+            dictRoom.grPosY = 21
+            break
         case 'Laboratory':
-            dictRoom.color = 'pink';
-            dictRoom.gcPosX = 15;
-            dictRoom.gcPosY = 21;
-            dictRoom.grPosX = 15;
-            dictRoom.grPosY = 21;
-            break;
+            dictRoom.position = 'top center'
+            dictRoom.img = laboratory
+            dictRoom.gcPosX = 15
+            dictRoom.gcPosY = 21
+            dictRoom.grPosX = 15
+            dictRoom.grPosY = 21
+            break
         default:
-            break;
+            break
     }
 
     const useStyle = makeStyles({
         backagroundSquare: {
-            backgroundColor: dictRoom.color,
+            backgroundImage: `url(${dictRoom.img})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: `${dictRoom.position}`,
             gridColumnStart: dictRoom.gcPosX,
             gridColumnEnd: dictRoom.gcPosY,
             gridRowStart: dictRoom.grPosX,
             gridRowEnd: dictRoom.grPosY,
         }
-    });
+    })
     
     const classes = useStyle()
 
     return (
         <div className={classes.backagroundSquare}>
-            {room}
         </div>
     )
 }

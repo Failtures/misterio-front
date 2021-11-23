@@ -1,12 +1,12 @@
 // imports
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import ThemeContext from './context/ContextGeneral';
+import ThemeContext from './context/ContextGeneral'
 //components
-import Home from './components/pages/Home';
-import Lobby from './components/pages/Lobby';
-import Game from './components/pages/Game';
+import Home from './components/pages/Home'
+import Lobby from './components/pages/Lobby'
+import Game from './components/pages/Game'
 // Css styles
-import './App.css';
+import './App.css'
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
