@@ -4,30 +4,31 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: ${({ theme }) => theme.backgroundColor.primary};
 `;
 
 export const PlayersAndInfo = styled.div`
-  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   height: 100%;
   min-height: 100vh;
-  border: 1px solid red;
 `;
 
 export const Actions = styled.div`
+  width: 100%;
+  max-width: 400px;
   height: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid red;
 `;
 
 export const Buttons = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 10px;
+  margin-top: auto;
 `;

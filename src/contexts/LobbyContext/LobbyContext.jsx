@@ -25,6 +25,25 @@ export const LobbyProvider = ({ children }) => {
       if (action === "get_hand") {
         navigate(`/game/${lobby.name}`);
       }
+      if (action === "question") {
+        const suspect_cards = lobby.hand.filter(
+          (card) => card.name === rest.monster || card.name === rest.victim || card.name === rest.room
+        );
+
+        if (suspect_cards.length === 0) {
+          sendMessage({
+            action: "match_question_res",
+            response: "negative",
+            player_name,
+            reply_to: rest.reply_to,
+            match_name: lobby.name,
+            reply_card: "",
+            monster: rest.monster,
+            victim: rest.victim,
+            room: rest.room,
+          });
+        }
+      }
       dispatch({ type: action, payload: rest });
     });
   }, [dispatch, sendMessage, lobby]);

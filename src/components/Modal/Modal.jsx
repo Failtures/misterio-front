@@ -36,7 +36,7 @@ const Modal = ({ name, children, isOpen, toggleModal }) => {
           {children}
         </Container>
       )}
-      <CustomButton name={name} onClick={handleOpenModal} />
+      {name && <CustomButton name={name} onClick={handleOpenModal} />}
     </>
   );
 };

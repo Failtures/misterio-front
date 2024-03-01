@@ -1,45 +1,42 @@
+import { useController } from "react-hook-form";
 import { Container, Img, Images } from "./CardSelector.styled";
 import Text from "@/components/Text/Text";
 import { useLobbyContext } from "@/contexts/LobbyContext/LobbyContext";
 
-const CardSelector = ({ cards, field_name, ...rest }) => {
+const CardSelector = ({ name, control, cards, rules }) => {
   const { lobby } = useLobbyContext();
-  const title = {
-    victims: "Víctimas",
-    monsters: "Monstruos",
-    vestibules: "Vestíbulos",
-  }[field_name];
+  const { field, fieldState } = control ? useController({ name, control, rules }) : {};
 
   const handleImageClick = (card_name) => {
-    if (rest.setValue) {
-      rest.setValue(field_name, card_name);
+    if (field) {
+      field.onChange(card_name);
     }
   };
 
-  const handleInCollection = (card_name) => {
-    if (rest.inCollection) {
-      return rest.inCollection(card_name, lobby.hand);
-    }
-    return false;
+  const inCollection = (card_name) => {
+    return lobby.hand.some((card) => card.name === card_name);
   };
 
   return (
     <Container>
-      <Text color="primary" fontWeight="bold" fontSize="microSmall">
-        {title}:
-      </Text>
       <Images>
-        {Object.keys(cards).map((card_name, index) => (
+        {cards.map((card, index) => (
           <Img
-            $selected={rest.value === card_name || handleInCollection(card_name)}
+            $selected={field && field.value === card.name}
+            $inCollection={inCollection(card.name)}
             width={120}
             key={index}
-            src={cards[card_name]}
-            alt={card_name}
-            onClick={() => handleImageClick(card_name)}
+            src={card.url}
+            alt={card.name}
+            onClick={() => handleImageClick(card.name)}
           />
         ))}
       </Images>
+      {field && (
+        <Text color="error" fontWeight="regular" fontSize="microSmall">
+          {fieldState.error?.message}
+        </Text>
+      )}
     </Container>
   );
 };

@@ -28,5 +28,5 @@ export const Circle = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  background-color: #606060;
+  background-color: ${({ $color }) => $color || "#606060"};
 `;

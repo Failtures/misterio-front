@@ -1,4 +1,19 @@
-export const { new_lobby, new_player, joined_lobby, match_started, get_hand, roll_dice, turn_passed, new_message } = {
+export const {
+  new_lobby,
+  new_player,
+  joined_lobby,
+  match_started,
+  get_hand,
+  roll_dice,
+  turn_passed,
+  player_position,
+  question,
+  reset_question,
+  suspect_response,
+  reset_suspect_response,
+  new_message,
+  failed,
+} = {
   new_lobby: "new_lobby",
   new_player: "new_player",
   joined_lobby: "joined_lobby",
@@ -6,5 +21,11 @@ export const { new_lobby, new_player, joined_lobby, match_started, get_hand, rol
   get_hand: "get_hand",
   roll_dice: "roll_dice",
   turn_passed: "turn_passed",
+  player_position: "player_position",
+  question: "question",
+  reset_question: "reset_question",
+  suspect_response: "suspect_response",
+  reset_suspect_response: "reset_suspect_response",
   new_message: "new_message",
+  failed: "failed",
 };

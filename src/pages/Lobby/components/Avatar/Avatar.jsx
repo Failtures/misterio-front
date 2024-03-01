@@ -5,7 +5,7 @@ const Avatar = ({ name, color }) => {
   return (
     <Container>
       <Content>
-        <Circle />
+        <Circle $color={color} />
         <Text color="primary" fontWeight="regular" fontSize="small">
           {(name = name)}
         </Text>

@@ -1,18 +1,23 @@
-import React, { useState } from "react";
 import ImageMapper from "react-img-mapper";
 import { coordsHotspots } from "../../coords";
 import { useLobbyContext } from "@/contexts/LobbyContext/LobbyContext";
+import { useState } from "react";
 
 const Board = () => {
-  const [selectedCell, setSelectedCell] = useState(null);
-  const { lobby } = useLobbyContext();
+  const { lobby, sendMessage } = useLobbyContext();
+  const [posX, setPosX] = useState(null);
+  const [posY, setPosY] = useState(null);
 
-  const handleCellClick = (area, index) => {
-    const [x1, y1, x2, y2] = area.coords;
-    const centerX = (x1 + x2) / 2;
-    const centerY = (y1 + y2) / 2;
+  const handleCellClick = (area) => {
+    const { pos_x, pos_y } = area;
+    const { coords } = area;
+    const [x1, y1, x2, y2] = coords;
 
-    setSelectedCell([centerX, centerY]);
+    setPosX(x1 + x2 / 2);
+    setPosY(y1 + y2 / 2);
+
+    let takes = { action: "match_move", match_name: lobby.name, pos_x, pos_y };
+    sendMessage(takes);
   };
 
   return (
@@ -29,8 +34,9 @@ const Board = () => {
         onClick={handleCellClick}
       />
 
-      {lobby?.player_positions.map((player) => (
+      {lobby?.player_positions.map((player, index) => (
         <div
+          key={index}
           style={{
             position: "absolute",
             left: player.average_x - 25 / 2,
@@ -38,12 +44,22 @@ const Board = () => {
             width: "25px",
             height: "25px",
             borderRadius: "50%",
-            backgroundColor: "red",
-            opacity: 0.5,
-            zIndex: 999,
+            backgroundColor: player.color,
+            opacity: 0.91,
+            zIndex: 99,
           }}
         />
       ))}
+      {/*   <div
+        style={{
+          position: "absolute",
+          left: posX,
+          top: posY + 50,
+          zIndex: 100,
+        }}
+      >
+        {lobby.info !== "Already rolled dice this turn" && lobby.info}
+      </div> */}
     </div>
   );
 };

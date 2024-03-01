@@ -1,31 +1,32 @@
-import Modal from "@/components/Modal/Modal";
 import useModal2 from "@/hooks/useModal2";
 import Text from "@/components/Text/Text";
-import { cards } from "@/cards";
+import Modal from "@/components/Modal/Modal";
 import CardSelector from "../CardSelector/CardSelector";
-import { Container } from "./Inform.styled";
-import { useLobbyContext } from "@/contexts/LobbyContext/LobbyContext";
+import ModalContainer from "../ModalContainer/ModalContainer";
+import { cards } from "@/cards";
 
 const Inform = () => {
-  const { lobby } = useLobbyContext();
   const { isOpen, toggleModal } = useModal2();
-
-  const inCollection = (card_name, cards) => {
-    return cards?.some(({ name }) => {
-      return name === card_name;
-    });
-  };
 
   return (
     <Modal name="Ver informe" isOpen={isOpen} toggleModal={toggleModal}>
-      <Container>
-        <Text color="primary" fontWeight="bold" fontSize="medium">
-          Informe
-        </Text>
-        {Object.keys(cards).map((type, index) => (
-          <CardSelector key={index} cards={{ ...cards[type] }} field_name={type} inCollection={inCollection} />
-        ))}
-      </Container>
+      <ModalContainer title="Informe">
+        {Object.keys(cards).map((card_type, index) => {
+          const title = {
+            victims: "Víctimas",
+            monsters: "Monstruos",
+            rooms: "Habitaciones",
+          }[card_type];
+          return (
+            <div key={index}>
+              <Text color="primary" fontWeight="bold" fontSize="microSmall">
+                {title}:
+              </Text>
+              <CardSelector cards={cards[card_type]} />
+            </div>
+          );
+        })}
+      </ModalContainer>
     </Modal>
   );
 };
