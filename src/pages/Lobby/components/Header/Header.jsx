@@ -1,12 +1,13 @@
 import { Container, ArrowBack } from "./Header.styled";
 import Text from "@/components/Text/Text";
 import { useLobbyContext } from "@/contexts/LobbyContext/LobbyContext";
-
+import { useNavigate } from "react-router-dom";
 import { getPlayerName } from "@/redux/user/utils";
 
 const Header = () => {
-  const { lobby, sendMessage } = useLobbyContext();
+  const { lobby, dispatch, sendMessage } = useLobbyContext();
   const player_name = getPlayerName();
+  const navigate = useNavigate();
 
   const leave = () => {
     const takes = {
@@ -16,6 +17,8 @@ const Header = () => {
     };
 
     sendMessage(takes);
+    dispatch({ type: "reset_lobby" });
+    navigate(-1);
   };
 
   return (

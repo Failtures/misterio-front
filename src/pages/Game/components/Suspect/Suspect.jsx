@@ -12,7 +12,7 @@ import { SelectorContainer } from "./Suspect.styled";
 
 const Suspect = () => {
   const { lobby, sendMessage } = useLobbyContext();
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
   const suspect = useModal2();
   const player_name = getPlayerName();
 
@@ -20,6 +20,7 @@ const Suspect = () => {
     const { monsters, victims } = data;
     const player_index = lobby.player_positions.findIndex((player) => player.player_name === player_name);
     const room = lobby.player_positions[player_index].square;
+    console.log("DATA:", data);
 
     sendMessage({
       action: "match_suspect",
@@ -29,6 +30,7 @@ const Suspect = () => {
       victim: victims,
       room,
     });
+    reset();
   };
 
   return (

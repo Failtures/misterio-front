@@ -9,5 +9,6 @@ export const initialState = {
   dice: null,
   question: null,
   suspect_response: null,
+  loser: null,
   failed: "",
 };

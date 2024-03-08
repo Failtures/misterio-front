@@ -4,6 +4,7 @@ import Modal from "@/components/Modal/Modal";
 import CardSelector from "../CardSelector/CardSelector";
 import ModalContainer from "../ModalContainer/ModalContainer";
 import { cards } from "@/cards";
+import { useEffect } from "react";
 
 const Inform = () => {
   const { isOpen, toggleModal } = useModal2();

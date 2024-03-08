@@ -2,6 +2,7 @@ import {
   new_lobby,
   new_player,
   joined_lobby,
+  player_left,
   match_started,
   get_hand,
   roll_dice,
@@ -11,9 +12,13 @@ import {
   reset_question,
   suspect_response,
   reset_suspect_response,
+  player_deleted,
+  reset_loser,
   new_message,
   failed,
+  reset_lobby,
 } from "./actions";
+import { initialState } from "./initialState";
 import { colors } from "@/utils/colors";
 
 import { coordsHotspots } from "@/pages/Game/coords";
@@ -32,6 +37,12 @@ export const lobbyReducer = (state, action) => {
 
     case joined_lobby:
       return { ...state, ...action.payload.lobby };
+
+    case player_left: {
+      const new_players = [...state.players].filter((player) => player !== action.payload.player_name);
+
+      return { ...state, players: new_players, current_players: state.current_players - 1 };
+    }
 
     case match_started: {
       const { current_players, host } = state;
@@ -108,19 +119,27 @@ export const lobbyReducer = (state, action) => {
 
     case reset_question:
       return { ...state, question: null };
-      reset_suspect_response;
+
     case suspect_response:
-      console.log("CARD:", action.payload);
       return { ...state, hand: [...state.hand, { name: action.payload.card }], suspect_response: action.payload.card };
 
     case reset_suspect_response:
       return { ...state, suspect_response: null };
+
+    case player_deleted:
+      return { ...state, turn: action.payload.next_turn, loser: action.payload.loser };
+
+    case reset_loser:
+      return { ...state, loser: null };
 
     case new_message:
       return { ...state, chat: [...state.chat, action.payload] };
 
     case failed:
       return { ...state, ...action.payload };
+
+    case reset_lobby:
+      return initialState;
     default:
       console.log("ULTIMO CASO:", action.type);
   }

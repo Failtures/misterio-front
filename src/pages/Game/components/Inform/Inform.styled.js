@@ -4,7 +4,6 @@ export const Container = styled.div`
   padding: 40px;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.backgroundColor.primary};
   gap: 20px;
 `;
 

@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useLobbyContext } from "@/contexts/LobbyContext/LobbyContext";
+import { getPlayerName } from "@/redux/user/utils";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import Text from "../Text/Text";
 import { Container, ChatWindow } from "./Chat.styled";
 
-const Chat = () => {
+const Chat = ({ action }) => {
+  const { lobby, sendMessage } = useLobbyContext();
+  const player_name = getPlayerName();
   const {
     control,
     formState: { errors },
@@ -12,17 +16,16 @@ const Chat = () => {
   } = useForm();
 
   const handleMessage = () => {
-    const player_name = localStorage.getItem("nickname");
-    /*     sendMessage({ action: "chat_lobby_send", player_name, chat_name: lobby.name, message: watch("message") }); */
+    sendMessage({ action, player_name, chat_name: lobby.name, message: watch("message") });
     reset();
   };
 
   return (
     <Container>
       <ChatWindow>
-        {/*    {lobby?.chat.map(({ message, author }, index) => (
+        {lobby?.chat.map(({ message, author }, index) => (
           <Text key={index} color="primary" fontWeight="regular" fontSize="microSmall">{`${author}: ${message}`}</Text>
-        ))} */}
+        ))}
       </ChatWindow>
       <CustomInput
         control={control}

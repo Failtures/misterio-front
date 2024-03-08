@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const PlayersAndInfo = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 50px;
   height: 100%;
   min-height: 100vh;
@@ -23,6 +24,7 @@ export const Actions = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 50px 0;
 `;
 
 export const Buttons = styled.div`
