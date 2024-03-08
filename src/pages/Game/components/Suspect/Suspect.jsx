@@ -20,7 +20,6 @@ const Suspect = () => {
     const { monsters, victims } = data;
     const player_index = lobby.player_positions.findIndex((player) => player.player_name === player_name);
     const room = lobby.player_positions[player_index].square;
-    console.log("DATA:", data);
 
     sendMessage({
       action: "match_suspect",

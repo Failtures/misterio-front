@@ -7,7 +7,6 @@ import { colors } from "@/utils/colors";
 const PlayerList = () => {
   const { lobby } = useLobbyContext();
   const player_name = getPlayerName();
-  console.log("LOBBY PLAYER LIST:", lobby);
   if (lobby?.name === "") {
     return <Avatar name={player_name} />;
   }

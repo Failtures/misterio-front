@@ -13,9 +13,11 @@ const Lobby = () => {
       <PlayerList />
 
       <Menu />
-      <div style={{ position: "absolute", left: 0, bottom: 0, height: "220px", width: "350px" }}>
-        <Chat action="chat_lobby_send" />
-      </div>
+      {lobby.name && (
+        <div style={{ position: "absolute", left: 0, bottom: 0, height: "220px", width: "350px" }}>
+          <Chat action="chat_lobby_send" />
+        </div>
+      )}
     </Container>
   );
 };

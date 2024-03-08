@@ -16,7 +16,6 @@ const Accuse = () => {
 
   const onSubmit = (data) => {
     const { monsters, victims, rooms } = data;
-    console.log("DATA:", data);
     sendMessage({
       action: "match_accuse",
       match_name: lobby.name,

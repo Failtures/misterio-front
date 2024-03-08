@@ -17,7 +17,6 @@ export const LobbyProvider = ({ children }) => {
   useEffect(() => {
     setOnMessageHandler((message) => {
       const { action, ...rest } = message;
-      console.log("MESSAGE:", message);
 
       if (action === "match_started") {
         sendMessage({ action: "match_get_hand", player_name, match_name: rest.match.name });
@@ -30,10 +29,10 @@ export const LobbyProvider = ({ children }) => {
     });
   }, [dispatch, sendMessage, lobby]);
 
-  /*   const memoizedValue = useMemo(() => {
+  const memoizedValue = useMemo(() => {
     return { lobby, dispatch, sendMessage };
   }, [lobby, dispatch, sendMessage]);
- */
+
   return <LobbyContext.Provider value={{ lobby, dispatch, sendMessage }}>{children}</LobbyContext.Provider>;
 };
 export default LobbyProvider;

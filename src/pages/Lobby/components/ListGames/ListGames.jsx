@@ -13,7 +13,6 @@ const PartidasTable = () => {
 
   const getListGames = async () => {
     const response = await getLobbies();
-    console.log("response:", response);
     setGames(response.data.lobbies);
   };
 
