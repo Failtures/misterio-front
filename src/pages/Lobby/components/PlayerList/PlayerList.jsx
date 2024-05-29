@@ -7,15 +7,17 @@ import { colors } from "@/utils/colors";
 const PlayerList = () => {
   const { lobby } = useLobbyContext();
   const player_name = getPlayerName();
-  if (lobby?.name === "") {
+  /*   if (lobby?.name === "") {
     return <Avatar name={player_name} />;
-  }
+  } */
 
   return (
     <Container>
-      {lobby?.players.map((player, index) => (
-        <Avatar key={index} name={player} color={colors[index]} />
-      ))}
+      {lobby.name ? (
+        lobby?.players.map((player, index) => <Avatar key={index} name={player} color={colors[index]} />)
+      ) : (
+        <Avatar name={player_name} />
+      )}
     </Container>
   );
 };

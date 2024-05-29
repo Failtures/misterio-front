@@ -9,7 +9,7 @@ const Lobby = () => {
   const { lobby } = useLobbyContext();
   return (
     <Container>
-      <Header />
+      {lobby.name && <Header />}
       <PlayerList />
 
       <Menu />

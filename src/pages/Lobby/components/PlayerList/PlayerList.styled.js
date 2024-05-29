@@ -3,4 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   gap: 50px;
+  align-content: center;
+  margin: auto;
 `;

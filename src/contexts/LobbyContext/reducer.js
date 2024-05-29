@@ -75,7 +75,7 @@ export const lobbyReducer = (state, action) => {
         player_positions: new_player_positions,
         players,
         turn,
-        chat: action.payload.chat,
+        chat: [],
       };
     }
 

@@ -15,6 +15,6 @@ export const ArrowBack = styled(Arrow90degLeft)`
   color: #fff;
   align-self: flex-start;
   position: absolute;
-  left: 10px;
+  left: 20px;
   cursor: pointer;
 `;

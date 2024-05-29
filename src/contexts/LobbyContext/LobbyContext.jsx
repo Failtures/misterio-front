@@ -33,6 +33,6 @@ export const LobbyProvider = ({ children }) => {
     return { lobby, dispatch, sendMessage };
   }, [lobby, dispatch, sendMessage]);
 
-  return <LobbyContext.Provider value={{ lobby, dispatch, sendMessage }}>{children}</LobbyContext.Provider>;
+  return <LobbyContext.Provider value={memoizedValue}>{children}</LobbyContext.Provider>;
 };
 export default LobbyProvider;

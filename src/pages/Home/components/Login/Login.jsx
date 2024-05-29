@@ -35,7 +35,7 @@ const Login = () => {
           rules={{
             required: "Campo obligatorio",
             pattern: {
-              value: /^[a-zA-Z0-9]+$/,
+              value: /^[a-zA-Z0-9\s]+$/,
               message: "Solo admite letras y numeros",
             },
             minLength: {
